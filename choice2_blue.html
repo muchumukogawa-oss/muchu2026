@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>いちばんぴったりないろ - 青グループ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Zen Maru Gothic", sans-serif;
+        background-color: #f9f9f9;
+      }
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5vw;
+        padding: 0 5vw;
+      }
+      .back-arrow {
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 14px 22px 14px 0;
+        border-color: transparent #555 transparent transparent;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .title-area {
+        font-size: clamp(16px, 2.4vw, 24px);
+        font-weight: 900;
+        color: #4a2828;
+        line-height: 1.6;
+      }
+      .highlight-red {
+        color: #d93838;
+      }
+      .highlight-brown {
+        color: #b85232;
+      }
+      .palette-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 4px;
+        width: clamp(260px, 38vw, 420px);
+        height: clamp(260px, 38vw, 420px);
+      }
+      .color-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        font-size: clamp(11px, 1.5vw, 16px);
+        font-weight: 900;
+        text-decoration: none;
+        border-radius: 2px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        transition: transform 0.1s ease;
+        padding: 4px;
+        text-align: center;
+      }
+      .color-card:active {
+        transform: scale(0.95);
+      }
+      .split-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .split-cell .color-card {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="choice1.html" class="back-arrow" aria-label="もどる"></a>
+      <div class="title-area">
+        <p>「いちばんぴったり」</p>
+        <p>な<span class="highlight-red">い</span><span class="highlight-brown">ろ</span>はどれかな？</p>
+      </div>
+      <div class="palette-grid">
+        <!-- (びびり)びっくり -->
+        <a href="decision.html?color=%230073e6" class="color-card" style="background-color: #0073e6"
+          >(びびり)<br />びっくり</a
+        >
+        <!-- 不安・心配 -->
+        <a href="decision.html?color=%23999999" class="color-card" style="background-color: #999999">不安・心配</a>
+        <!-- イライラ -->
+        <a href="decision.html?color=%23ff6633" class="color-card" style="background-color: #ff6633">イライラ</a>
+
+        <!-- 泣きたい -->
+        <a href="decision.html?color=%231a8cff" class="color-card" style="background-color: #1a8cff">泣きたい</a>
+        <!-- かわいそう / 寂しい（上下分割） -->
+        <div class="split-cell">
+          <a
+            href="decision.html?color=%2380c1ff"
+            class="color-card"
+            style="background-color: #80c1ff; color: #111; text-shadow: none"
+            >かわいそう</a
+          >
+          <a href="decision.html?color=%234682b4" class="color-card" style="background-color: #4682b4">寂しい</a>
+        </div>
+        <!-- がっかりする -->
+        <a href="decision.html?color=%23000080" class="color-card" style="background-color: #000080">がっかりする</a>
+
+        <!-- 悲しい -->
+        <a href="decision.html?color=%230000ff" class="color-card" style="background-color: #0000ff">悲しい</a>
+        <!-- 悔しい -->
+        <a href="decision.html?color=%234b0082" class="color-card" style="background-color: #4b0082">悔しい</a>
+        <!-- 疲れた -->
+        <a href="decision.html?color=%23708090" class="color-card" style="background-color: #708090">疲れた</a>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>いちばんぴったりないろ - 赤グループ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Zen Maru Gothic", sans-serif;
+        background-color: #f9f9f9;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5vw;
+        padding: 0 5vw;
+      }
+
+      .back-arrow {
+        position: absolute;
+        top: 5vh;
+        left: 5vw;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 14px 22px 14px 0;
+        border-color: transparent #555 transparent transparent;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .title-area {
+        font-size: clamp(16px, 2.4vw, 24px);
+        font-weight: 900;
+        color: #4a2828;
+        line-height: 1.6;
+      }
+      .highlight-red {
+        color: #d93838;
+      }
+      .highlight-brown {
+        color: #b85232;
+      }
+
+      /* 9マス＋変形マスのカラーパレット（3x3ベース） */
+      .palette-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 4px;
+        width: clamp(260px, 38vw, 420px);
+        height: clamp(260px, 38vw, 420px);
+      }
+
+      .color-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        font-size: clamp(11px, 1.5vw, 16px);
+        font-weight: 900;
+        text-decoration: none;
+        border-radius: 2px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        transition: transform 0.1s ease;
+        padding: 4px;
+        text-align: center;
+      }
+      .color-card:active {
+        transform: scale(0.95);
+      }
+
+      /* 分割セル用コンテナ */
+      .split-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .split-cell .color-card {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="choice1.html" class="back-arrow" aria-label="もどる"></a>
+
+      <div class="title-area">
+        <p>「いちばんぴったり」</p>
+        <p>な<span class="highlight-red">い</span><span class="highlight-brown">ろ</span>はどれかな？</p>
+      </div>
+
+      <div class="palette-grid">
+        <!-- 怒る -->
+        <a href="result.html?emotion=怒る" class="color-card" style="background-color: #ff0000">怒る</a>
+        <!-- 怖い -->
+        <a href="result.html?emotion=怖い" class="color-card" style="background-color: #000000">怖い</a>
+        <!-- うるさい -->
+        <a href="result.html?emotion=うるさい" class="color-card" style="background-color: #ff5500">うるさい</a>
+
+        <!-- 危ない -->
+        <a href="result.html?emotion=危ない" class="color-card" style="background-color: #800055">危ない</a>
+        <!-- 嫌 -->
+        <a href="result.html?emotion=嫌" class="color-card" style="background-color: #a052a0">嫌</a>
+
+        <!-- 困る / 恥ずかしい（上下分割） -->
+        <div class="split-cell">
+          <a
+            href="result.html?emotion=困る"
+            class="color-card"
+            style="background-color: #d1b2d1; color: #333; text-shadow: none"
+            >困る</a
+          ><!doctype html>
+          <html lang="ja">
+            <head>
+              <meta charset="UTF-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+              <title>いちばんぴったりないろ - 赤グループ</title>
+              <link rel="preconnect" href="https://fonts.googleapis.com" />
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+              <link
+                href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap"
+                rel="stylesheet"
+              />
+
+              <style>
+                * {
+                  margin: 0;
+                  padding: 0;
+                  box-sizing: border-box;
+                }
+                body,
+                html {
+                  width: 100%;
+                  height: 100%;
+                  overflow: hidden;
+                  font-family: "Zen Maru Gothic", sans-serif;
+                  background-color: #f9f9f9;
+                }
+
+                .container {
+                  position: relative;
+                  width: 100%;
+                  height: 100vh;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  gap: 5vw;
+                  padding: 0 5vw;
+                }
+
+                .back-arrow {
+                  position: absolute;
+                  top: 5vh;
+                  left: 5vw;
+                  width: 0;
+                  height: 0;
+                  border-style: solid;
+                  border-width: 14px 22px 14px 0;
+                  border-color: transparent #555 transparent transparent;
+                  cursor: pointer;
+                  text-decoration: none;
+                }
+
+                .title-area {
+                  font-size: clamp(16px, 2.4vw, 24px);
+                  font-weight: 900;
+                  color: #4a2828;
+                  line-height: 1.6;
+                }
+                .highlight-red {
+                  color: #d93838;
+                }
+                .highlight-brown {
+                  color: #b85232;
+                }
+
+                /* 9マス＋変形マスのカラーパレット（3x3ベース） */
+                .palette-grid {
+                  display: grid;
+                  grid-template-columns: repeat(3, 1fr);
+                  grid-template-rows: repeat(3, 1fr);
+                  gap: 4px;
+                  width: clamp(260px, 38vw, 420px);
+                  height: clamp(260px, 38vw, 420px);
+                }
+
+                .color-card {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  color: #ffffff;
+                  font-size: clamp(11px, 1.5vw, 16px);
+                  font-weight: 900;
+                  text-decoration: none;
+                  border-radius: 2px;
+                  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+                  transition: transform 0.1s ease;
+                  padding: 4px;
+                  text-align: center;
+                }
+                .color-card:active {
+                  transform: scale(0.95);
+                }
+
+                /* 分割セル用コンテナ */
+                .split-cell {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 4px;
+                }
+
+                .split-cell .color-card {
+                  height: 100%;
+                }
+              </style>
+            </head>
+            <body>
+              <div class="container">
+                <a href="choice1.html" class="back-arrow" aria-label="もどる"></a>
+
+                <div class="title-area">
+                  <p>「いちばんぴったり」</p>
+                  <p>な<span class="highlight-red">い</span><span class="highlight-brown">ろ</span>はどれかな？</p>
+                </div>
+
+                <div class="palette-grid">
+                  <!-- 怒る -->
+                  <a href="decision.html?color=%23ff0000" class="color-card" style="background-color: #ff0000">怒る</a>
+                  <!-- 怖い -->
+                  <a href="decision.html?color=%23000000" class="color-card" style="background-color: #000000">怖い</a>
+                  <!-- うるさい -->
+                  <a href="decision.html?color=%23ff5500" class="color-card" style="background-color: #ff5500"
+                    >うるさい</a
+                  >
+
+                  <!-- 危ない -->
+                  <a href="decision.html?color=%23800055" class="color-card" style="background-color: #800055"
+                    >危ない</a
+                  >
+                  <!-- 嫌 -->
+                  <a href="decision.html?color=%23a052a0" class="color-card" style="background-color: #a052a0">嫌</a>
+
+                  <!-- 困る / 恥ずかしい（上下分割） -->
+                  <div class="split-cell">
+                    <a
+                      href="decision.html?color=%23d1b2d1"
+                      class="color-card"
+                      style="background-color: #d1b2d1; color: #333; text-shadow: none"
+                      >困る</a
+                    >
+                    <a href="decision.html?color=%23e68ab8" class="color-card" style="background-color: #e68ab8"
+                      >恥ずかしい</a
+                    >
+                  </div>
+
+                  <!-- しつこい -->
+                  <a href="decision.html?color=%236a006a" class="color-card" style="background-color: #6a006a"
+                    >しつこい</a
+                  >
+                  <!-- ショック -->
+                  <a href="decision.html?color=%23333333" class="color-card" style="background-color: #333333"
+                    >ショック</a
+                  >
+                  <!-- 面白くない -->
+                  <a href="decision.html?color=%23b5895c" class="color-card" style="background-color: #b5895c"
+                    >面白くない</a
+                  >
+                </div>
+              </div>
+            </body>
+          </html>
+          <a href="result.html?emotion=恥ずかしい" class="color-card" style="background-color: #e68ab8">恥ずかしい</a>
+        </div>
+
+        <!-- しつこい -->
+        <a href="result.html?emotion=しつこい" class="color-card" style="background-color: #6a006a">しつこい</a>
+        <!-- ショック -->
+        <a href="result.html?emotion=ショック" class="color-card" style="background-color: #333333">ショック</a>
+        <!-- 面白くない -->
+        <a href="result.html?emotion=面白くない" class="color-card" style="background-color: #b5895c">面白くない</a>
+      </div>
+    </div>
+  </body>
+</html>

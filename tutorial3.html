@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>きもちってなあに？ - きもちのたんけん</title>
+    <!-- Google Fontsから全丸ゴシックを読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body,
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Zen Maru Gothic", sans-serif;
+      }
+
+      /* 画面全体（背景1：background_grass.png） */
+      .stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-image: url("img/background_grass.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* 右上の大きなコンパス */
+      .compass {
+        position: absolute;
+        top: -25px;
+        right: -25px;
+        width: clamp(140px, 22vw, 220px);
+        height: auto;
+        z-index: 8;
+        pointer-events: none;
+      }
+
+      /* 中央の巻物エリア（map.png） */
+      .scroll-container {
+        position: relative;
+        width: 82%;
+        max-width: 860px;
+        height: 82vh;
+        max-height: 520px;
+        z-index: 2; /* 草（z-index: 5）の下に潜り込ませる */
+
+        background-image: url("img/map.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        /* 左の巻物軸部分を考慮した余白 */
+        padding: 4% 6% 5% 18%;
+      }
+
+      /* タイトル「きもちってなあに？」 */
+      .content-title {
+        font-size: clamp(22px, 3.6vw, 36px);
+        font-weight: 900;
+        color: #4a2828;
+        text-align: center;
+        margin-bottom: 22px;
+        padding-bottom: 4px;
+        border-bottom: 3px solid #b87b5c;
+        display: inline-block;
+        letter-spacing: 0.05em;
+      }
+
+      /* 本文テキスト */
+      .content-text {
+        font-size: clamp(15px, 2.2vw, 22px);
+        font-weight: 900;
+        color: #4a2828;
+        text-align: center;
+        line-height: 1.8;
+      }
+
+      .content-text p {
+        margin-bottom: 14px;
+      }
+
+      /* ルビ（振り仮名）の文字サイズ・装飾 */
+      ruby rt {
+        font-size: 0.55em;
+        font-weight: 700;
+        color: #4a2828;
+      }
+
+      /* ハイライト文字色 */
+      .highlight-red {
+        color: #d93838;
+      }
+
+      /* 前景の草（grass.png：巻物やコンパスの上に重なる） */
+      .grass-foreground {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("img/grass.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        z-index: 5;
+      }
+
+      /* 左側の矢印（まえへ：tutorial1の矢印を左向きに） */
+      .prev-btn {
+        position: absolute;
+        left: 3vw;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 16px 26px 16px 0;
+        border-color: transparent #ffffff transparent transparent;
+        filter: drop-shadow(0px 0px 2px #333) drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.3));
+        cursor: pointer;
+        z-index: 10;
+        text-decoration: none;
+        transition: transform 0.1s ease;
+      }
+
+      .prev-btn:active {
+        transform: translateY(-50%) scale(0.9);
+      }
+
+      /* 右側の矢印（つぎへ：tutorial1と同デザイン） */
+      .next-btn {
+        position: absolute;
+        right: 3vw;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 16px 0 16px 26px;
+        border-color: transparent transparent transparent #ffffff;
+        filter: drop-shadow(0px 0px 2px #333) drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
+        cursor: pointer;
+        z-index: 10;
+        text-decoration: none;
+        transition: transform 0.1s ease;
+      }
+
+      .next-btn:active {
+        transform: translateY(-50%) scale(0.9);
+      }
+
+      /* 下部のページ表示（枠線なしの丸） */
+      .dots-container {
+        position: absolute;
+        bottom: 3.5vh;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        background-color: rgba(255, 255, 255, 0.65);
+        border: none;
+        border-radius: 50%;
+      }
+
+      .dot.active {
+        background-color: #ffffff;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <!-- 右上の大きなコンパス -->
+      <img src="img/compass.png" alt="コンパス" class="compass" />
+
+      <!-- 中央の巻物コンテンツ -->
+      <div class="scroll-container">
+        <h1 class="content-title"><span class="highlight-red">きもち</span>ってなあに？</h1>
+
+        <div class="content-text">
+          <p>
+            <span class="highlight-red">きもち</span>は、<ruby>目<rt>め</rt></ruby
+            >には <ruby>見<rt>み</rt></ruby
+            >えないけど
+          </p>
+          <p><span class="highlight-red">いろ</span>が ついているんだよ。</p>
+        </div>
+      </div>
+
+      <!-- 前景の草（巻物の手前に被せる） -->
+      <div class="grass-foreground"></div>
+
+      <!-- 左矢印（tutorial2へ戻る） -->
+      <a href="tutorial2.html" class="prev-btn" aria-label="まえへ"></a>
+
+      <!-- 右矢印（rules1へ進む） -->
+      <a href="rules1.html" class="next-btn" aria-label="つぎへ"></a>
+
+      <!-- 下部のページ丸（3番目がアクティブ） -->
+      <div class="dots-container">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </body>
+</html>
