@@ -4,63 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>きもちのたんけん</title>
-    <!-- Google Fontsから全丸ゴシックを読み込み -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
 
     <style>
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
 
-      body,
-      html {
+      html,
+      body {
         width: 100%;
-        height: 100%;
+        min-height: 100%;
+      }
+
+      body {
+        min-height: 100vh;
         overflow: hidden;
       }
 
-      /* 背景画像の設定 */
       .background {
-        width: 100%;
-        height: 100%;
-        background-image: url("img/background_top.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        /* 全体を縦方向に整列し、縦方向の空きスペースを全体に均等分散 */
         display: flex;
+        min-height: 100vh;
         flex-direction: column;
         align-items: center;
-        justify-content: space-evenly; /* 上中下にゆったり配置 */
-        padding: 2vh 0 3vh 0; /* 上下の余白調整 */
+        justify-content: space-evenly;
+        padding: 2vh 12px;
+
+        background-image: url("img/background_top.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
       }
 
-      /* 1. タイトルロゴ（画面上部〜中央へ大きく広げる） */
       .title-logo {
-        width: 95%;
-        max-width: 1100px;
-        height: 55vh; /* 画面高さの半分以上をロゴに使用 */
+        width: min(58vw, 500px);
+        height: 48vh;
         object-fit: contain;
-        /* 少し影をつけて背景から際立たせる */
-        filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.15));
+        filter: drop-shadow(0 4px 8px rgb(0 0 0 / 15%));
       }
 
-      /* 2. キャッチコピー（中央へ配置） */
       .sub-text {
+        color: #572d2d;
         font-family: "Zen Maru Gothic", sans-serif;
-        color: #4a2828;
-        font-size: clamp(30px, 4.8vw, 56px); /* 文字を一まわり拡大 */
+        font-size: clamp(18px, 3.5vw, 30px);
         font-weight: 900;
-        text-align: center;
         line-height: 1.35;
-        margin: 0; /* 位置指定はFlexboxに任せる */
-
-        /* くっきりした白フチ＋立体的な落ち影 */
+        text-align: center;
         text-shadow:
           3px 3px 0 #fff,
           -3px -3px 0 #fff,
@@ -70,41 +64,27 @@
           0 -3px 0 #fff,
           3px 0 0 #fff,
           -3px 0 0 #fff,
-          2px 2px 0 #fff,
-          -2px -2px 0 #fff,
-          0px 5px 8px rgba(0, 0, 0, 0.35);
+          0 5px 8px rgb(0 0 0 / 35%);
       }
 
-      .sub-text .highlight-red {
-        color: #e73838;
+      .highlight-red {
+        color: #dd5f5f;
       }
 
-      /* 3. 画像ボタン（下部川の位置へ重なるよう大きく設定） */
       .start-btn {
         display: flex;
-        justify-content: center;
+        width: 200px;
+        height: 70px;
         align-items: center;
+        justify-content: center;
 
-        background-image: url("img/button_red.png");
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-
-        /* ボタン画像サイズ */
-        width: 320px;
-        height: 90px;
-
-        /* ボタン内の文字スタイル */
+        background: url("img/button_red.png") center / contain no-repeat;
+        color: #fff;
         font-family: "Zen Maru Gothic", sans-serif;
-        color: #ffffff;
-        font-size: 36px;
+        font-size: 24px;
         font-weight: 900;
-        letter-spacing: 0.18em;
+        letter-spacing: 0.05em;
         text-decoration: none;
-
-        padding-top: 2px;
-        padding-left: 0.18em;
-
         cursor: pointer;
         transition: transform 0.1s ease;
       }
@@ -112,21 +92,36 @@
       .start-btn:active {
         transform: scale(0.95);
       }
+
+      @media (max-width: 600px) {
+        .title-logo {
+          width: min(88vw, 500px);
+          height: 44vh;
+        }
+
+        .sub-text {
+          font-size: clamp(17px, 5vw, 24px);
+        }
+
+        .start-btn {
+          width: 180px;
+          height: 64px;
+          font-size: 21px;
+        }
+      }
     </style>
   </head>
+
   <body>
-    <div class="background">
-      <!-- 1. タイトルロゴ -->
+    <main class="background">
       <img src="img/titlelog.png" alt="きもちのたんけん" class="title-logo" />
 
-      <!-- 2. キャッチコピー -->
       <p class="sub-text">
         <span class="highlight-red">いろ</span>をタップして、<br />
         <span class="highlight-red">きもち</span>のことばをさがしにいこう！
       </p>
 
-      <!-- 3. はじめるボタン（tos.htmlへの遷移設定） -->
       <a href="tos.html" class="start-btn">はじめる</a>
-    </div>
+    </main>
   </body>
 </html>
