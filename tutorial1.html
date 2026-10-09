@@ -4,101 +4,85 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>きもちってなあに？ - きもちのたんけん</title>
-    <!-- Google Fontsから全丸ゴシックを読み込み -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
 
     <style>
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
 
-      body,
-      html {
+      html,
+      body {
         width: 100%;
         height: 100%;
         overflow: hidden;
         font-family: "Zen Maru Gothic", sans-serif;
       }
 
-      /* 画面全体（背景1：background_grass.png） */
       .stage {
         position: relative;
+        display: flex;
         width: 100%;
         height: 100%;
-        background-image: url("img/background_grass.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: flex;
         justify-content: center;
         align-items: center;
+        background: url("img/background_grass.png") center / 100% 100% no-repeat;
       }
 
-      /* コンパス（右上から大きめにはみ出す配置） */
       .compass {
         position: absolute;
-        top: -25px;
-        right: -25px;
-        width: clamp(140px, 22vw, 220px);
-        height: auto;
         z-index: 8;
+        top: -10;
+        right: 0;
+        width: clamp(1000px, 1000vw, 1000px);
+        height: auto;
         pointer-events: none;
       }
 
-      /* 中央の巻物エリア（map.png） */
       .scroll-container {
         position: relative;
-        width: 82%;
-        max-width: 860px;
-        height: 82vh;
-        max-height: 520px;
-        z-index: 2; /* 草（z-index: 5）の下に潜り込ませる */
-
-        background-image: url("img/map.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-
+        z-index: 2;
         display: flex;
+        width: 96%;
+        max-width: none;
+        height: 96vh;
+        max-height: none;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        /* 左の巻物軸部分を考慮した余白 */
         padding: 4% 6% 5% 18%;
+        background: url("img/map.png") center / 100% 100% no-repeat;
       }
 
-      /* タイトル「きもちってなあに？」 */
       .content-title {
-        font-size: clamp(22px, 3.6vw, 36px);
-        font-weight: 900;
-        color: #4a2828;
-        text-align: center;
+        display: inline-block;
         margin-bottom: 22px;
         padding-bottom: 4px;
         border-bottom: 3px solid #b87b5c;
-        display: inline-block;
+        color: #4a2828;
+        font-size: clamp(22px, 3.6vw, 36px);
+        font-weight: 900;
         letter-spacing: 0.05em;
+        text-align: center;
       }
 
-      /* 本文テキスト */
       .content-text {
+        color: #4a2828;
         font-size: clamp(15px, 2.2vw, 22px);
         font-weight: 900;
-        color: #4a2828;
-        text-align: center;
         line-height: 1.8;
+        text-align: center;
       }
 
       .content-text p {
         margin-bottom: 16px;
       }
 
-      /* ハイライト文字色 */
       .highlight-red {
         color: #d93838;
       }
@@ -111,107 +95,109 @@
         color: #2b458a;
       }
 
-      /* 前景の草（grass.png：巻物やコンパスの上に重なる） */
       .grass-foreground {
         position: absolute;
-        top: 0;
-        left: 0;
+        z-index: 5;
+        inset: 0;
         width: 100%;
         height: 100%;
-        background-image: url("img/grass.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
+        background: url("img/grass.png") center / 100% 100% no-repeat;
         pointer-events: none;
-        z-index: 5;
       }
 
-      /* 右側の矢印（白く縁取りされた三角形） */
       .next-btn {
         position: absolute;
-        right: 3vw;
+        z-index: 10;
         top: 50%;
-        transform: translateY(-50%);
+        right: 3vw;
         width: 0;
         height: 0;
-        border-style: solid;
+        transform: translateY(-50%);
+        border: solid;
         border-width: 16px 0 16px 26px;
-        border-color: transparent transparent transparent #ffffff;
-        filter: drop-shadow(0px 0px 2px #333) drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
-        cursor: pointer;
-        z-index: 10;
+        border-color: transparent transparent transparent #fff;
+        filter: drop-shadow(0 0 2px #333) drop-shadow(2px 2px 3px rgb(0 0 0 / 30%));
         text-decoration: none;
-        transition: transform 0.1s ease;
+        cursor: pointer;
       }
 
       .next-btn:active {
         transform: translateY(-50%) scale(0.9);
       }
 
-      /* 下部のページ表示（枠線なしの丸） */
       .dots-container {
         position: absolute;
+        z-index: 10;
         bottom: 3.5vh;
         left: 50%;
-        transform: translateX(-50%);
         display: flex;
         gap: 10px;
-        z-index: 10;
+        transform: translateX(-50%);
       }
 
       .dot {
         width: 12px;
         height: 12px;
-        background-color: rgba(255, 255, 255, 0.65);
         border: none;
         border-radius: 50%;
+        background-color: rgb(255 255 255 / 65%);
       }
 
       .dot.active {
-        background-color: #ffffff;
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        box-shadow: 0 0 4px rgb(0 0 0 / 20%);
+      }
+
+      @media (max-width: 600px) {
+        .scroll-container {
+          width: 96%;
+          height: 96vh;
+          padding: 5% 5% 8% 16%;
+        }
+
+        .content-title {
+          margin-bottom: 14px;
+        }
+
+        .content-text p {
+          margin-bottom: 10px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="stage">
-      <!-- 右上の大きなコンパス -->
+    <main class="stage">
       <img src="img/compass.png" alt="コンパス" class="compass" />
 
-      <!-- 中央の巻物コンテンツ -->
-      <div class="scroll-container">
-        <h1 class="content-title"><span class="highlight-red">きもち</span>ってなあに？</h1>
+      <section class="scroll-container" aria-labelledby="page-title">
+        <h1 id="page-title" class="content-title"><span class="highlight-red">きもち</span>ってなあに？</h1>
 
         <div class="content-text">
           <p>
-            <span class="highlight-red">きもち</span>は、よろこんだり、かなしんだりする<br />
+            <span class="highlight-red">きもちは</span>、よろこんだり、かなしんだりする<br />
             こころのうごきやようすのことだよ。
           </p>
           <p>
-            <span class="highlight-teal">きぶん</span> や <span class="highlight-blue">きげん</span> も、<span
-              class="highlight-red"
-              >きもち</span
-            >とにているよ。<br />
+            <span class="highlight-teal">きぶん</span>や <span class="highlight-blue">きげん</span>も、
+            <span class="highlight-red">きもち</span>とにているよ。<br />
             目には見えないけど、たしかにあるもの。
           </p>
         </div>
-      </div>
+      </section>
 
-      <!-- 前景の草（巻物の手前に被せる） -->
-      <div class="grass-foreground"></div>
+      <div class="grass-foreground" aria-hidden="true"></div>
 
-      <!-- 右側の矢印 -->
       <a href="tutorial2.html" class="next-btn" aria-label="つぎへ"></a>
 
-      <!-- 下部のページ丸 -->
-      <div class="dots-container">
-        <div class="dot active"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+      <div class="dots-container" aria-label="1ページ目、全6ページ">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
-    </div>
+    </main>
   </body>
 </html>
