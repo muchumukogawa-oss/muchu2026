@@ -4,148 +4,212 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>いちばんぴったりないろ - 黄グループ</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+
     <style>
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
-      body,
-      html {
+
+      html,
+      body {
         width: 100%;
         height: 100%;
         overflow: hidden;
+        background: #f3f3f3;
         font-family: "Zen Maru Gothic", sans-serif;
-        background-color: #f9f9f9;
       }
-      .container {
+
+      .page {
         position: relative;
         width: 100%;
         height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5vw;
-        padding: 0 5vw;
       }
+
       .back-arrow {
         position: absolute;
-        top: 5vh;
-        left: 5vw;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 14px 22px 14px 0;
-        border-color: transparent #555 transparent transparent;
-        cursor: pointer;
-        text-decoration: none;
-      }
-      .title-area {
-        font-size: clamp(16px, 2.4vw, 24px);
-        font-weight: 900;
-        color: #4a2828;
-        line-height: 1.6;
-      }
-      .highlight-red {
-        color: #d93838;
-      }
-      .highlight-brown {
-        color: #b85232;
-      }
-      .palette-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 4px;
-        width: clamp(260px, 38vw, 420px);
-        height: clamp(260px, 38vw, 420px);
-      }
-      .color-card {
+        left: 70.21px;
+        top: 17.57px;
+        width: 53px;
+        height: 47px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        color: #ffffff;
-        font-size: clamp(11px, 1.5vw, 16px);
-        font-weight: 900;
+        justify-content: center;
         text-decoration: none;
-        border-radius: 2px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-        transition: transform 0.1s ease;
-        padding: 4px;
+        cursor: pointer;
+      }
+
+      .back-arrow svg {
+        width: 53px;
+        height: 47px;
+        display: block;
+      }
+
+      .title-area {
+        position: absolute;
+        left: 91px;
+        top: 149px;
+        width: 300px;
+        height: 86px;
+        color: #4a2e2e;
+        font-size: 30px;
+        line-height: 1.45;
+        letter-spacing: 0.02em;
         text-align: center;
       }
-      .color-card:active {
-        transform: scale(0.95);
+
+      .title-area p {
+        margin: 0;
       }
-      .split-cell {
+
+      .title-area .highlight-brown {
+        color: #ad5d42;
+        font-weight: 900;
+      }
+
+      .palette-grid {
+        position: absolute;
+        left: 426px;
+        top: 20px;
+        width: 355px;
+        height: 353.5px;
+        display: grid;
+        grid-template-columns: repeat(3, 115px);
+        grid-template-rows: repeat(3, 115px);
+        gap: 5px;
+      }
+
+      .color-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 115px;
+        height: 115px;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 900;
+        text-decoration: none;
+        text-align: center;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+        border: 3px solid rgba(0, 0, 0, 0.08);
+        padding: 4px;
+        transition:
+          transform 0.08s ease,
+          filter 0.08s ease;
+      }
+
+      .color-card:active {
+        transform: translateY(2px) scale(0.98);
+        filter: brightness(0.97);
+      }
+
+      .dark-text {
+        color: #333;
+        text-shadow: none;
+      }
+
+      .split-stack {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 5px;
+        width: 115px;
+        height: 115px;
       }
-      .split-cell .color-card {
-        height: 100%;
+
+      .split-stack .color-card {
+        width: 115px;
+        height: 55px;
+      }
+
+      .c1 {
+        background: #ffcc00;
+      }
+      .c2 {
+        background: #ff9a00;
+      }
+      .c3 {
+        background: #ff6b57;
+      }
+      .c4 {
+        background: #ffe66a;
+      }
+      .c5 {
+        background: #ff9a66;
+      }
+      .c6 {
+        background: #f7e100;
+      }
+      .c7 {
+        background: #ffb000;
+      }
+      .c8 {
+        background: #ffc4d8;
+      }
+      .c9-top {
+        background: #e6005c;
+      }
+      .c9-bottom {
+        background: #ff99c8;
+      }
+
+      @media (max-width: 900px) {
+        .title-area {
+          left: 60px;
+          top: 150px;
+          width: 260px;
+          font-size: 24px;
+        }
+
+        .palette-grid {
+          left: 340px;
+          top: 20px;
+          transform: scale(0.85);
+          transform-origin: top left;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="container">
-      <a href="choice1.html" class="back-arrow" aria-label="もどる"></a>
+    <div class="page">
+      <a href="./choice1.html" class="back-arrow" aria-label="戻る">
+        <svg viewBox="0 0 53 47" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="M35 4 Q39 4 39 8 L39 39 Q39 43 35 41 L10 26 Q5 23.5 10 20 Z"
+            fill="#ffffff"
+            stroke="#403a3a"
+            stroke-width="3"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          />
+        </svg>
+      </a>
+
       <div class="title-area">
         <p>「いちばんぴったり」</p>
-        <p>な<span class="highlight-red">い</span><span class="highlight-brown">ろ</span>はどれかな？</p>
+        <p>な<span class="highlight-brown">いろ</span>はどれかな？</p>
       </div>
+
       <div class="palette-grid">
-        <!-- (嬉しくて)びっくり -->
-        <a
-          href="decision.html?color=%23ffcc00"
-          class="color-card"
-          style="background-color: #ffcc00; color: #333; text-shadow: none"
-          >(嬉しくて)<br />びっくり</a
-        >
-        <!-- おもしろい -->
-        <a href="decision.html?color=%23ff9900" class="color-card" style="background-color: #ff9900">おもしろい</a>
-        <!-- やる気がある -->
-        <a href="decision.html?color=%23ff5050" class="color-card" style="background-color: #ff5050">やる気がある</a>
+        <a href="decision.html?color=%23ffcc00" class="color-card c1 dark-text">（嬉しくて）<br />びっくり</a>
+        <a href="decision.html?color=%23ff9a00" class="color-card c2">おもしろい</a>
+        <a href="decision.html?color=%23ff6b57" class="color-card c3">やる気がある</a>
 
-        <!-- 嬉しい -->
-        <a
-          href="decision.html?color=%23ffeb3b"
-          class="color-card"
-          style="background-color: #ffeb3b; color: #333; text-shadow: none"
-          >嬉しい</a
-        >
-        <!-- 興奮した -->
-        <a href="decision.html?color=%23ff9e66" class="color-card" style="background-color: #ff9e66">興奮した</a>
-        <!-- 飛ぶ -->
-        <a
-          href="decision.html?color=%23ffff00"
-          class="color-card"
-          style="background-color: #ffff00; color: #333; text-shadow: none"
-          >飛ぶ</a
-        >
+        <a href="decision.html?color=%23ffe66a" class="color-card c4 dark-text">嬉しい</a>
+        <a href="decision.html?color=%23ff9a66" class="color-card c5">興奮した</a>
+        <a href="decision.html?color=%23f7e100" class="color-card c6 dark-text">飛ぶ</a>
 
-        <!-- 楽しい -->
-        <a href="decision.html?color=%23ffa500" class="color-card" style="background-color: #ffa500">楽しい</a>
-        <!-- 幸せ -->
-        <a
-          href="decision.html?color=%23ffb6c1"
-          class="color-card"
-          style="background-color: #ffb6c1; color: #333; text-shadow: none"
-          >幸せ</a
-        >
+        <a href="decision.html?color=%23ffb000" class="color-card c7">楽しい</a>
+        <a href="decision.html?color=%23ffc4d8" class="color-card c8 dark-text">幸せ</a>
 
-        <!-- 愛 / 好き（上下分割） -->
-        <div class="split-cell">
-          <a href="decision.html?color=%23e6005c" class="color-card" style="background-color: #e6005c">愛</a>
-          <a
-            href="decision.html?color=%23ff99c8"
-            class="color-card"
-            style="background-color: #ff99c8; color: #333; text-shadow: none"
-            >好き</a
-          >
+        <div class="split-stack">
+          <a href="decision.html?color=%23e6005c" class="color-card c9-top">愛</a>
+          <a href="decision.html?color=%23ff99c8" class="color-card c9-bottom dark-text">好き</a>
         </div>
       </div>
     </div>

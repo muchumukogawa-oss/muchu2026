@@ -3,145 +3,151 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>こたえをみてみよう！ - きもちのたんけん</title>
-    <!-- Google Fontsから全丸ゴシックを読み込み -->
+    <title>こたえをみてみよう！</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
 
     <style>
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
 
-      body,
-      html {
+      html,
+      body {
         width: 100%;
         height: 100%;
         overflow: hidden;
         font-family: "Zen Maru Gothic", sans-serif;
+        background: #f3f3f3;
       }
 
-      /* 画面全体（背景1：background_grass.png） */
       .stage {
         position: relative;
         width: 100%;
-        height: 100%;
-        background-image: url("img/background_grass.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        height: 100vh;
+        background: url("img/background_grass.png") center / 100% 100% no-repeat;
       }
 
-      /* 中央の巻物エリア（map.png） */
-      .scroll-container {
-        position: relative;
-        width: 82%;
-        max-width: 860px;
-        height: 82vh;
-        max-height: 520px;
-        z-index: 2; /* 草（z-index: 5）の下に潜り込ませる */
+      .map-panel {
+        position: absolute;
+        left: 18px;
+        top: 2px;
+        width: 800.03px;
+        height: 394px;
+        background: url("img/map.png") center / 100% 100% no-repeat;
+        z-index: 2;
+      }
 
-        background-image: url("img/map.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-
+      .content {
+        position: absolute;
+        left: 58%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 390px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-
-        /* 左の巻物軸部分を考慮した余白 */
-        padding: 4% 6% 5% 18%;
+        justify-content: center;
+        z-index: 3;
       }
 
-      /* 本文テキスト */
-      .content-text {
-        font-size: clamp(16px, 2.3vw, 24px);
-        font-weight: 900;
-        color: #4a2828;
-        text-align: center;
-        line-height: 1.8;
+      .title {
         margin-bottom: 24px;
+        color: #4a2e2e;
+        font-size: 30px;
+        line-height: 1.6;
+        letter-spacing: 0.04em;
+        text-align: center;
+        font-weight: 400;
       }
 
-      .content-text p {
-        margin-bottom: 6px;
+      .title .red {
+        color: #d95d5d;
       }
 
-      /* ハイライト文字色 */
-      .highlight-red {
-        color: #d93838;
-      }
-
-      .highlight-brown {
-        color: #b85232;
-      }
-
-      /* 「はじめから」ボタン（CSSデザイン） */
-      .restart-btn {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        width: clamp(140px, 22vw, 200px);
-        height: clamp(42px, 6.5vw, 56px);
-        background-color: #fff3db;
-        border: 4px solid #8c4a11;
-        border-radius: 30px;
-        color: #4a2828;
-        font-size: clamp(16px, 2.2vw, 22px);
+      .title .brown {
+        color: #a95d46;
         font-weight: 900;
+      }
+
+      .start-btn {
+        width: 192px;
+        height: 47.2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 4px solid #624529;
+        background: #ffebd3;
+        box-shadow: inset 0 0 0 4px #f5b134;
+        color: #4a2e2e;
         text-decoration: none;
-        letter-spacing: 0.05em;
+        font-size: 24px;
+        font-weight: 700;
         cursor: pointer;
-        box-shadow: 0 4px 0 #5c300a;
         transition:
-          transform 0.1s ease,
-          box-shadow 0.1s ease;
+          transform 0.08s ease,
+          filter 0.08s ease;
       }
 
-      .restart-btn:active {
-        transform: translateY(3px);
-        box-shadow: 0 1px 0 #5c300a;
+      .start-btn:active {
+        transform: translateY(2px);
+        filter: brightness(0.98);
       }
 
-      /* 前景の草（grass.png：巻物の手前に被せる） */
       .grass-foreground {
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("img/grass.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
+        inset: 0;
+        background: url("img/grass.png") center / 100% 100% no-repeat;
         pointer-events: none;
-        z-index: 5;
+        z-index: 4;
+      }
+
+      @media (max-width: 900px) {
+        .map-panel {
+          left: 18px;
+          top: 2px;
+          width: 800.03px;
+          height: 394px;
+        }
+
+        .content {
+          width: 63vw;
+          height: 42vw;
+        }
+
+        .title {
+          font-size: 30px;
+        }
+
+        .start-btn {
+          width: 192px;
+          height: 47.2px;
+          font-size: 24px;
+        }
       }
     </style>
   </head>
-  <body>
-    <div class="stage">
-      <!-- 中央の巻物コンテンツ -->
-      <div class="scroll-container">
-        <div class="content-text">
-          <p>ほかにもぴったりな<span class="highlight-red">いろ</span>があるかも！</p>
-          <p>こたえをみてみよう！</p>
-        </div>
 
-        <!-- はじめからボタン（choice1.html へ遷移） -->
-        <a href="choice1.html" class="restart-btn">はじめから</a>
+  <body>
+    <main class="stage">
+      <div class="map-panel" aria-hidden="true"></div>
+
+      <div class="content">
+        <h1 class="title">
+          ほかにもぴったりな<span class="red">いろ</span>があるかも！<br />
+          こたえをみてみよう！
+        </h1>
+
+        <a href="choice1.html" class="start-btn">はじめから</a>
       </div>
 
-      <!-- 前景の草（巻物の手前に被せる） -->
-      <div class="grass-foreground"></div>
-    </div>
+      <div class="grass-foreground" aria-hidden="true"></div>
+    </main>
   </body>
 </html>
