@@ -7,7 +7,10 @@
     <!-- Google Fontsから全丸ゴシックを読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       * {
@@ -27,58 +30,49 @@
       /* 画面全体（背景1：background_grass.png） */
       .stage {
         position: relative;
+        display: flex;
         width: 100%;
         height: 100%;
-        background-image: url("img/background_grass.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        background: url("img/background_grass.png") center / 100% 100% no-repeat;
       }
 
       /* 右上の大きなコンパス */
       .compass {
         position: absolute;
-        top: -25px;
-        right: -25px;
-        width: clamp(140px, 22vw, 220px);
-        height: auto;
         z-index: 8;
+        top: 0;
+        left: calc(100% - 350px);
+        width: 350px;
+        height: 161px;
         pointer-events: none;
       }
 
       /* 中央の巻物エリア（map.png） */
       .scroll-container {
-        position: relative;
-        width: 82%;
-        max-width: 860px;
-        height: 82vh;
-        max-height: 520px;
-        z-index: 2; /* 草（z-index: 5）の下に潜り込ませる */
-
-        background-image: url("img/map.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-
+        position: absolute;
+        top: 2px;
+        left: 18px;
+        z-index: 2;
         display: flex;
+        width: 800.03px;
+        height: 394px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        /* 左の巻物軸部分を考慮した余白 */
-        padding: 3% 6% 4% 18%;
+        padding: 4% 6% 5% 18%;
+        background: url("img/map.png") center / 100% 100% no-repeat;
       }
 
       /* タイトル「あそびかた」 */
       .content-title {
         font-size: clamp(22px, 3.6vw, 36px);
-        font-weight: 900;
+        font-weight: 400;
         color: #4a2828;
         text-align: center;
-        margin-bottom: 16px;
+        transform: translateY(-18px);
+        margin-bottom: 22px;
         padding-bottom: 4px;
         border-bottom: 3px solid #b87b5c;
         display: inline-block;
@@ -87,12 +81,12 @@
 
       /* 本文テキスト */
       .content-text {
+        transform: translateY(-10px);
         font-size: clamp(15px, 2.1vw, 22px);
-        font-weight: 900;
+        font-weight: 400;
         color: #4a2828;
         text-align: center;
-        line-height: 1.6;
-        margin-bottom: 16px;
+        line-height: 1.8;
       }
 
       /* ハイライト文字色 */
@@ -111,8 +105,8 @@
       /* 各色付き顔の共通スタイル */
       .face-circle {
         position: relative;
-        width: clamp(50px, 8.5vw, 85px);
-        height: clamp(50px, 8.5vw, 85px);
+        width: 97px;
+        height: 97px;
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -143,70 +137,62 @@
       /* 前景の草（grass.png：巻物やコンパスの上に重なる） */
       .grass-foreground {
         position: absolute;
-        top: 0;
-        left: 0;
+        z-index: 9;
+        inset: 0;
         width: 100%;
         height: 100%;
-        background-image: url("img/grass.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
+        background: url("img/grass.png") center / 100% 100% no-repeat;
         pointer-events: none;
-        z-index: 5;
       }
 
       /* 左側の矢印（まえへ） */
       .prev-btn {
         position: absolute;
-        left: 3vw;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 16px 26px 16px 0;
-        border-color: transparent #ffffff transparent transparent;
-        filter: drop-shadow(0px 0px 2px #333) drop-shadow(-2px 2px 3px rgba(0, 0, 0, 0.3));
-        cursor: pointer;
+        top: 181.57px;
+        left: 73.21px;
+        width: 53px;
+        height: 47px;
+        transform: rotate(180deg);
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
+          center / 100% 100% no-repeat;
         z-index: 10;
         text-decoration: none;
-        transition: transform 0.1s ease;
+        cursor: pointer;
       }
 
       .prev-btn:active {
-        transform: translateY(-50%) scale(0.9);
+        transform: rotate(180deg) scale(0.9);
       }
 
       /* 右側の矢印（つぎへ / ゲーム開始などへ） */
       .next-btn {
         position: absolute;
-        right: 3vw;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 16px 0 16px 26px;
-        border-color: transparent transparent transparent #ffffff;
-        filter: drop-shadow(0px 0px 2px #333) drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.3));
-        cursor: pointer;
+        top: 181.57px;
+        left: 774.99px;
+        width: 53px;
+        height: 47px;
+        display: block;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
+          center / 100% 100% no-repeat;
         z-index: 10;
         text-decoration: none;
-        transition: transform 0.1s ease;
+        cursor: pointer;
       }
 
       .next-btn:active {
-        transform: translateY(-50%) scale(0.9);
+        transform: scale(0.9);
       }
 
       /* 下部のページ表示（枠線なしの丸） */
       .dots-container {
         position: absolute;
-        bottom: 3.5vh;
-        left: 50%;
-        transform: translateX(-50%);
+        top: 363px;
+        left: 414px;
         display: flex;
-        gap: 10px;
+        width: 141px;
+        height: 18px;
+        flex-direction: row;
+        gap: 9px;
         z-index: 10;
       }
 
@@ -234,22 +220,40 @@
         <h1 class="content-title">あそびかた</h1>
 
         <div class="content-text">
-          <p>きみの えらんだ <span class="highlight-red">いろ</span>は どれかな？</p>
+          <p>
+            きみの えらんだ <span class="highlight-red">いろ</span>は どれかな？
+          </p>
         </div>
 
         <!-- 4色の顔パーツ並び -->
         <div class="faces-row">
           <div class="face-circle face-red">
-            <img src="img/expression_example.png" alt="赤の表情" class="expression-img" />
+            <img
+              src="img/expression_example.png"
+              alt="赤の表情"
+              class="expression-img"
+            />
           </div>
           <div class="face-circle face-blue">
-            <img src="img/expression_example.png" alt="青の表情" class="expression-img" />
+            <img
+              src="img/expression_example.png"
+              alt="青の表情"
+              class="expression-img"
+            />
           </div>
           <div class="face-circle face-yellow">
-            <img src="img/expression_example.png" alt="黄の表情" class="expression-img" />
+            <img
+              src="img/expression_example.png"
+              alt="黄の表情"
+              class="expression-img"
+            />
           </div>
           <div class="face-circle face-green">
-            <img src="img/expression_example.png" alt="緑の表情" class="expression-img" />
+            <img
+              src="img/expression_example.png"
+              alt="緑の表情"
+              class="expression-img"
+            />
           </div>
         </div>
       </div>
