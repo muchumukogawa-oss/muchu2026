@@ -4,142 +4,193 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>このいろは こんなきもち！</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+
     <style>
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
-      body,
-      html {
+
+      html,
+      body {
         width: 100%;
         height: 100%;
         overflow: hidden;
         font-family: "Zen Maru Gothic", sans-serif;
-        background-color: #ffffff;
+        background: #f3f3f3;
       }
-      .container {
+
+      .page {
+        position: relative;
         width: 100%;
         height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
       }
 
-      /* タイトル部分 */
       .title {
-        font-size: clamp(20px, 3.5vw, 32px);
-        font-weight: 900;
-        color: #4a2828;
-        margin-bottom: 24px;
+        position: absolute;
+        left: 50%;
+        top: 24px;
+        transform: translateX(-50%);
+        width: 540px;
+        color: #4a2e2e;
+        font-size: 30px;
+        line-height: 1.2;
+        letter-spacing: 0.04em;
         text-align: center;
-      }
-      .highlight-red {
-        color: #d93838;
-      }
-      .highlight-orange {
-        color: #e65c00;
+        font-weight: 400;
       }
 
-      /* 中央のレイアウト（色ボックス + 例文テキスト） */
-      .content-area {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 30px;
+      .title .red {
+        color: #d95d5d;
+        font-weight: 900;
       }
 
-      /* 選択した色を表示する四角 */
+      .title .orange {
+        color: #ca5a2d;
+        font-weight: 900;
+      }
+
       .color-box {
-        width: clamp(150px, 25vw, 240px);
-        height: clamp(150px, 25vw, 240px);
-        background-color: #ccc; /* 色が取得できない場合のデフォルト */
-        flex-shrink: 0;
+        position: absolute;
+        left: 192px;
+        top: 94px;
+        width: 213px;
+        height: 195px;
+        background: #ff0000;
+        overflow: hidden;
+        z-index: 1;
       }
 
-      /* 例文テキスト領域 */
+      .expression {
+        position: absolute;
+        left: 192px;
+        top: 94px;
+        width: 213px;
+        height: 195px;
+        object-fit: contain;
+        display: block;
+        pointer-events: none;
+        z-index: 2;
+      }
+
       .example-text {
-        font-size: clamp(15px, 2.2vw, 22px);
+        position: absolute;
+        left: 560px;
+        top: 152px;
+        width: 320px;
+        color: #2f2f2f;
+        font-size: 28px;
+        line-height: 1.5;
         font-weight: 900;
-        color: #222222;
-        line-height: 1.6;
-        text-align: left;
-        max-width: 280px;
+        letter-spacing: 0.02em;
       }
 
-      /* ボタンのグループ */
-      .button-group {
-        display: flex;
-        gap: 30px;
-        align-items: center;
-      }
-
-      /* 丸みのあるボタンデザイン */
       .btn {
+        position: absolute;
+        width: 180px;
+        height: 50px;
+        border-radius: 999px;
+        border: 4px solid #624529;
+        background: #ffebd3;
+        box-shadow: inset 0 0 0 4px #f5b134;
+        color: #4a2e2e;
+        font-size: 24px;
+        font-weight: 700;
+        text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: clamp(130px, 19vw, 190px);
-        height: clamp(40px, 6vw, 52px);
-        background-color: #ffe8c9;
-        border: 3px solid #6b4423;
-        border-radius: 30px;
-        color: #4a2828;
-        font-size: clamp(16px, 2vw, 22px);
-        font-weight: 900;
-        text-decoration: none;
         cursor: pointer;
         transition:
-          transform 0.1s ease,
-          background-color 0.1s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          transform 0.08s ease,
+          filter 0.08s ease;
       }
 
       .btn:active {
-        transform: scale(0.95);
-        background-color: #ffd8a8;
+        transform: translateY(2px);
+        filter: brightness(0.98);
+      }
+
+      /* ボタンの位置を統一 */
+      .no-btn {
+        left: 220px;
+        top: 316px;
+      }
+
+      .yes-btn {
+        left: 489px;
+        top: 316px;
+      }
+
+      @media (max-width: 900px) {
+        .title {
+          width: 420px;
+          font-size: 30px;
+        }
+
+        .example-text {
+          left: 442px;
+          top: 147px;
+          font-size: 24px;
+          width: 254px;
+        }
+
+        .color-box {
+          left: 192px;
+          top: 94px;
+          width: 213px;
+          height: 195px;
+        }
+
+        .expression {
+          left: 222px;
+          top: 107px;
+          width: 153px;
+          height: 169px;
+        }
+
+        /* 小さい画面でもボタン位置を統一 */
+        .no-btn {
+          left: 220px;
+          top: 316px;
+        }
+
+        .yes-btn {
+          left: 489px;
+          top: 316px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="container">
-      <h1 class="title">
-        この<span class="highlight-red">い</span><span class="highlight-orange">ろ</span>は こんな<span
-          class="highlight-orange"
-          >き</span
-        ><span class="highlight-red">も</span><span class="highlight-orange">ち</span>！
-      </h1>
+    <div class="page">
+      <h1 class="title">この<span class="red">いろ</span>は こんな<span class="red">きもち</span>！</h1>
 
-      <div class="content-area">
-        <!-- 選んだ色を表示する領域 -->
-        <div id="selectedColorBox" class="color-box"></div>
+      <div id="selectedColorBox" class="color-box" aria-label="選択した色"></div>
 
-        <!-- 例文を表示する領域 -->
-        <div id="exampleText" class="example-text">とっておいた ぷりんを<br />たべられた</div>
+      <img src="img/expression_example.png" class="expression" alt="表情" />
+
+      <div class="example-text">
+        とっておいたぷりんを<br />
+        たべられた
       </div>
 
-      <!-- ボタンエリア -->
-      <div class="button-group">
-        <a href="choice1.html" class="btn">はじめから</a>
-        <a href="last.html" class="btn">つぎへ</a>
-      </div>
+      <a href="choice1.html" class="btn no-btn">はじめから</a>
+      <a href="last.html" class="btn yes-btn">つぎへ</a>
     </div>
 
     <script>
-      // URLから ?color=%23xxxxxx のパラメータを取得
-      const urlParams = new URLSearchParams(window.location.search);
-      const selectedColor = urlParams.get("color");
+      const params = new URLSearchParams(window.location.search);
+      const selectedColor = params.get("color") || "#ff0000";
 
-      if (selectedColor) {
-        // 受け取った色を四角に反映
-        document.getElementById("selectedColorBox").style.backgroundColor = selectedColor;
-      }
+      const box = document.getElementById("selectedColorBox");
+      box.style.backgroundColor = selectedColor;
     </script>
   </body>
 </html>
