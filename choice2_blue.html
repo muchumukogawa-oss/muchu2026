@@ -4,130 +4,261 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>いちばんぴったりないろ - 青グループ</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+
     <style>
       * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
       }
-      body,
-      html {
+
+      html,
+      body {
         width: 100%;
         height: 100%;
         overflow: hidden;
         font-family: "Zen Maru Gothic", sans-serif;
-        background-color: #f9f9f9;
+        background: #f3f3f3;
       }
-      .container {
+
+      .page {
         position: relative;
         width: 100%;
         height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5vw;
-        padding: 0 5vw;
       }
+
       .back-arrow {
         position: absolute;
-        top: 5vh;
-        left: 5vw;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 14px 22px 14px 0;
-        border-color: transparent #555 transparent transparent;
-        cursor: pointer;
-        text-decoration: none;
-      }
-      .title-area {
-        font-size: clamp(16px, 2.4vw, 24px);
-        font-weight: 900;
-        color: #4a2828;
-        line-height: 1.6;
-      }
-      .highlight-red {
-        color: #d93838;
-      }
-      .highlight-brown {
-        color: #b85232;
-      }
-      .palette-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        gap: 4px;
-        width: clamp(260px, 38vw, 420px);
-        height: clamp(260px, 38vw, 420px);
-      }
-      .color-card {
+        left: 70.21px;
+        top: 17.57px;
+        width: 53px;
+        height: 47px;
         display: flex;
-        justify-content: center;
         align-items: center;
-        color: #ffffff;
-        font-size: clamp(11px, 1.5vw, 16px);
-        font-weight: 900;
+        justify-content: center;
         text-decoration: none;
-        border-radius: 2px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-        transition: transform 0.1s ease;
-        padding: 4px;
+        cursor: pointer;
+        z-index: 100;
+        pointer-events: auto;
+      }
+
+      .back-arrow svg {
+        width: 53px;
+        height: 47px;
+        display: block;
+        pointer-events: none;
+      }
+
+      .back-arrow:active {
+        transform: translateY(2px) scale(0.96);
+        filter: brightness(0.98);
+      }
+
+      .content-wrap {
+        position: absolute;
+        left: 91px;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .title-area {
+        position: absolute;
+        left: 91px;
+        top: 149px;
+        width: 300px;
+        height: 86px;
+        color: #4a2e2e;
+        font-size: 30px;
+        line-height: 1.45;
+        letter-spacing: 0.02em;
         text-align: center;
       }
+
+      .title-area p {
+        margin: 0;
+      }
+
+      .title-area .highlight-brown {
+        color: #ad5d42;
+        font-weight: 900;
+      }
+
+      .color-card {
+        position: absolute;
+        display: block;
+        width: 115px;
+        height: 115px;
+        border: 3px solid rgba(0, 0, 0, 0.08);
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 0.08s ease,
+          filter 0.08s ease,
+          box-shadow 0.08s ease;
+      }
+
       .color-card:active {
-        transform: scale(0.95);
+        transform: translateY(2px) scale(0.98);
+        filter: brightness(0.97);
+        box-shadow: inset 0 6px 10px rgb(0 0 0 / 12%);
       }
-      .split-cell {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
+
+      .color-card.short {
+        height: 56.5px;
       }
-      .split-cell .color-card {
-        height: 100%;
+
+      .color1 {
+        left: 426px;
+        top: 20px;
+        background: #800080;
+      }
+      .color2 {
+        left: 546px;
+        top: 20px;
+        background: #333333;
+      }
+      .color3 {
+        left: 666px;
+        top: 20px;
+        background: #c49a6a;
+      }
+
+      .color5 {
+        left: 546px;
+        top: 139px;
+        background: #000080;
+      }
+      .color6 {
+        left: 666px;
+        top: 139px;
+        background: #0000ff;
+      }
+
+      .color7 {
+        left: 426px;
+        top: 258px;
+        background: #4a148c;
+      }
+      .color8 {
+        left: 546px;
+        top: 258px;
+        background: #778899;
+      }
+      .color9 {
+        left: 666px;
+        top: 258px;
+        background: #4f46e5;
+      }
+
+      .color10 {
+        left: 426px;
+        top: 139px;
+        height: 56.5px;
+        background: #90caf9;
+      }
+
+      .color11 {
+        left: 426px;
+        top: 197.5px;
+        height: 56.5px;
+        background: #4682b4;
+      }
+
+      @media (max-width: 900px) {
+        .content-wrap {
+          left: 0;
+        }
+
+        .title-area {
+          left: 75px;
+          top: 149px;
+          width: 350px;
+          font-size: 30px;
+        }
+
+        .color1 {
+          left: 426px;
+          top: 20px;
+        }
+        .color2 {
+          left: 546px;
+          top: 20px;
+        }
+        .color3 {
+          left: 666px;
+          top: 20px;
+        }
+
+        .color5 {
+          left: 546px;
+          top: 139px;
+        }
+        .color6 {
+          left: 666px;
+          top: 139px;
+        }
+        .color7 {
+          left: 426px;
+          top: 258px;
+        }
+        .color8 {
+          left: 546px;
+          top: 258px;
+        }
+        .color9 {
+          left: 666px;
+          top: 258px;
+        }
+        .color10 {
+          left: 426px;
+          top: 139px;
+        }
+        .color11 {
+          left: 426px;
+          top: 197.5px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <div class="container">
-      <a href="choice1.html" class="back-arrow" aria-label="もどる"></a>
-      <div class="title-area">
-        <p>「いちばんぴったり」</p>
-        <p>な<span class="highlight-red">い</span><span class="highlight-brown">ろ</span>はどれかな？</p>
-      </div>
-      <div class="palette-grid">
-        <!-- (びびり)びっくり -->
-        <a href="decision.html?color=%230073e6" class="color-card" style="background-color: #0073e6"
-          >(びびり)<br />びっくり</a
-        >
-        <!-- 不安・心配 -->
-        <a href="decision.html?color=%23999999" class="color-card" style="background-color: #999999">不安・心配</a>
-        <!-- イライラ -->
-        <a href="decision.html?color=%23ff6633" class="color-card" style="background-color: #ff6633">イライラ</a>
+    <div class="page">
+      <a href="./choice1.html" class="back-arrow" aria-label="戻る">
+        <svg viewBox="0 0 53 47" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path
+            d="M35 4 Q39 4 39 8 L39 39 Q39 43 35 41 L10 26 Q5 23.5 10 20 Z"
+            fill="#ffffff"
+            stroke="#403a3a"
+            stroke-width="3"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          />
+        </svg>
+      </a>
 
-        <!-- 泣きたい -->
-        <a href="decision.html?color=%231a8cff" class="color-card" style="background-color: #1a8cff">泣きたい</a>
-        <!-- かわいそう / 寂しい（上下分割） -->
-        <div class="split-cell">
-          <a
-            href="decision.html?color=%2380c1ff"
-            class="color-card"
-            style="background-color: #80c1ff; color: #111; text-shadow: none"
-            >かわいそう</a
-          >
-          <a href="decision.html?color=%234682b4" class="color-card" style="background-color: #4682b4">寂しい</a>
+      <div class="content-wrap">
+        <div class="title-area">
+          <p>「いちばんぴったり」</p>
+          <p>な<span class="highlight-brown">いろ</span>はどれかな？</p>
         </div>
-        <!-- がっかりする -->
-        <a href="decision.html?color=%23000080" class="color-card" style="background-color: #000080">がっかりする</a>
 
-        <!-- 悲しい -->
-        <a href="decision.html?color=%230000ff" class="color-card" style="background-color: #0000ff">悲しい</a>
-        <!-- 悔しい -->
-        <a href="decision.html?color=%234b0082" class="color-card" style="background-color: #4b0082">悔しい</a>
-        <!-- 疲れた -->
-        <a href="decision.html?color=%23708090" class="color-card" style="background-color: #708090">疲れた</a>
+        <a href="./decision.html?color=%23800080" class="color-card color1" aria-label="紫1"></a>
+        <a href="./decision.html?color=%23333333" class="color-card color2" aria-label="黒"></a>
+        <a href="./decision.html?color=%23c49a6a" class="color-card color3" aria-label="ベージュ"></a>
+        <a href="./decision.html?color=%23000080" class="color-card color5" aria-label="紺"></a>
+        <a href="./decision.html?color=%230000ff" class="color-card color6" aria-label="青2"></a>
+
+        <a href="./decision.html?color=%234a148c" class="color-card color7" aria-label="紫2"></a>
+        <a href="./decision.html?color=%23778899" class="color-card color8" aria-label="グレー青"></a>
+        <a href="./decision.html?color=%234f46e5" class="color-card color9" aria-label="青3"></a>
+
+        <a href="./decision.html?color=%2390caf9" class="color-card color10 short" aria-label="薄青"></a>
+        <a href="./decision.html?color=%234682b4" class="color-card color11 short" aria-label="青灰"></a>
       </div>
     </div>
   </body>
