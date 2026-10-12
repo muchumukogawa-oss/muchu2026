@@ -7,7 +7,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
     <style>
       * {
@@ -33,25 +33,26 @@
 
       .title {
         position: absolute;
-        left: 50%;
+        left: calc(50% + 15px);
         top: 24px;
         transform: translateX(-50%);
         width: 500px;
-        color: #4a2e2e;
+        color: #3e0000;
         font-size: 30px;
         line-height: 1.2;
         letter-spacing: 0.04em;
         text-align: center;
-        font-weight: 400;
+        font-weight: 500;
       }
 
       .title .red {
-        color: #d95d5d;
+        color: #c75637;
+        font-weight: 700;
       }
 
       .title .brown {
-        color: #b05a3f;
-        font-weight: 900;
+        color: #3e0000;
+        font-weight: 500;
       }
 
       .color-box {
@@ -72,9 +73,12 @@
         background: #ffebd3;
         box-shadow: inset 0 0 0 4px #f5b134;
         border-radius: 999px;
-        color: #4a2e2e;
+        color: #3e0000;
         font-size: 24px;
+        font-family: inherit;
         font-weight: 700;
+        line-height: 1;
+        text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -138,10 +142,15 @@
     <script>
       const params = new URLSearchParams(window.location.search);
       const color = params.get("color");
+      const example = params.get("example");
 
       if (color) {
         document.getElementById("selectedColorBox").style.backgroundColor = color;
-        document.getElementById("yesBtn").href = "explanation.html?color=" + encodeURIComponent(color);
+        const explanationParams = new URLSearchParams({ color });
+        if (example) {
+          explanationParams.set("example", example);
+        }
+        document.getElementById("yesBtn").href = "explanation.html?" + explanationParams.toString();
       }
     </script>
   </body>
