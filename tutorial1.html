@@ -7,7 +7,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       * {
@@ -66,29 +69,33 @@
         border-bottom: 3px solid #b87b5c;
         color: #3e0000;
         font-size: clamp(30px, 3.6vw, 36px);
-        font-weight: 400;
+        font-weight: 500;
         letter-spacing: 0.05em;
         text-align: center;
       }
-      .content-title .highlight-red {
-        font-weight: 700;
-        font-size: 1.2em; /* 数値を調整 */
-      }
 
       .title-subtext {
-        font-weight: 400;
+        font-weight: 500;
       }
 
       .content-text {
         color: #3e0000;
-        font-size: clamp(22px, 2.2vw, 22px);
-        font-weight: 400;
+        font-size: 22px;
+        font-weight: 500;
         line-height: 1.8;
         text-align: center;
       }
 
       .content-text p {
         margin-bottom: 16px;
+      }
+
+      .content-text p:first-child {
+        margin-bottom: 15px;
+      }
+
+      .content-text p:last-child {
+        transform: translateY(-10px);
       }
 
       ruby rt {
@@ -99,18 +106,27 @@
 
       .highlight-red {
         color: #d93838;
+        font-weight: 400;
       }
 
       .content-title .highlight-red {
         font-weight: 700;
       }
 
+      .content-text .highlight-red,
+      .content-text .highlight-teal,
+      .content-text .highlight-blue {
+        font-weight: 700;
+      }
+
       .highlight-teal {
         color: #31758a;
+        font-weight: 400;
       }
 
       .highlight-blue {
         color: #3c318a;
+        font-weight: 400;
       }
 
       .grass-foreground {
@@ -187,16 +203,19 @@
 
       <section class="scroll-container" aria-labelledby="page-title">
         <h1 id="page-title" class="content-title">
-          <span class="highlight-red">きもち</span><span class="title-subtext">ってなあに？</span>
+          <span class="highlight-red">きもち</span
+          ><span class="title-subtext">ってなあに？</span>
         </h1>
 
         <div class="content-text">
           <p>
-            <span class="highlight-red">きもち</span>は、よろこんだり、かなしんだりする<br />
+            <span class="highlight-red">きもち</span
+            >は、よろこんだり、かなしんだりする<br />
             こころのうごきやようすのことだよ。
           </p>
           <p>
-            <span class="highlight-teal">きぶん</span>や <span class="highlight-blue">きげん</span>も、
+            <span class="highlight-teal">きぶん</span>や
+            <span class="highlight-blue">きげん</span>も、
             <span class="highlight-red">きもち</span>とにているよ。<br />
             <ruby>目<rt>め</rt></ruby
             >には<ruby>見<rt>み</rt></ruby
