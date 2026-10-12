@@ -78,6 +78,14 @@
         z-index: 2;
       }
 
+      .expression--white-outline {
+        filter:
+          drop-shadow(1px 0 0 #fff)
+          drop-shadow(-1px 0 0 #fff)
+          drop-shadow(0 1px 0 #fff)
+          drop-shadow(0 -1px 0 #fff);
+      }
+
       .example-text {
         position: absolute;
         left: 560px;
@@ -186,7 +194,7 @@
 
       <div id="selectedColorBox" class="color-box" aria-label="選択した色"></div>
 
-      <img src="img/expression_example.png" class="expression" alt="表情" />
+      <img id="expression" src="img/expression_example.png" class="expression" alt="表情" />
 
       <div id="exampleText" class="example-text"></div>
 
@@ -197,6 +205,7 @@
     <script>
       const params = new URLSearchParams(window.location.search);
       const selectedColor = params.get("color") || "#ff0000";
+      const emotion = params.get("emotion");
       const examples = {
         "#ff0000": "とっておいた ぷりんを たべられた",
         "#000000": "ひとりで まっくらな みちを あるいているよ",
@@ -241,6 +250,16 @@
 
       const box = document.getElementById("selectedColorBox");
       box.style.backgroundColor = selectedColor;
+
+      if (emotion && /^[^./\\?#]+$/u.test(emotion)) {
+        const expression = document.getElementById("expression");
+        expression.src = `img/${emotion}.svg`;
+        expression.alt = `${emotion}の表情`;
+        expression.classList.toggle(
+          "expression--white-outline",
+          selectedColor.toLowerCase() === "#000000",
+        );
+      }
 
       const example = params.get("example");
       const exampleText =

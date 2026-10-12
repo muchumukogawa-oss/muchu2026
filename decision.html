@@ -65,6 +65,25 @@
         border: 1px solid rgba(0, 0, 0, 0.08);
       }
 
+      .expression {
+        position: absolute;
+        left: 329px;
+        top: 94px;
+        width: 213px;
+        height: 195px;
+        padding: 14px;
+        object-fit: contain;
+        pointer-events: none;
+      }
+
+      .expression--white-outline {
+        filter:
+          drop-shadow(1px 0 0 #fff)
+          drop-shadow(-1px 0 0 #fff)
+          drop-shadow(0 1px 0 #fff)
+          drop-shadow(0 -1px 0 #fff);
+      }
+
       .btn {
         position: absolute;
         width: 180px;
@@ -116,6 +135,12 @@
           height: 200px;
         }
 
+        .expression {
+          top: 100px;
+          width: 200px;
+          height: 200px;
+        }
+
         .no-btn {
           left: 40px;
           top: 340px;
@@ -134,6 +159,7 @@
       <h1 class="title">この<span class="red">いろ</span>できまり？</h1>
 
       <div id="selectedColorBox" class="color-box" aria-label="選択した色"></div>
+      <img id="selectedExpression" class="expression" alt="選んだ色に合う表情" hidden />
 
       <button class="btn no-btn" type="button" onclick="history.back()">いいえ</button>
       <a id="yesBtn" class="btn yes-btn" href="explanation.html">はい</a>
@@ -143,12 +169,69 @@
       const params = new URLSearchParams(window.location.search);
       const color = params.get("color");
       const example = params.get("example");
+      const expressions = {
+        "#ff0000": "怒る",
+        "#000000": "イライラ",
+        "#0068b7": "悔しい",
+        "#ff4e00": "興奮した",
+        "#910055": "嫌",
+        "#a9a9a9": "ショック",
+        "#a757a8": "危ない",
+        "#d8bfd8": "しつこい",
+        "#db7093": "うるさい",
+        "#ff7043": "面白くない",
+        "#800080": "がっかり",
+        "#333333": "悲しい",
+        "#c49a6a": "可愛想",
+        "#000080": "寂しい",
+        "#0000ff": "怖い",
+        "#4a148c": "泣きたい",
+        "#778899": "疲れた",
+        "#1e90ff": "不安・心配",
+        "#90caf9": "困る",
+        "#4682b4": "びびりびっくり",
+        "#ffcc00": "喜ぶ",
+        "#ff8c00": "嬉しくてびっくり",
+        "#ff5a5a": "嬉しくてびっくり(1)",
+        "#ffeb3b": "幸せ",
+        "#ff9f63": "楽しい",
+        "#ffff00": "面白い",
+        "#ffc0cb": "好き",
+        "#e91e63": "素敵",
+        "#f48fb1": "感謝する",
+        "#90ee90": "穏やか",
+        "#ffd700": "安心する",
+        "#a5d4ad": "気楽・のんびり",
+        "#008000": "気にしない",
+        "#aed581": "気持ちいい",
+        "#ffffff": "優しい",
+        "#00fa9a": "愛",
+        "#ffdab9": "好き",
+        "#ccff99": "恥ずかしい",
+      };
 
       if (color) {
         document.getElementById("selectedColorBox").style.backgroundColor = color;
         const explanationParams = new URLSearchParams({ color });
         if (example) {
           explanationParams.set("example", example);
+        }
+        const normalizedColor = color.toLowerCase();
+        const emotion =
+          normalizedColor === "#ffa500"
+            ? example === "fun"
+              ? "やる気がある"
+              : "リラックス"
+            : expressions[normalizedColor];
+        if (emotion) {
+          const expression = document.getElementById("selectedExpression");
+          expression.src = `img/${emotion}.svg`;
+          expression.classList.toggle(
+            "expression--white-outline",
+            normalizedColor === "#000000",
+          );
+          expression.hidden = false;
+          explanationParams.set("emotion", emotion);
         }
         document.getElementById("yesBtn").href = "explanation.html?" + explanationParams.toString();
       }
