@@ -7,7 +7,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet" />
 
     <style>
       * {
@@ -37,22 +37,22 @@
         top: 24px;
         transform: translateX(-50%);
         width: 540px;
-        color: #4a2e2e;
+        color: #3e0000;
         font-size: 30px;
         line-height: 1.2;
         letter-spacing: 0.04em;
         text-align: center;
-        font-weight: 400;
+        font-weight: 500;
       }
 
       .title .red {
-        color: #d95d5d;
-        font-weight: 900;
+        color: #c75637;
+        font-weight: 700;
       }
 
       .title .orange {
-        color: #ca5a2d;
-        font-weight: 900;
+        color: #3e0000;
+        font-weight: 500;
       }
 
       .color-box {
@@ -81,13 +81,25 @@
       .example-text {
         position: absolute;
         left: 560px;
-        top: 152px;
+        top: 94px;
         width: 320px;
-        color: #2f2f2f;
-        font-size: 28px;
-        line-height: 1.5;
-        font-weight: 900;
+        height: 195px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        color: #3e0000;
+        font-size: 24px;
+        line-height: 1.45;
+        font-weight: 500;
         letter-spacing: 0.02em;
+        text-align: left;
+        text-wrap: pretty;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+      }
+
+      .example-text--fixed-lines {
+        white-space: pre-line;
       }
 
       .btn {
@@ -98,9 +110,11 @@
         border: 4px solid #624529;
         background: #ffebd3;
         box-shadow: inset 0 0 0 4px #f5b134;
-        color: #4a2e2e;
+        color: #3e0000;
         font-size: 24px;
         font-weight: 700;
+        line-height: 1;
+        text-align: center;
         text-decoration: none;
         display: flex;
         align-items: center;
@@ -135,8 +149,6 @@
 
         .example-text {
           left: 442px;
-          top: 147px;
-          font-size: 24px;
           width: 254px;
         }
 
@@ -176,10 +188,7 @@
 
       <img src="img/expression_example.png" class="expression" alt="表情" />
 
-      <div class="example-text">
-        とっておいたぷりんを<br />
-        たべられた
-      </div>
+      <div id="exampleText" class="example-text"></div>
 
       <a href="choice1.html" class="btn no-btn">はじめから</a>
       <a href="last.html" class="btn yes-btn">つぎへ</a>
@@ -188,9 +197,62 @@
     <script>
       const params = new URLSearchParams(window.location.search);
       const selectedColor = params.get("color") || "#ff0000";
+      const examples = {
+        "#ff0000": "とっておいた ぷりんを たべられた",
+        "#000000": "ひとりで まっくらな みちを あるいているよ",
+        "#0068b7": "えほんを よんでいたら、うしろで 「わっ！」って おおきな こえが して とびあがっちゃった",
+        "#ff4e00": "みみもとで おおきな こえで はなしかけられた",
+        "#910055": "どうろで あそぶと、くるまが きて ぶつかっちゃうよ",
+        "#a9a9a9": "きょうは えんそくなのに あめが ふりそうだよ",
+        "#a757a8": "まいにち ずっと あめで、おそとで あそべないよ",
+        "#d8bfd8": "あめが ふってるのに、かさが ないよ",
+        "#db7093": "みんなの まえで ころんで、かおが まっかに なっちゃった",
+        "#ff7043": "じゅんばんを まっているのに、ぬかされた",
+        "#800080": "「やめて」と いってるのに、なんども おもちゃを とろうとしてくるよ",
+        "#333333": "つみきを がんばって たかく つんだのに くずれちゃった",
+        "#c49a6a": "おなじ あそびばかりで、あきちゃったよ",
+        "#1e90ff": "おともだちと けんかしちゃったよ",
+        "#90caf9": "おともだちが ころんで ないているよ",
+        "#4682b4": "いっしょに あそぶ おともだちが いない",
+        "#000080": "たのしみにしていた おでかけが なくなったよ",
+        "#0000ff": "たからものの おもちゃが こわれちゃった",
+        "#4a148c": "ともだちに げーむで まけちゃった",
+        "#778899": "たくさん あそんで へとへとだ",
+        "#ffcc00": "こうえんで あそんでいたら、だいすきな おともだちに あえた！",
+        "#ff8c00": "ともだちが へんな だんすを していたよ",
+        "#ff5a5a": "じぶんで くつしたを はこうと がんばるとき",
+        "#ffeb3b": "かいた えを ほめてもらったよ",
+        "#ff9f63": "だいすきな あにめの きゃらくたーに あえたよ",
+        "#ffff00": "ゆうえんちに いくことに なったよ！",
+        "#ffa500": "おともだちと えんそくに いったよ",
+        "#ffc0cb": "かぞく みんなで ごはんを たべながら いつも わらいあっているよ",
+        "#e91e63": "おうちの ひとが やさしく あたまを なでてくれる",
+        "#f48fb1": "この ぬいぐるみは おきにいりなんだ",
+        "#90ee90": "ごろごろしながら てれびを みる",
+        "#ffd700": "おともだちの ふくが とても おしゃれだった",
+        "#a5d4ad": "そふぁで ごろごろするよ",
+        "#008000": "ままと ぱぱに ぎゅっと してもらったよ",
+        "#ffdab9": "ともだちが おとしたものを ひろってくれたよ。",
+        "#ccff99": "おともだちがおもちゃをかしてくれた",
+        "#aed581": "おひさまが やさしく てらしているよ",
+        "#ffffff": "あめで こうえんに いけなくなったけど おうちで あそぼうっと",
+        "#00fa9a": "あつい ひに ぷーるに はいるよ"
+      };
 
       const box = document.getElementById("selectedColorBox");
       box.style.backgroundColor = selectedColor;
+
+      const example = params.get("example");
+      const exampleText =
+        example === "moved"
+          ? "えほんの しゅじんこうが たすかって、よかったなぁと おもったよ"
+          : examples[selectedColor.toLowerCase()];
+      const exampleTextElement = document.getElementById("exampleText");
+      const isSurpriseExample = selectedColor.toLowerCase() === "#0068b7" && example !== "moved";
+      exampleTextElement.textContent = isSurpriseExample
+        ? "えほんを よんでいたら、\nうしろで「わっ！」って\nおおきな こえが して\nとびあがっちゃった"
+        : exampleText || "対応する例文が見つかりません。";
+      exampleTextElement.classList.toggle("example-text--fixed-lines", isSurpriseExample);
     </script>
   </body>
 </html>
