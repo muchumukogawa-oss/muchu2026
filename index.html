@@ -48,7 +48,7 @@
         width: min(65vw, 560px);
         height: 50vh;
         object-fit: contain;
-        transform: translate(-24px, -6px);
+        transform: translate(-24px, -12px);
         filter: drop-shadow(0 4px 8px rgb(0 0 0 / 15%));
       }
 
@@ -59,10 +59,10 @@
         font-weight: 500;
         line-height: 1.35;
         text-align: center;
-        -webkit-text-stroke: 3px #fff;
+        -webkit-text-stroke: 6px #fff;
         paint-order: stroke fill;
         text-shadow: 0 5px 8px rgb(0 0 0 / 35%);
-        transform: translate(30px, -10px);
+        transform: translate(30px, -22px);
       }
 
       .highlight-red {
@@ -81,23 +81,29 @@
         color: #fff;
         font-family: "Zen Maru Gothic", sans-serif;
         font-size: 24px;
-        font-weight: 900;
+        font-weight: 700;
         letter-spacing: 0.05em;
+        line-height: 1;
+        text-align: center;
         text-decoration: none;
-        transform: translate(20px, -10px);
+        transform: translate(20px, -16px);
         cursor: pointer;
         transition: transform 0.1s ease;
       }
 
       .start-btn:active {
-        transform: translate(20px, -10px) scale(0.95);
+        transform: translate(20px, -16px) scale(0.95);
+      }
+
+      .start-btn-label {
+        transform: translate(2px, -2px);
       }
 
       @media (max-width: 600px) {
         .title-logo {
           width: min(88vw, 560px);
           height: 50vh;
-          transform: translate(-4px, -4px);
+          transform: translate(-4px, -10px);
         }
 
         .sub-text {
@@ -122,7 +128,7 @@
         <span class="highlight-red">きもち</span>のことばをさがしにいこう！
       </p>
 
-      <a href="tos.html" class="start-btn">はじめる</a>
+      <a href="tos.html" class="start-btn"><span class="start-btn-label">はじめる</span></a>
     </main>
   </body>
 </html>

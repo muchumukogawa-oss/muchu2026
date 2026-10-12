@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -67,11 +67,11 @@
 
       /* タイトル「あそびかた」 */
       .content-title {
-        font-size: clamp(22px, 3.6vw, 36px);
-        font-weight: 400;
-        color: #4a2828;
+        font-size: clamp(30px, 3.6vw, 36px);
+        font-weight: 500;
+        color: #3e0000;
         text-align: center;
-        transform: translateY(-18px);
+        transform: translateY(-18.5px);
         margin-bottom: 22px;
         padding-bottom: 4px;
         border-bottom: 3px solid #b87b5c;
@@ -81,22 +81,24 @@
 
       /* 本文テキスト */
       .content-text {
-        transform: translateY(-10px);
-        font-size: clamp(15px, 2.1vw, 22px);
-        font-weight: 400;
-        color: #4a2828;
+        transform: translateY(-24.99px);
+        font-size: 22px;
+        font-weight: 500;
+        color: #3e0000;
         text-align: center;
-        line-height: 1.8;
+        line-height: 38px;
       }
 
       /* ハイライト文字色 */
       .highlight-red {
         color: #d93838;
+        font-weight: 700;
       }
 
       /* 4色の顔を横並びにするコンテナ */
       .faces-row {
         display: flex;
+        transform: translateY(-4px);
         gap: clamp(8px, 1.8vw, 18px);
         justify-content: center;
         align-items: center;

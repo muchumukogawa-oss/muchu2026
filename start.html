@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -67,8 +67,8 @@
 
       /* 本文テキスト */
       .content-text {
-        font-size: clamp(15px, 2.2vw, 22px);
-        font-weight: 900;
+        font-size: 22px;
+        font-weight: 500;
         color: #4a2828;
         text-align: center;
         line-height: 1.8;
@@ -77,12 +77,25 @@
 
       .content-text p {
         margin-bottom: 8px;
+        line-height: 38px;
+      }
+
+      .content-text p:first-child {
+        transform: translateY(-0.91px);
+      }
+
+      .content-text p:nth-child(2) {
+        transform: translateY(-9.41px);
+      }
+
+      .content-text p:last-child {
+        transform: translateY(-10.41px);
       }
 
       /* ルビ（振り仮名）の文字サイズ・装飾 */
       ruby rt {
         font-size: 0.55em;
-        font-weight: 700;
+        font-weight: 500;
         color: #4a2828;
       }
 
@@ -95,8 +108,14 @@
         color: #b85232;
       }
 
+      .content-text .highlight-red {
+        font-weight: 700;
+      }
+
       /* しゅっぱつボタン（button_red.png を使用） */
       .start-btn {
+        position: relative;
+        top: -14.91px;
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -118,6 +137,11 @@
 
       .start-btn:active {
         transform: scale(0.95);
+      }
+
+      .start-btn span {
+        display: inline-block;
+        transform: translate(2px, -2px);
       }
 
       /* 前景の草（grass.png：巻物やコンパスの上に重なる） */
@@ -195,7 +219,7 @@
         </div>
 
         <!-- しゅっぱつボタン（choice1） -->
-        <a href="choice1.html" class="start-btn">しゅっぱつ</a>
+        <a href="choice1.html" class="start-btn"><span>しゅっぱつ</span></a>
       </div>
 
       <!-- 前景の草（巻物の手前に被せる） -->

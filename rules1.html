@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -67,11 +67,11 @@
 
       /* タイトル「あそびかた」 */
       .content-title {
-        font-size: clamp(22px, 3.6vw, 36px);
-        font-weight: 400;
-        color: #4a2828;
+        font-size: clamp(30px, 3.6vw, 36px);
+        font-weight: 500;
+        color: #3e0000;
         text-align: center;
-        transform: translateY(-15px);
+        transform: translateY(-14.75px);
         margin-bottom: 22px;
         padding-bottom: 4px;
         border-bottom: 3px solid #b87b5c;
@@ -81,24 +81,25 @@
 
       /* 本文テキスト */
       .content-text {
-        transform: translateY(-10px);
-        font-size: clamp(15px, 2.1vw, 22px);
-        font-weight: 400;
-        color: #4a2828;
+        transform: translateY(-14.24px);
+        font-size: 22px;
+        font-weight: 500;
+        color: #3e0000;
         text-align: center;
-        line-height: 1.8;
+        line-height: 38px;
       }
 
       /* ルビ（振り仮名）の文字サイズ・装飾 */
       ruby rt {
         font-size: 0.55em;
         font-weight: 400;
-        color: #4a2828;
+        color: #3e0000;
       }
 
       /* ハイライト文字色 */
       .highlight-red {
         color: #d93838;
+        font-weight: 700;
       }
 
       /* 顔の輪郭（CSSで描画）と表情画像エリア */
@@ -106,6 +107,7 @@
         position: relative;
         width: 97px;
         height: 97px;
+        transform: translateY(-4px);
         background-color: #ffffff;
         border: 2px solid #000000;
         border-radius: 50%;
