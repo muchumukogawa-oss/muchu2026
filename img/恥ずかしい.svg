@@ -8,6 +8,8 @@
 
       .cls-2 {
         fill: #d1738b;
+        stroke: #fff;
+        stroke-width: 8px;
       }
 
       .cls-3 {
