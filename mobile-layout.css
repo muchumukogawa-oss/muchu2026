@@ -21,7 +21,7 @@ body {
    * complete canvas on narrow screens to preserve the original composition.
    */
   .stage {
-    --mobile-scale: min(1, calc((100vw - 24px) / 800));
+    --mobile-scale: var(--mobile-scale-800, 1);
     height: 100dvh;
     min-height: 100dvh;
     overflow: hidden;
@@ -70,7 +70,7 @@ body {
   }
 
   .page {
-    --mobile-scale: min(1, calc((100vw - 24px) / 900));
+    --mobile-scale: var(--mobile-scale-900, 1);
     width: 900px;
     height: 100dvh;
     transform: scale(var(--mobile-scale));
