@@ -110,6 +110,25 @@
         pointer-events: none;
       }
 
+      .emotion-img--yellow {
+        transform: scaleX(0.85) scaleY(1.05);
+      }
+
+      .emotion-img--blue {
+        filter: url(#blue-black-to-white);
+      }
+
+      .emotion-img--green {
+        transform: scaleX(0.78);
+      }
+
+      .svg-filters {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+
       .back-arrow.clicked,
       .color-block.clicked {
         transform: translateY(2px);
@@ -135,6 +154,27 @@
   </head>
 
   <body>
+    <svg class="svg-filters" aria-hidden="true" focusable="false">
+      <filter id="blue-black-to-white" color-interpolation-filters="sRGB">
+        <feColorMatrix
+          in="SourceGraphic"
+          type="matrix"
+          values="
+            0.2126 0.7152 0.0722 0 0
+            0.2126 0.7152 0.0722 0 0
+            0.2126 0.7152 0.0722 0 0
+            0.2126 0.7152 0.0722 0 0"
+          result="luminance"
+        />
+        <feComponentTransfer in="luminance" result="dark-parts">
+          <feFuncA type="table" tableValues="1 0 0 0 0 0 0 0 0 0 0" />
+        </feComponentTransfer>
+        <feComposite in="dark-parts" in2="SourceGraphic" operator="in" result="opaque-dark-parts" />
+        <feFlood flood-color="#fff" result="white" />
+        <feComposite in="white" in2="opaque-dark-parts" operator="in" result="white-dark-parts" />
+        <feComposite in="white-dark-parts" in2="SourceGraphic" operator="atop" />
+      </filter>
+    </svg>
     <div class="page">
       <a href="start.html" class="back-arrow" aria-label="戻る">
         <svg viewBox="0 0 53 47" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -158,13 +198,13 @@
           <img src="img/怒る.svg" alt="怒る" class="emotion-img" />
         </a>
         <a href="choice2_yellow.html" class="color-block yellow" aria-label="黄色">
-          <img src="img/喜ぶ.svg" alt="喜ぶ" class="emotion-img" />
+          <img src="img/喜ぶ.svg" alt="喜ぶ" class="emotion-img emotion-img--yellow" />
         </a>
         <a href="choice2_blue.html" class="color-block blue" aria-label="青">
-          <img src="img/悲しい.svg" alt="悲しい" class="emotion-img" />
+          <img src="img/悲しい.svg" alt="悲しい" class="emotion-img emotion-img--blue" />
         </a>
         <a href="choice2_green.html" class="color-block green" aria-label="緑">
-          <img src="img/気持ちいい.svg" alt="気持ちいい" class="emotion-img" />
+          <img src="img/気持ちいい.svg" alt="気持ちいい" class="emotion-img emotion-img--green" />
         </a>
       </div>
     </div>
