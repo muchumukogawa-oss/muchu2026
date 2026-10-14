@@ -109,39 +109,44 @@
           box-shadow 0.08s ease;
       }
 
+      /* --- 表情画像の配置（中央基準） --- */
       .emotion-img {
         position: absolute;
-        top: 15%;
-        left: 15%;
+        top: 50%;
+        left: 50%;
         width: 70%;
         height: 70%;
         object-fit: contain;
         pointer-events: none;
+        transform: translate(-50%, -50%);
       }
 
       .color-card.short .emotion-img {
-        top: 15%;
-        left: 15%;
         width: 70%;
         height: 70%;
+        transform: translate(-50%, -50%);
       }
 
-      .color4 .emotion-img,
       .color5 .emotion-img,
       .color6 .emotion-img,
       .color7 .emotion-img,
       .color8 .emotion-img {
-        top: 7.5%;
-        left: 7.5%;
         width: 85%;
         height: 85%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* 嬉しい（.color4）：上方向（-60%）に移動 */
+      .color4 .emotion-img {
+        width: 85%;
+        height: 85%;
+        transform: translate(-50%, -60%);
       }
 
       .color1 .emotion-img {
-        top: 17.5%;
-        left: 17.5%;
         width: 65%;
         height: 65%;
+        transform: translate(-50%, -50%);
       }
 
       .color-card:active {
@@ -306,7 +311,10 @@
           ><img src="img/喜ぶ.svg" alt="" class="emotion-img"
         /></a>
 
-        <a href="./decision.html?color=%23ffa500&amp;label=%E3%81%9F%E3%81%AE%E3%81%97%E3%81%84" class="color-card color7" aria-label="黄色3：楽しい"
+        <a
+          href="./decision.html?color=%23ffa500&amp;label=%E3%81%9F%E3%81%AE%E3%81%97%E3%81%84"
+          class="color-card color7"
+          aria-label="黄色3：楽しい"
           ><img src="img/楽しい.svg" alt="" class="emotion-img"
         /></a>
         <a href="./decision.html?color=%23ffc0cb" class="color-card color8" aria-label="ピンク：幸せ"

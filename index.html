@@ -26,17 +26,16 @@
       html,
       body {
         width: 100%;
-        min-height: 100%;
-      }
-
-      body {
-        min-height: 100vh;
+        height: 100dvh;
         overflow: hidden;
+        font-family: "Zen Maru Gothic", sans-serif;
+        background: #f3f3f3;
       }
 
       .background {
         display: flex;
-        min-height: 100vh;
+        width: 100%;
+        height: 100dvh;
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
@@ -50,23 +49,22 @@
 
       .title-logo {
         width: min(65vw, 560px);
-        height: 50vh;
+        height: 45vh;
         object-fit: contain;
-        transform: translate(-24px, -12px);
+        transform: translate(0, 0);
         filter: drop-shadow(0 4px 8px rgb(0 0 0 / 15%));
       }
 
       .sub-text {
         color: #572d2d;
         font-family: "Zen Maru Gothic", sans-serif;
-        font-size: clamp(18px, 3.5vw, 28px);
+        font-size: clamp(16px, 3.5vw, 26px);
         font-weight: 500;
         line-height: 1.35;
         text-align: center;
-        -webkit-text-stroke: 6px #fff;
+        -webkit-text-stroke: 5px #fff;
         paint-order: stroke fill;
         text-shadow: 0 5px 8px rgb(0 0 0 / 35%);
-        transform: translate(30px, -22px);
       }
 
       .highlight-red {
@@ -77,53 +75,51 @@
       .start-btn {
         display: flex;
         width: 200px;
-        height: 70px;
+        height: 65px;
         align-items: center;
         justify-content: center;
 
         background: url("img/button_red.png") center / contain no-repeat;
         color: #fff;
         font-family: "Zen Maru Gothic", sans-serif;
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 700;
         letter-spacing: 0.05em;
         line-height: 1;
         text-align: center;
         text-decoration: none;
-        transform: translate(20px, -16px);
         cursor: pointer;
         transition: transform 0.1s ease;
       }
 
       .start-btn:active {
-        transform: translate(20px, -16px) scale(0.95);
+        transform: scale(0.95);
       }
 
       .start-btn-label {
-        transform: translate(2px, -2px);
+        transform: translate(0, 0);
       }
 
-      @media (max-width: 600px) {
-        html,
-        body,
+      /* スマホを横向き（高さが低い画面）にした時の調整 */
+      @media (orientation: landscape) and (max-height: 500px) {
         .background {
-          min-height: 100dvh;
+          padding: 1vh 12px;
+          justify-content: space-around;
         }
 
         .title-logo {
-          width: min(88vw, 560px);
-          height: 50vh;
-          transform: translate(-4px, -10px);
+          height: 38vh;
         }
 
         .sub-text {
-          font-size: clamp(17px, 5vw, 28px);
+          font-size: clamp(13px, 3.2vh, 20px);
+          -webkit-text-stroke: 4px #fff;
         }
 
         .start-btn {
-          width: 180px;
-          height: 64px;
-          font-size: 21px;
+          width: 150px;
+          height: 48px;
+          font-size: 18px;
         }
       }
     </style>

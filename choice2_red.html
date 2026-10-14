@@ -11,7 +11,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="mobile-layout.css" />
 
     <style>
@@ -113,37 +116,37 @@
           box-shadow 0.08s ease;
       }
 
+      /* --- 表情画像の配置（中央基準） --- */
       .emotion-img {
         position: absolute;
-        top: 15%;
-        left: 15%;
+        top: 50%;
+        left: 50%;
         width: 70%;
         height: 70%;
         object-fit: contain;
         pointer-events: none;
+        transform: translate(-50%, -50%);
       }
 
       .color-card.short .emotion-img {
-        top: 15%;
-        left: 15%;
         width: 70%;
         height: 70%;
+        transform: translate(-50%, -50%);
       }
 
       .color4 .emotion-img {
-        top: 2.5%;
-        left: 2.5%;
         width: 95%;
         height: 95%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* 不安・心配（.color6）：右に移動 */
+      .color6 .emotion-img {
+        transform: translate(-45%, -50%);
       }
 
       .color2 .emotion-img {
-        filter:
-          brightness(0)
-          invert(1)
-          drop-shadow(1px 0 0 #fff)
-          drop-shadow(-1px 0 0 #fff)
-          drop-shadow(0 1px 0 #fff)
+        filter: brightness(0) invert(1) drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff)
           drop-shadow(0 -1px 0 #fff);
       }
 
@@ -285,19 +288,39 @@
           <p>な<span class="highlight-brown">いろ</span>はどれかな？</p>
         </div>
 
-        <a href="./decision.html?color=%23ff0000" class="color-card color1" aria-label="赤1：怒る"><img src="img/怒る.svg" alt="" class="emotion-img" /></a>
-        <a href="./decision.html?color=%23000000" class="color-card color2" aria-label="黒：怖い"><img src="img/怖い.svg" alt="" class="emotion-img" /></a>
-        <a href="./decision.html?color=%230068b7" class="color-card color3" aria-label="青：びびりびっくり"><img src="img/びびりびっくり.svg" alt="" class="emotion-img" /></a>
+        <a href="./decision.html?color=%23ff0000" class="color-card color1" aria-label="赤1：怒る"
+          ><img src="img/怒る.svg" alt="" class="emotion-img"
+        /></a>
+        <a href="./decision.html?color=%23000000" class="color-card color2" aria-label="黒：怖い"
+          ><img src="img/怖い.svg" alt="" class="emotion-img"
+        /></a>
+        <a href="./decision.html?color=%230068b7" class="color-card color3" aria-label="青：びびりびっくり"
+          ><img src="img/びびりびっくり.svg" alt="" class="emotion-img"
+        /></a>
 
-        <a href="./decision.html?color=%23ff4e00" class="color-card color4" aria-label="オレンジ：うるさい"><img src="img/うるさい.svg" alt="" class="emotion-img" /></a>
-        <a href="./decision.html?color=%23910055" class="color-card color5" aria-label="紫：危ない"><img src="img/危ない.svg" alt="" class="emotion-img" /></a>
-        <a href="./decision.html?color=%23a9a9a9" class="color-card color6" aria-label="グレー：不安・心配"><img src="img/不安・心配.svg" alt="" class="emotion-img" /></a>
+        <a href="./decision.html?color=%23ff4e00" class="color-card color4" aria-label="オレンジ：うるさい"
+          ><img src="img/うるさい.svg" alt="" class="emotion-img"
+        /></a>
+        <a href="./decision.html?color=%23910055" class="color-card color5" aria-label="紫：危ない"
+          ><img src="img/危ない.svg" alt="" class="emotion-img"
+        /></a>
+        <a href="./decision.html?color=%23a9a9a9" class="color-card color6" aria-label="グレー：不安・心配"
+          ><img src="img/不安・心配.svg" alt="" class="emotion-img"
+        /></a>
 
-        <a href="./decision.html?color=%23a757a8" class="color-card color7" aria-label="紫2：嫌"><img src="img/嫌.svg" alt="" class="emotion-img" /></a>
-        <a href="./decision.html?color=%23d8bfd8" class="color-card color8 short" aria-label="薄紫：困る"><img src="img/困る.svg" alt="" class="emotion-img" /></a>
-        <a href="./decision.html?color=%23db7093" class="color-card color9 short" aria-label="ピンク：恥ずかしい"><img src="img/恥ずかしい.svg" alt="" class="emotion-img" /></a>
+        <a href="./decision.html?color=%23a757a8" class="color-card color7" aria-label="紫2：嫌"
+          ><img src="img/嫌.svg" alt="" class="emotion-img"
+        /></a>
+        <a href="./decision.html?color=%23d8bfd8" class="color-card color8 short" aria-label="薄紫：困る"
+          ><img src="img/困る.svg" alt="" class="emotion-img"
+        /></a>
+        <a href="./decision.html?color=%23db7093" class="color-card color9 short" aria-label="ピンク：恥ずかしい"
+          ><img src="img/恥ずかしい.svg" alt="" class="emotion-img"
+        /></a>
 
-        <a href="./decision.html?color=%23ff7043" class="color-card color10" aria-label="オレンジ2：イライラ"><img src="img/イライラ.svg" alt="" class="emotion-img" /></a>
+        <a href="./decision.html?color=%23ff7043" class="color-card color10" aria-label="オレンジ2：イライラ"
+          ><img src="img/イライラ.svg" alt="" class="emotion-img"
+        /></a>
       </div>
     </div>
   </body>

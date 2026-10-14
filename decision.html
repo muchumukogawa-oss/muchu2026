@@ -11,7 +11,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       * {
@@ -69,6 +72,7 @@
         border: 1px solid rgba(0, 0, 0, 0.08);
       }
 
+      /* 表情画像の基本配置設定（四角枠の中心基準） */
       .expression {
         position: absolute;
         left: 329px;
@@ -78,13 +82,39 @@
         padding: 14px;
         object-fit: contain;
         pointer-events: none;
+        transition: transform 0.1s ease;
+      }
+
+      /* --- 前の画面と同じ微調整ルール --- */
+
+      /* ショック：右に少し移動 */
+      .expression[data-emotion="ショック"] {
+        transform: translate(10px, 0);
+      }
+
+      /* 不安・心配：右、上に移動 */
+      .expression[data-emotion="不安・心配"] {
+        transform: translate(20px, -15px);
+      }
+
+      /* 悲しい：サイズを大きくし、少し下に移動 */
+      .expression[data-emotion="悲しい"] {
+        padding: 0;
+        transform: translate(0, 10px);
+      }
+
+      /* 疲れた：少し上、少し右に移動 */
+      .expression[data-emotion="疲れた"] {
+        transform: translate(4px, -15px);
+      }
+
+      /* 悔しい（color7相当）：少し大きく表示 */
+      .expression[data-emotion="悔しい"] {
+        padding: 0;
       }
 
       .expression--white-outline {
-        filter:
-          drop-shadow(1px 0 0 #fff)
-          drop-shadow(-1px 0 0 #fff)
-          drop-shadow(0 1px 0 #fff)
+        filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff)
           drop-shadow(0 -1px 0 #fff);
       }
 
@@ -214,7 +244,7 @@
         "#ccff99": "優しい",
         "#aed581": "穏やか",
         "#ffffff": "気にしない",
-        "#00fa9a": "気持ちいい",
+        "#00fa9a": "気持ちいい"
       };
 
       if (color) {
@@ -227,18 +257,14 @@
           explanationParams.set("example", example);
         }
         const normalizedColor = color.toLowerCase();
-        const emotion =
-          label === "かんどう"
-            ? "嬉しくてびっくり"
-            : expressions[normalizedColor];
+        const emotion = label === "かんどう" ? "嬉しくてびっくり" : expressions[normalizedColor];
         if (emotion) {
           const expression = document.getElementById("selectedExpression");
           expression.src = `img/${emotion}.svg`;
           expression.alt = `${label || emotion}の表情`;
-          expression.classList.toggle(
-            "expression--white-outline",
-            normalizedColor === "#000000",
-          );
+          // JavaScriptで感情名をdata属性にセットしてCSSの位置微調整を発動させる
+          expression.setAttribute("data-emotion", emotion);
+          expression.classList.toggle("expression--white-outline", normalizedColor === "#000000");
           expression.hidden = false;
           explanationParams.set("emotion", emotion);
         }
