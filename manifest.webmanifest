@@ -3,7 +3,7 @@
   "short_name": "きもちのたんけん",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f3f3f3",
-  "theme_color": "#f3f3f3",
-  "orientation": "any"
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "landscape"
 }
