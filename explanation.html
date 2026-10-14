@@ -7,7 +7,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="manifest" href="manifest.webmanifest" />
     <script src="mobile-layout.js" defer></script>
-    <title>このいろは こんなきもち！</title>
+    <title>きもちのつかいかた</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,7 +40,7 @@
         left: 50%;
         top: 24px;
         transform: translateX(-50%);
-        width: 540px;
+        width: 760px;
         color: #3e0000;
         font-size: 30px;
         line-height: 1.2;
@@ -155,7 +155,7 @@
 
       @media (max-width: 900px) {
         .title {
-          width: 420px;
+          width: 760px;
           font-size: 30px;
         }
 
@@ -195,7 +195,7 @@
 
   <body>
     <div class="page">
-      <h1 class="title">この<span class="red">いろ</span>は こんな<span class="red">きもち</span>！</h1>
+      <h1 class="title"><span id="emotionLabel" class="red">このいろ</span>はこんなときにつかうよ！</h1>
 
       <div id="selectedColorBox" class="color-box" aria-label="選択した色"></div>
 
@@ -211,6 +211,52 @@
       const params = new URLSearchParams(window.location.search);
       const selectedColor = params.get("color") || "#ff0000";
       const emotion = params.get("emotion");
+      const emotionLabels = {
+        "#ff0000": "おこる",
+        "#000000": "こわい",
+        "#0068b7": "びびりびっくり",
+        "#ff4e00": "うるさい",
+        "#910055": "あぶない",
+        "#a9a9a9": "ふあん・しんぱい",
+        "#a757a8": "いや",
+        "#d8bfd8": "こまる",
+        "#db7093": "はずかしい",
+        "#ff7043": "いらいら",
+        "#800080": "しつこい",
+        "#333333": "しょっく",
+        "#c49a6a": "おもしろくない",
+        "#1e90ff": "なきたい",
+        "#90caf9": "かわいそう",
+        "#4682b4": "さびしい",
+        "#000080": "がっかりする",
+        "#0000ff": "かなしい",
+        "#4a148c": "くやしい",
+        "#778899": "つかれた",
+        "#ffcc00": "うれしくてびっくり",
+        "#ff8c00": "おもしろい",
+        "#ff5a5a": "やるきがある",
+        "#ffeb3b": "うれしい",
+        "#ff9f63": "こうふんした",
+        "#ffff00": "よろこぶ",
+        "#ffa500": "たのしい",
+        "#ffc0cb": "しあわせ",
+        "#e91e63": "あい",
+        "#f48fb1": "すき",
+        "#90ee90": "きらく・のんびり",
+        "#ffd700": "すてき",
+        "#a5d4ad": "りらっくす",
+        "#008000": "あんしん・ほっとする",
+        "#ffdab9": "かんしゃ",
+        "#ccff99": "やさしい・しんせつ",
+        "#aed581": "おだやか",
+        "#ffffff": "きにしない",
+        "#00fa9a": "きもちいい",
+      };
+      const emotionLabel = params.get("label") || emotionLabels[selectedColor.toLowerCase()];
+      if (emotionLabel) {
+        document.getElementById("emotionLabel").textContent = emotionLabel;
+        document.title = `${emotionLabel}はこんなときにつかうよ！`;
+      }
       const examples = {
         "#ff0000": "とっておいた ぷりんを たべられた",
         "#000000": "ひとりで まっくらな みちを あるいているよ",
@@ -259,7 +305,7 @@
       if (emotion && /^[^./\\?#]+$/u.test(emotion)) {
         const expression = document.getElementById("expression");
         expression.src = `img/${emotion}.svg`;
-        expression.alt = `${emotion}の表情`;
+        expression.alt = `${emotionLabel || emotion}の表情`;
         expression.classList.toggle(
           "expression--white-outline",
           selectedColor.toLowerCase() === "#000000",
