@@ -109,29 +109,52 @@
           box-shadow 0.08s ease;
       }
 
+      /* 表情画像のベース配置 */
       .emotion-img {
         position: absolute;
-        top: 15%;
-        left: 15%;
+        top: 50%;
+        left: 50%;
         width: 70%;
         height: 70%;
         object-fit: contain;
         pointer-events: none;
+        transform: translate(-50%, -52%);
+      }
+
+      /* ショック（.color2）：右に少し移動 */
+      .color2 .emotion-img {
+        transform: translate(-40%, -52%);
+      }
+
+      /* 不安・心配：右、上に移動 */
+      .color-anxiety .emotion-img,
+      .color-card[aria-label*="不安"] .emotion-img,
+      .color-card[aria-label*="心配"] .emotion-img {
+        transform: translate(-30%, -62%);
+      }
+
+      /* 悲しい（.color6）：少し下に移動 */
+      .color6 .emotion-img {
+        width: 85%;
+        height: 85%;
+        transform: translate(-50%, -46%);
+      }
+
+      /* 疲れた（.color8）：少し上、少し右に移動 */
+      .color8 .emotion-img {
+        transform: translate(-48%, -60%);
       }
 
       .color-card.short .emotion-img {
-        top: 15%;
-        left: 15%;
         width: 70%;
         height: 70%;
+        transform: translate(-50%, -52%);
       }
 
-      .color6 .emotion-img,
       .color7 .emotion-img {
-        top: 7.5%;
-        left: 7.5%;
         width: 85%;
         height: 85%;
+        transform: translate(-50%, -52%);
       }
 
       .color-card:active {

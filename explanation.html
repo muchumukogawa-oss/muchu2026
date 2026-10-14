@@ -50,7 +50,7 @@
       }
 
       .title .red {
-        color: #c75637;
+        color: #3e0000;
         font-weight: 700;
       }
 
@@ -195,7 +195,7 @@
 
   <body>
     <div class="page">
-      <h1 class="title"><span id="emotionLabel" class="red">このいろ</span>はこんなときにつかうよ！</h1>
+      <h1 class="title"><span id="emotionLabel" class="red">このいろ</span>は こんなときに つかうよ！</h1>
 
       <div id="selectedColorBox" class="color-box" aria-label="選択した色"></div>
 
@@ -255,7 +255,7 @@
       const emotionLabel = params.get("label") || emotionLabels[selectedColor.toLowerCase()];
       if (emotionLabel) {
         document.getElementById("emotionLabel").textContent = emotionLabel;
-        document.title = `${emotionLabel}はこんなときにつかうよ！`;
+        document.title = `${emotionLabel}は こんなときに つかうよ！`;
       }
       const examples = {
         "#ff0000": "とっておいた ぷりんを たべられた",
