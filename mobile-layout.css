@@ -1,79 +1,66 @@
-html,
-body {
-  min-height: 100%;
+@charset "UTF-8";
+
+/* ==========================================================================
+   1. リセット & 画面全体設定（スクロール完全防止＋白余白背景）
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@media (max-width: 600px) {
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-  }
+html,
+body {
+  width: 100vw;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 外枠のスクロールバーを完全に排除 */
+  background-color: #ffffff; /* iPhone 16(852:393)と比率が合わない端末で出せる白余白 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Zen Maru Gothic", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  body {
-    min-height: 100dvh;
-    background: #f3f3f3;
-  }
+/* ==========================================================================
+   2. アプリ本体コンテナ（iPhone 16 横画面 852 : 393 固定フィット）
+   ========================================================================== */
+.app-container,
+.stage,
+.page {
+  /* 画面幅（100vw）または高さ（100dvh）のどちらか限界まで引き伸ばし、852:393比率を自動維持 */
+  width: min(100vw, calc(100dvh * (852 / 393)));
+  height: min(100dvh, calc(100vw * (393 / 852)));
+  aspect-ratio: 852 / 393;
 
-  /*
-   * The illustrated pages use an 800px-wide desktop canvas. Scale the
-   * complete canvas on narrow screens to preserve the original composition.
-   */
-  .stage {
-    --mobile-scale: var(--mobile-scale-800, 1);
-    height: 100dvh;
-    min-height: 100dvh;
-    overflow: hidden;
-  }
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 
-  .stage .compass {
-    left: auto;
-    right: 0;
-    width: calc(350px * var(--mobile-scale));
-    height: calc(161px * var(--mobile-scale));
-  }
+  /* 上下の安全領域（ノッチ・ホームバー）の対応 */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
 
-  .stage .scroll-container,
-  .stage .map-panel {
-    top: 2px;
-    left: 12px;
-    transform: scale(var(--mobile-scale));
-    transform-origin: top left;
-  }
+/* ==========================================================================
+   3. 各ページ共通背景クラス
+   ========================================================================== */
+/* タイトル画面用背景 */
+.bg-top {
+  background-image: url("img/background_top.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  .stage .prev-btn {
-    top: calc(181.57px * var(--mobile-scale));
-    left: calc(73.21px * var(--mobile-scale) + 12px);
-    width: calc(53px * var(--mobile-scale));
-    height: calc(47px * var(--mobile-scale));
-    transform-origin: center;
-  }
-
-  .stage .next-btn {
-    top: calc(181.57px * var(--mobile-scale));
-    left: calc(774.99px * var(--mobile-scale) + 12px);
-    width: calc(53px * var(--mobile-scale));
-    height: calc(47px * var(--mobile-scale));
-    transform-origin: center;
-  }
-
-  .stage .dots-container {
-    top: calc(363px * var(--mobile-scale));
-    left: calc(414px * var(--mobile-scale) + 12px);
-    transform: scale(var(--mobile-scale));
-    transform-origin: top left;
-  }
-
-  .stage .content {
-    transform: translate(-50%, -50%) scale(var(--mobile-scale));
-  }
-
-  .page {
-    --mobile-scale: var(--mobile-scale-900, 1);
-    width: 900px;
-    height: 100dvh;
-    transform: scale(var(--mobile-scale));
-    transform-origin: top left;
-  }
+/* 規約・解説・ゲーム画面用背景 */
+.bg-grass {
+  background-image: url("img/background_grass.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
