@@ -38,8 +38,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between; /* 上下にゆったり分散配置 */
-        padding: 40px 16px 30px; /* 上下の余白をしっかり確保 */
+        justify-content: space-evenly;
+        padding: 10px 16px;
 
         background-image: url("img/background_top.png");
         background-position: center;
@@ -47,23 +47,22 @@
         background-size: cover;
       }
 
-      /* ロゴ：画面幅の92%を使って大きく表示 */
+      /* ロゴ：画面高さの55%を使って大きく確保 */
       .title-logo {
-        width: 92vw;
-        max-width: 600px;
-        height: auto; /* 高さは自動計算にして潰れないようにする */
-        max-height: 52dvh;
+        width: auto;
+        max-width: 80vw;
+        height: 55dvh;
         object-fit: contain;
         filter: drop-shadow(0 4px 8px rgb(0 0 0 / 15%));
       }
 
-      /* 本文：文字サイズをくっきり大きく固定 */
+      /* 本文テキスト：くっきりと大きく表示 */
       .sub-text {
         color: #572d2d;
         font-family: "Zen Maru Gothic", sans-serif;
-        font-size: 24px; /* 小さくならないよう固定値 */
+        font-size: clamp(20px, 5.5vh, 32px); /* 高さに対してフォントを大きく保持 */
         font-weight: 700;
-        line-height: 1.4;
+        line-height: 1.3;
         text-align: center;
         -webkit-text-stroke: 6px #fff;
         paint-order: stroke fill;
@@ -75,11 +74,12 @@
         font-weight: 900;
       }
 
-      /* はじめるボタン：しっかり大きく配置 */
+      /* はじめるボタン：しっかり大きい存在感 */
       .start-btn {
         display: flex;
         width: 220px;
-        height: 74px;
+        height: 72px;
+        max-height: 20dvh; /* 横画面でも押しやすい高さを維持 */
         align-items: center;
         justify-content: center;
 
@@ -104,22 +104,26 @@
         transform: translate(2px, -2px);
       }
 
-      /* 画面の縦幅がとても小さいスマホ向けの調整 */
-      @media (max-height: 600px) {
+      /* スマホ横画面（高さが狭い場合）用のダイナミック指定 */
+      @media (orientation: landscape) and (max-height: 500px) {
         .background {
-          padding: 20px 12px 15px;
+          padding: 6px 12px;
+          justify-content: space-around;
         }
+
         .title-logo {
-          max-height: 45dvh;
+          height: 50dvh;
         }
+
         .sub-text {
-          font-size: 20px;
+          font-size: clamp(18px, 6.5vh, 26px);
           -webkit-text-stroke: 5px #fff;
         }
+
         .start-btn {
-          width: 180px;
+          width: 200px;
           height: 60px;
-          font-size: 22px;
+          font-size: 24px;
         }
       }
     </style>
