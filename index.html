@@ -26,20 +26,20 @@
       html,
       body {
         width: 100%;
-        height: 100dvh;
+        height: 100dvh; /* 画面の動的な高さにぴったり合わせる */
         overflow: hidden;
         font-family: "Zen Maru Gothic", sans-serif;
         background: #f3f3f3;
       }
 
       .background {
-        width: 100%;
-        height: 100dvh;
         display: flex;
+        width: 100%;
+        height: 100dvh; /* min-height: 100vh から height: 100dvh に修正 */
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
-        padding: 10px 16px;
+        padding: 2vh 12px;
 
         background-image: url("img/background_top.png");
         background-position: center;
@@ -47,83 +47,76 @@
         background-size: cover;
       }
 
-      /* ロゴ：画面高さの55%を使って大きく確保 */
       .title-logo {
-        width: auto;
-        max-width: 80vw;
-        height: 55dvh;
+        width: min(65vw, 560px);
+        height: 50vh;
         object-fit: contain;
+        transform: translate(-24px, -12px);
         filter: drop-shadow(0 4px 8px rgb(0 0 0 / 15%));
       }
 
-      /* 本文テキスト：くっきりと大きく表示 */
       .sub-text {
         color: #572d2d;
         font-family: "Zen Maru Gothic", sans-serif;
-        font-size: clamp(20px, 5.5vh, 32px); /* 高さに対してフォントを大きく保持 */
-        font-weight: 700;
-        line-height: 1.3;
+        font-size: clamp(18px, 3.5vw, 28px);
+        font-weight: 500;
+        line-height: 1.35;
         text-align: center;
         -webkit-text-stroke: 6px #fff;
         paint-order: stroke fill;
         text-shadow: 0 5px 8px rgb(0 0 0 / 35%);
+        transform: translate(30px, -22px);
       }
 
       .highlight-red {
         color: #dd5f5f;
-        font-weight: 900;
+        font-weight: 700;
       }
 
-      /* はじめるボタン：しっかり大きい存在感 */
       .start-btn {
         display: flex;
-        width: 220px;
-        height: 72px;
-        max-height: 20dvh; /* 横画面でも押しやすい高さを維持 */
+        width: 200px;
+        height: 70px;
         align-items: center;
         justify-content: center;
 
         background: url("img/button_red.png") center / contain no-repeat;
         color: #fff;
         font-family: "Zen Maru Gothic", sans-serif;
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 700;
         letter-spacing: 0.05em;
         line-height: 1;
         text-align: center;
         text-decoration: none;
+        transform: translate(20px, -16px);
         cursor: pointer;
         transition: transform 0.1s ease;
       }
 
       .start-btn:active {
-        transform: scale(0.95);
+        transform: translate(20px, -16px) scale(0.95);
       }
 
       .start-btn-label {
         transform: translate(2px, -2px);
       }
 
-      /* スマホ横画面（高さが狭い場合）用のダイナミック指定 */
-      @media (orientation: landscape) and (max-height: 500px) {
-        .background {
-          padding: 6px 12px;
-          justify-content: space-around;
-        }
-
+      @media (max-width: 600px) {
         .title-logo {
-          height: 50dvh;
+          width: min(88vw, 560px);
+          height: 50vh;
+          transform: translate(-4px, -10px);
         }
 
         .sub-text {
-          font-size: clamp(18px, 6.5vh, 26px);
-          -webkit-text-stroke: 5px #fff;
+          font-size: clamp(17px, 5vw, 28px);
         }
 
         .start-btn {
-          width: 200px;
-          height: 60px;
-          font-size: 24px;
+          width: 180px;
+          height: 64px;
+          font-size: 21px;
         }
       }
     </style>
