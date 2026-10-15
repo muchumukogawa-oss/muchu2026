@@ -38,7 +38,7 @@
         font-family: "Zen Maru Gothic", sans-serif;
       }
 
-      /* 画面全体（背景1：background_grass.png） */
+      /* 画面全体（背景） */
       .stage {
         position: relative;
         display: flex;
@@ -49,14 +49,24 @@
         background: url("img/background_grass.png") center / cover no-repeat;
       }
 
+      /* ★基準デザイン枠（縦横比 836:394 を完全保持） */
+      .stage-inner {
+        position: relative;
+        width: 100%;
+        max-width: 100vw;
+        height: auto;
+        aspect-ratio: 836 / 394;
+        max-height: 100vh;
+        container-type: inline-size;
+      }
+
       /* 右上の大きなコンパス */
       .compass {
         position: absolute;
         z-index: 8;
         top: 0;
-        /* 変更前: width: 350px; height: 161px; */
         right: 0;
-        width: 41.86%; /* 350px / 836px */
+        width: 41.86%;
         height: auto;
         aspect-ratio: 350 / 161;
         pointer-events: none;
@@ -65,50 +75,37 @@
       /* 中央の巻物エリア（map.png） */
       .scroll-container {
         position: absolute;
-        /* 変更前: top: 2px; left: 18px; width: 800.03px; height: 394px; */
-        top: 0.51%; /* 2px / 394px */
+        top: 0.51%;
         left: 50%;
-        transform: translateX(-50%); /* 中央寄せ */
+        transform: translateX(-50%);
         z-index: 2;
         display: flex;
-        width: 95.7%; /* 800.03px / 836px */
+        width: 95.7%;
         height: 100%;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        padding: 4% 6% 5% 18%;
+        /* 右下寄りの配置に統一（上8%, 右5%, 下4%, 左22%） */
+        padding: 8% 5% 4% 22%;
         background: url("img/map.png") center / 100% 100% no-repeat;
       }
 
       /* 本文テキスト */
       .content-text {
-        /* 変更前: font-size: 22px; margin-bottom: 20px; */
-        font-size: 2.3vw;
+        width: 100%;
+        font-size: 2.6cqi; /* 他ページの本文サイズと共通化 */
         font-weight: 500;
         color: #4a2828;
         text-align: center;
-        line-height: 1.8;
-        margin-bottom: 2.39%; /* 20px / 836px */
+        line-height: 1.7;
+        margin-bottom: 3.5%;
       }
 
       .content-text p {
-        margin-bottom: 2.03%; /* 8px / 394px */
-        line-height: 1.7;
+        margin-bottom: 2.5%;
       }
 
-      .content-text p:first-child {
-        transform: translateY(-0.23%); /* -0.91px / 394px */
-      }
-
-      .content-text p:nth-child(2) {
-        transform: translateY(-2.39%); /* -9.41px / 394px */
-      }
-
-      .content-text p:last-child {
-        transform: translateY(-2.64%); /* -10.41px / 394px */
-      }
-
-      /* ルビ（振り仮名）の文字サイズ・装飾 */
+      /* ルビ（振り仮名） */
       ruby rt {
         font-size: 0.55em;
         font-weight: 500;
@@ -118,39 +115,29 @@
       /* ハイライト文字色 */
       .highlight-red {
         color: #d93838;
+        font-weight: 700;
       }
 
       .highlight-brown {
         color: #b85232;
       }
 
-      .content-text .highlight-red {
-        font-weight: 700;
-      }
-
-      /* しゅっぱつボタン（button_red.png を使用） */
+      /* しゅっぱつボタン */
       .start-btn {
-        position: relative;
-        /* 変更前: top: -14.91px; width: clamp...; height: clamp...; font-size: clamp...; margin-top: 5px; */
-        top: -3.78%; /* -14.91px / 394px */
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 23.92%; /* 200px / 836px 基準 */
+        width: 23.92%; /* 200px / 836px */
         height: auto;
-        aspect-ratio: 200 / 62.5; /* ボタン画像の比率維持 */
-        background-image: url("img/button_red.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
+        aspect-ratio: 200 / 62.5;
+        background: url("img/button_red.png") center / 100% 100% no-repeat;
         color: #ffffff;
-        font-size: 2.8vw;
+        font-size: 2.8cqi; /* 画面幅ではなく枠幅基準に変更 */
         font-weight: 900;
         text-decoration: none;
         letter-spacing: 0.1em;
         cursor: pointer;
         transition: transform 0.1s ease;
-        margin-top: 0.6%;
       }
 
       .start-btn:active {
@@ -159,13 +146,13 @@
 
       .start-btn span {
         display: inline-block;
-        transform: translate(2px, -2px);
+        transform: translate(0.2cqi, -0.2cqi);
       }
 
-      /* 前景の草（grass.png：巻物やコンパスの上に重なる） */
+      /* 前景の草 */
       .grass-foreground {
         position: absolute;
-        z-index: 9;
+        z-index: 5;
         inset: 0;
         width: 100%;
         height: 100%;
@@ -173,19 +160,18 @@
         pointer-events: none;
       }
 
-      /* 左側の矢印（まえへ：tutorial6へ戻る） */
+      /* 左側の矢印（まえへ） */
       .prev-btn {
         position: absolute;
-        /* 変更前: top: 181.57px; left: 73.21px; width: 53px; height: 47px; */
-        top: 46.08%; /* 181.57px / 394px */
-        left: 8.76%; /* 73.21px / 836px */
-        width: 6.34%; /* 53px / 836px */
+        z-index: 10;
+        top: 46.08%;
+        left: 8.76%;
+        width: 6.34%;
         height: auto;
         aspect-ratio: 53 / 47;
         transform: rotate(180deg);
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
           center / 100% 100% no-repeat;
-        z-index: 10;
         text-decoration: none;
         cursor: pointer;
       }
@@ -194,29 +180,25 @@
         transform: rotate(180deg) scale(0.9);
       }
 
-      /* 下部のページ表示（枠線なしの丸） */
+      /* 下部のページ表示（ドット） */
       .dots-container {
         position: absolute;
-        /* 変更前: top: 363px; left: 414px; width: 141px; height: 18px; gap: 9px; */
-        top: 92.13%; /* 363px / 394px */
+        z-index: 10;
+        top: 92.13%;
         left: 50%;
-        transform: translateX(-50%); /* 中央寄せ */
+        transform: translateX(-50%);
         display: flex;
-        width: 16.87%; /* 141px / 836px */
-        height: 4.57%; /* 18px / 394px */
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 6.38%; /* 9px / 141px */
-        z-index: 10;
+        width: 16.87%;
+        height: 4.57%;
+        gap: 6.38%;
       }
 
       .dot {
-        /* 変更前: width: 12px; height: 12px; */
-        width: 1.4vw;
-        height: 1.4vw;
-        max-width: 12px;
-        max-height: 12px;
+        width: 1.44cqi;
+        height: 1.44cqi;
         background-color: rgba(255, 255, 255, 0.65);
         border: none;
         border-radius: 50%;
@@ -224,7 +206,7 @@
 
       .dot.active {
         background-color: #ffffff;
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 0.4cqi rgba(0, 0, 0, 0.2);
       }
     </style>
   </head>
