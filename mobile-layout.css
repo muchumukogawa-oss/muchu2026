@@ -15,7 +15,6 @@ body {
   background-color: #f3f3f3;
   font-family: "Zen Maru Gothic", sans-serif;
   -webkit-tap-highlight-color: transparent;
-
 }
 
 .page,
@@ -28,10 +27,7 @@ body {
 
 @media (max-width: 900px), (pointer: coarse) {
   .stage {
-    --mobile-scale: var(
-      --mobile-scale-800,
-      calc((100vw - 24px) * 0.00125)
-    );
+    --mobile-scale: var(--mobile-scale-800, calc((100vw - 24px) * 0.00125));
     width: 100%;
     height: 100vh;
     height: 100dvh;
@@ -78,5 +74,4 @@ body {
     transform: scale(var(--mobile-scale));
     transform-origin: top left;
   }
-
-  
+}

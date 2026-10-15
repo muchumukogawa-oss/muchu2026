@@ -54,21 +54,25 @@
         position: absolute;
         z-index: 8;
         top: 0;
-        left: calc(100% - 350px);
-        width: 350px;
-        height: 161px;
+        /* 変更前: width: 350px; height: 161px; */
+        right: 0;
+        width: 41.8%; /* 350px / 836px */
+        height: auto;
+        aspect-ratio: 350 / 161;
         pointer-events: none;
       }
 
       /* 中央の巻物エリア（map.png） */
       .scroll-container {
         position: absolute;
-        top: 2px;
-        left: 18px;
+        /* 変更前: top: 2px; left: 18px; width: 800.03px; height: 394px; */
+        top: 0.5%;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 2;
         display: flex;
-        width: 800.03px;
-        height: 394px;
+        width: 95.7%; /* 800px / 836px */
+        height: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -78,29 +82,30 @@
 
       /* タイトル「きもちってなあに？」 */
       .content-title {
-        font-size: clamp(30px, 3.6vw, 36px);
+        /* 変更前: font-size: clamp(30px, 3.6vw, 36px); margin-bottom: 22px; */
+        font-size: 3.8vw;
         font-weight: 500;
         color: #3e0000;
         text-align: center;
-        transform: translateY(5.6px);
-        margin-bottom: 22px;
-        padding-bottom: 4px;
-        border-bottom: 3px solid #b87b5c;
+        transform: translateY(14%);
+        margin-bottom: 2.6%;
+        padding-bottom: 0.5%;
+        border-bottom: 0.36vw solid #b87b5c;
         display: inline-block;
         letter-spacing: 0.05em;
       }
 
-      /* 本文テキスト */
       .content-text {
-        font-size: 22px;
+        /* 変更前: font-size: 22px; line-height: 38px; */
+        font-size: 2.3vw;
         font-weight: 500;
         color: #3e0000;
         text-align: center;
-        line-height: 38px;
+        line-height: 1.7;
       }
 
       .content-text p {
-        margin-bottom: 16px;
+        margin-bottom: 2%;
       }
 
       .content-text p:first-child {
@@ -142,15 +147,15 @@
         background: url("img/grass.png") center / 100% 100% no-repeat;
         pointer-events: none;
       }
-
-      /* 左側の矢印（まえへ：tutorial1の矢印を左向きに） */
       .prev-btn {
         position: absolute;
         z-index: 10;
-        top: 181.57px;
-        left: 73.21px;
-        width: 53px;
-        height: 47px;
+        /* 変更前: top: 181.57px; left: 73.21px; width: 53px; height: 47px; */
+        top: 46.1%;
+        left: 8.7%;
+        width: 6.3%;
+        height: auto;
+        aspect-ratio: 53 / 47;
         transform: rotate(180deg);
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
           center / 100% 100% no-repeat;
@@ -158,18 +163,15 @@
         cursor: pointer;
       }
 
-      .prev-btn:active {
-        transform: rotate(180deg) scale(0.9);
-      }
-
-      /* 右側の矢印（つぎへ：tutorial1と同デザイン） */
       .next-btn {
         position: absolute;
         z-index: 10;
-        top: 181.57px;
-        left: 774.99px;
-        width: 53px;
-        height: 47px;
+        /* 変更前: top: 181.57px; left: 774.99px; width: 53px; height: 47px; */
+        top: 46.1%;
+        left: 92.7%;
+        width: 6.3%;
+        height: auto;
+        aspect-ratio: 53 / 47;
         display: block;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
           center / 100% 100% no-repeat;
@@ -177,37 +179,64 @@
         cursor: pointer;
       }
 
-      .next-btn:active {
-        transform: scale(0.9);
+      .back-arrow {
+        position: absolute;
+        /* 変更前: left: 70.21px; top: 17.57px; width: 53px; height: 47px; */
+        left: 7.3%;
+        top: 2.3%;
+        width: 5.5%;
+        height: auto;
+        aspect-ratio: 53 / 47;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 0.08s ease,
+          filter 0.08s ease;
+      }
+
+      .back-arrow svg {
+        /* 変更前: width: 53px; height: 47px; */
+        width: 100%;
+        height: 100%;
+        display: block;
       }
 
       /* 下部のページ表示（枠線なしの丸） */
       .dots-container {
         position: absolute;
         z-index: 10;
-        top: 363px;
-        left: 414px;
+        /* 変更前: top: 363px; left: 414px; width: 141px; height: 18px; gap: 9px; */
+        top: 92.1%;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
-        width: 141px;
-        height: 18px;
+        width: 16.8%;
+        height: 4.5%;
         flex-direction: row;
-        gap: 9px;
+        justify-content: center;
+        align-items: center;
+        gap: 6.3%;
       }
 
       .dot {
-        width: 12px;
-        height: 12px;
+        /* 変更前: width: 12px; height: 12px; */
+        width: 1.4vw;
+        height: 1.4vw;
+        max-width: 14px;
+        max-height: 14px;
         border: none;
         border-radius: 50%;
         background-color: rgb(255 255 255 / 65%);
       }
-
       .dot.active {
         background-color: #fff;
         box-shadow: 0 0 4px rgb(0 0 0 / 20%);
       }
 
-      @media (max-width: 900px), (pointer: coarse) {
+      /*@media (max-width: 900px), (pointer: coarse) {
         .stage {
           --mobile-scale: var(
             --mobile-scale-800,
@@ -258,7 +287,7 @@
           transform: scale(var(--mobile-scale));
           transform-origin: top left;
         }
-      }
+      }*/
     </style>
   </head>
   <body>
