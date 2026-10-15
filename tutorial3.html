@@ -38,7 +38,7 @@
         font-family: "Zen Maru Gothic", sans-serif;
       }
 
-      /* 画面全体（背景1：background_grass.png） */
+      /* 画面全体（背景） */
       .stage {
         position: relative;
         display: flex;
@@ -49,12 +49,23 @@
         background: url("img/background_grass.png") center / cover no-repeat;
       }
 
-      /* 右上の大きなコンパス */
+      /* ★基準デザイン枠（縦横比 836:394 を完全固定） */
+      .stage-inner {
+        position: relative;
+        width: 100%;
+        max-width: 100vw;
+        height: auto;
+        aspect-ratio: 836 / 394;
+        max-height: 100vh;
+        /* コンテナクエリの基準として定義 */
+        container-type: inline-size;
+      }
+
+      /* コンパスアイコン */
       .compass {
         position: absolute;
         z-index: 8;
         top: 0;
-        /* 変更前: width: 350px; height: 161px; */
         right: 0;
         width: 41.86%; /* 350px / 836px */
         height: auto;
@@ -62,62 +73,86 @@
         pointer-events: none;
       }
 
-      /* 中央の巻物エリア（map.png） */
+      /* 巻物背景・メインコンテナ */
       .scroll-container {
         position: absolute;
-        /* 変更前: top: 2px; left: 18px; width: 800.03px; height: 394px; */
         top: 0.51%; /* 2px / 394px */
         left: 50%;
-        transform: translateX(-50%); /* 中央寄せ */
+        transform: translateX(-50%);
         z-index: 2;
         display: flex;
         width: 95.7%; /* 800.03px / 836px */
-        height: 100%; /* 394px / 394px */
+        height: 100%;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* 上基準に固定して縦崩れを防止 */
         align-items: center;
-        padding: 4% 6% 5% 18%;
+        /* 順に 上 右 下 左 の内側余白（すべて%） */
+        padding: 8% 5% 4% 22%;
         background: url("img/map.png") center / 100% 100% no-repeat;
       }
 
       /* タイトル「きもちってなあに？」 */
       .content-title {
-        /* 変更前: font-size: clamp(30px, 3.6vw, 36px); transform: translateY(-46.24px); margin-bottom: 22px; padding-bottom: 4px; border-bottom: 3px solid #b87b5c; */
-        font-size: 3.8vw;
-        font-weight: 500;
-        color: #3e0000;
-        text-align: center;
-        transform: translateY(-11.73%); /* -46.24px / 394px */
-        margin-bottom: 2.63%; /* 22px / 836px */
-        padding-bottom: 0.48%;
-        border-bottom: 0.36vw solid #b87b5c;
         display: inline-block;
+        margin-top: 1%;
+        margin-bottom: 3.5%;
+        padding-bottom: 0.8%;
+        /* 基準枠の幅に対する相対単位 cqi を使用 */
+        border-bottom: 0.4cqi solid #b87b5c;
+        color: #3e0000;
+        font-size: 3.8cqi; /* 32px 相当 */
+        font-weight: 500;
         letter-spacing: 0.05em;
+        text-align: center;
+        white-space: nowrap;
       }
 
       /* 本文テキスト */
       .content-text {
-        /* 変更前: font-size: 22px; line-height: 38px; transform: translateY(-25.74px); */
-        font-size: 2.3vw;
-        font-weight: 500;
+        width: 100%;
         color: #3e0000;
-        text-align: center;
+        font-size: 2.6cqi; /* 22px 相当 */
+        font-weight: 500;
         line-height: 1.7;
-        transform: translateY(-6.53%); /* -25.74px / 394px */
+        text-align: center;
       }
 
       .content-text p {
-        line-height: 1.7;
+        margin-bottom: 3%;
       }
 
-      .content-text p:first-child {
-        transform: none;
+      /* ルビ（振り仮名） */
+      ruby rt {
+        font-size: 0.55em;
+        font-weight: 400;
+        color: #3e0000;
+      }
+
+      /* ハイライト文字色 */
+      .highlight-red {
+        color: #d93838;
+        font-weight: 700;
+      }
+
+      .title-subtext {
+        font-weight: 500;
+      }
+
+      /* 前景の草 */
+      .grass-foreground {
+        position: absolute;
+        z-index: 5;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        background: url("img/grass.png") center / 100% 100% no-repeat;
+        pointer-events: none;
       }
 
       /* 左側の矢印（まえへ） */
       .prev-btn {
         position: absolute;
-        /* 変更前: top: 181.57px; left: 73.21px; width: 53px; height: 47px; */
+        z-index: 10;
         top: 46.08%; /* 181.57px / 394px */
         left: 8.76%; /* 73.21px / 836px */
         width: 6.34%; /* 53px / 836px */
@@ -126,7 +161,6 @@
         transform: rotate(180deg);
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
           center / 100% 100% no-repeat;
-        z-index: 10;
         text-decoration: none;
         cursor: pointer;
       }
@@ -134,43 +168,38 @@
       /* 右側の矢印（つぎへ） */
       .next-btn {
         position: absolute;
-        /* 変更前: top: 181.57px; left: 774.99px; width: 53px; height: 47px; */
+        z-index: 10;
         top: 46.08%; /* 181.57px / 394px */
-        right: 1.05%; /* 画面右端基準に変更 (836px - 774.99px - 53px = 8.01px / 836px) */
+        left: 92.7%; /* 774.99px / 836px */
         width: 6.34%; /* 53px / 836px */
         height: auto;
         aspect-ratio: 53 / 47;
         display: block;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
           center / 100% 100% no-repeat;
-        z-index: 10;
         text-decoration: none;
         cursor: pointer;
       }
 
-      /* 下部のページ表示 */
+      /* 下部のページ表示（ドット） */
       .dots-container {
         position: absolute;
-        /* 変更前: top: 363px; left: 414px; width: 141px; height: 18px; gap: 9px; */
+        z-index: 10;
         top: 92.13%; /* 363px / 394px */
         left: 50%;
-        transform: translateX(-50%); /* 中央寄せ */
+        transform: translateX(-50%);
         display: flex;
-        width: 16.87%; /* 141px / 836px */
-        height: 4.57%; /* 18px / 394px */
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 6.38%; /* 9px / 141px */
-        z-index: 10;
+        width: 16.87%;
+        height: 4.57%;
+        gap: 6.38%;
       }
 
       .dot {
-        /* 変更前: width: 12px; height: 12px; */
-        width: 1.4vw;
-        height: 1.4vw;
-        max-width: 12px;
-        max-height: 12px;
+        width: 1.44cqi; /* ドットのサイズも枠幅に対する相対値に統一 */
+        height: 1.44cqi;
         background-color: rgba(255, 255, 255, 0.65);
         border: none;
         border-radius: 50%;
@@ -178,7 +207,7 @@
 
       .dot.active {
         background-color: #ffffff;
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 0.4cqi rgba(0, 0, 0, 0.2);
       }
     </style>
   </head>
