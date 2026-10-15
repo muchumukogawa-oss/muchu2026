@@ -78,4 +78,16 @@ body {
     transform: scale(var(--mobile-scale));
     transform-origin: top left;
   }
+
+  /*
+   * タイトルを本文の行数や余白によるflex配置の影響から分離し、
+   * tutorial1.htmlと同じ位置に固定する。
+   */
+  .stage .scroll-container > .content-title {
+    position: absolute;
+    top: 67px;
+    left: 56%;
+    margin-bottom: 0;
+    transform: translate(-50%, 5.51px) !important;
+  }
 }
