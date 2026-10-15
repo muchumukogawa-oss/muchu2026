@@ -38,7 +38,7 @@
         font-family: "Zen Maru Gothic", sans-serif;
       }
 
-      /* 画面全体（背景1：background_grass.png） */
+      /* 画面全体（背景） */
       .stage {
         position: relative;
         display: flex;
@@ -49,12 +49,21 @@
         background: url("img/background_grass.png") center / cover no-repeat;
       }
 
+      /* ★基準となるデザイン枠（縦横比 836:394 を完全保持） */
+      .stage-inner {
+        position: relative;
+        width: 100%;
+        max-width: 100vw;
+        height: auto;
+        aspect-ratio: 836 / 394;
+        max-height: 100vh;
+      }
+
       /* 右上の大きなコンパス */
       .compass {
         position: absolute;
         z-index: 8;
         top: 0;
-        /* 変更前: width: 350px; height: 161px; */
         right: 0;
         width: 41.8%; /* 350px / 836px */
         height: auto;
@@ -65,57 +74,54 @@
       /* 中央の巻物エリア（map.png） */
       .scroll-container {
         position: absolute;
-        /* 変更前: top: 2px; left: 18px; width: 800.03px; height: 394px; */
         top: 0.5%;
-        left: 50%;
+        left: 48.3%;
         transform: translateX(-50%);
         z-index: 2;
         display: flex;
         width: 95.7%; /* 800px / 836px */
         height: 100%;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start; /* ★上揃えにして本文の高さ変更によるタイトルのズレを防止 */
         align-items: center;
-        padding: 4% 6% 5% 18%;
+        padding: 8% 5% 4% 22%; /* ★巻物内部の相対パディング */
         background: url("img/map.png") center / 100% 100% no-repeat;
       }
 
       /* タイトル「きもちってなあに？」 */
       .content-title {
         display: inline-block;
-        transform: translateY(1.4%);
-        margin-bottom: 2.63vw; /* 22px 相当 */
-        padding-bottom: 0.48vw;
-        border-bottom: 0.36vw solid #b87b5c;
+        margin-top: 1%;
+        margin-bottom: 3.5%; /* ★本文との距離を相対値で固定 */
+        padding-bottom: 0.8%;
+        border-bottom: 0.35cqw solid #b87b5c;
         color: #3e0000;
-        font-size: 3.83vw; /* 32px 相当 */
+        font-size: clamp(
+          16px,
+          3.8vw,
+          32px
+        ); /* ★最小16px〜最大32pxで画面に合わせ伸縮 */
         font-weight: 500;
         letter-spacing: 0.05em;
         text-align: center;
         white-space: nowrap;
       }
 
+      /* 本文テキスト */
       .content-text {
+        width: 100%;
         color: #3e0000;
-        font-size: 2.63vw; /* 22px 相当 */
+        font-size: clamp(12px, 2.6vw, 22px);
         font-weight: 500;
         line-height: 1.7;
         text-align: center;
       }
 
       .content-text p {
-        margin-bottom: 5%;
+        margin-bottom: 3%;
       }
 
-      .content-text p:first-child {
-        transform: translateY(-1px);
-      }
-
-      .content-text p:last-child {
-        transform: translateY(-14px);
-      }
-
-      /* ルビ（振り仮名）の文字サイズ・装飾 */
+      /* ルビ（振り仮名） */
       ruby rt {
         font-size: 0.55em;
         font-weight: 400;
@@ -128,28 +134,25 @@
         font-weight: 700;
       }
 
-      .content-title .highlight-red {
-        font-weight: 700;
-      }
-
       .title-subtext {
         font-weight: 500;
       }
 
-      /* 前景の草（grass.png：巻物やコンパスの上に重なる） */
+      /* 前景の草 */
       .grass-foreground {
         position: absolute;
-        z-index: 9;
+        z-index: 5;
         inset: 0;
         width: 100%;
         height: 100%;
         background: url("img/grass.png") center / 100% 100% no-repeat;
         pointer-events: none;
       }
+
+      /* 戻るボタン */
       .prev-btn {
         position: absolute;
         z-index: 10;
-        /* 変更前: top: 181.57px; left: 73.21px; width: 53px; height: 47px; */
         top: 46.1%;
         left: 8.7%;
         width: 6.3%;
@@ -162,10 +165,10 @@
         cursor: pointer;
       }
 
+      /* 次へボタン */
       .next-btn {
         position: absolute;
         z-index: 10;
-        /* 変更前: top: 181.57px; left: 774.99px; width: 53px; height: 47px; */
         top: 46.1%;
         left: 92.7%;
         width: 6.3%;
@@ -178,9 +181,9 @@
         cursor: pointer;
       }
 
+      /* 矢印 */
       .back-arrow {
         position: absolute;
-        /* 変更前: left: 70.21px; top: 17.57px; width: 53px; height: 47px; */
         left: 7.3%;
         top: 2.3%;
         width: 5.5%;
@@ -191,101 +194,39 @@
         justify-content: center;
         text-decoration: none;
         cursor: pointer;
-        transition:
-          transform 0.08s ease,
-          filter 0.08s ease;
       }
 
       .back-arrow svg {
-        /* 変更前: width: 53px; height: 47px; */
         width: 100%;
         height: 100%;
         display: block;
       }
 
-      /* 下部のページ表示（枠線なしの丸） */
+      /* 下部のページ表示（ドット） */
       .dots-container {
         position: absolute;
         z-index: 10;
-        /* 変更前: top: 363px; left: 414px; width: 141px; height: 18px; gap: 9px; */
-        top: 92.1%;
+        bottom: 5.5%;
         left: 48.7%;
         transform: translateX(-50%);
         display: flex;
-        width: 16.8%;
-        height: 4.5%;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 6.3%;
+        gap: 12px;
       }
 
       .dot {
-        /* 変更前: width: 12px; height: 12px; */
-        width: 1.4vw;
-        height: 1.4vw;
-        max-width: 14px;
-        max-height: 14px;
+        width: 12px;
+        height: 12px;
         border: none;
         border-radius: 50%;
         background-color: rgb(255 255 255 / 65%);
       }
+
       .dot.active {
         background-color: #fff;
         box-shadow: 0 0 4px rgb(0 0 0 / 20%);
-      }
-
-      @media (max-width: 900px), (pointer: coarse) {
-        .stage {
-          --mobile-scale: var(
-            --mobile-scale-800,
-            calc((100vw - 24px) * 0.00125)
-          );
-          width: 100%;
-          height: 100vh;
-          height: 100dvh;
-          overflow: hidden;
-        }
-
-        .compass {
-          left: auto;
-          right: 0;
-          width: calc(350px * var(--mobile-scale));
-          height: calc(161px * var(--mobile-scale));
-          transform-origin: top right;
-        }
-
-        .scroll-container {
-          top: 2px;
-          left: 12px;
-          width: 800.03px;
-          height: 394px;
-          transform: scale(var(--mobile-scale));
-          transform-origin: top left;
-        }
-
-        .prev-btn,
-        .next-btn {
-          top: calc(181.57px * var(--mobile-scale));
-          width: calc(53px * var(--mobile-scale));
-          height: calc(47px * var(--mobile-scale));
-          transform-origin: center;
-        }
-
-        .prev-btn {
-          left: calc(73.21px * var(--mobile-scale) - 12px);
-        }
-
-        .next-btn {
-          left: calc(774.99px * var(--mobile-scale) + 12px);
-        }
-
-        .dots-container {
-          top: calc(363px * var(--mobile-scale));
-          left: calc(414px * var(--mobile-scale) + 12px);
-          transform: scale(var(--mobile-scale));
-          transform-origin: top left;
-        }
       }
     </style>
   </head>
