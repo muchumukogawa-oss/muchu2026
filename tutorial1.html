@@ -37,7 +37,7 @@
         font-family: "Zen Maru Gothic", sans-serif;
       }
 
-      /* ステージ全体 */
+      /* ステージ全体（背景を newback1.png に変更） */
       .stage {
         position: relative;
         display: flex;
@@ -45,22 +45,10 @@
         height: 100vh;
         justify-content: center;
         align-items: center;
-        background: url("img/background_grass.png") center / cover no-repeat;
+        background: url("img/newback1.png") center / cover no-repeat;
       }
 
-      /* コンパスアイコン（350px / 836px ≒ 41.87%、161px / 394px ≒ 40.86%） */
-      .compass {
-        position: absolute;
-        z-index: 8;
-        top: 0;
-        right: -0.5%;
-        width: 41.4%;
-        height: 40.98%;
-        pointer-events: none;
-        object-fit: contain;
-      }
-
-      /* 巻物背景・メインコンテナ（800.03px / 836px ≒ 95.7%、394px / 394px = 100%） */
+      /* メインコンテンツコンテナ */
       .scroll-container {
         position: absolute;
         top: 0.5%;
@@ -68,24 +56,23 @@
         transform: translateX(-50%);
         z-index: 2;
         display: flex;
-        width: 94%; /* 800px / 836px */
+        width: 94%;
         height: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         padding: 4% 5% 4% 22%;
-        background: url("img/map.png") center / 100% 100% no-repeat;
       }
 
       /* コンテンツタイトル */
       .content-title {
         display: inline-block;
         transform: translateY(1.4%);
-        margin-bottom: 2.63vw; /* 22px 相当 */
+        margin-bottom: 2.63vw;
         padding-bottom: 0.48vw;
         border-bottom: 0.36vw solid #b87b5c;
         color: #3e0000;
-        font-size: 3.9vw; /* 32px 相当 */
+        font-size: 3.9vw;
         font-weight: 500;
         letter-spacing: 0.05em;
         text-align: center;
@@ -99,7 +86,7 @@
       /* 本文テキスト */
       .content-text {
         color: #3e0000;
-        font-size: 2.63vw; /* 22px 相当 */
+        font-size: 2.63vw;
         font-weight: 500;
         line-height: 1.7;
         text-align: center;
@@ -151,25 +138,14 @@
         font-weight: 400;
       }
 
-      /* 手前の草レイヤー */
-      .grass-foreground {
-        position: absolute;
-        z-index: 9;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        background: url("img/grass.png") center / 100% 100% no-repeat;
-        pointer-events: none;
-      }
-
-      /* 「つぎへ」矢印ボタン（774.99px / 836px ≒ 92.7%、181.57px / 394px ≒ 46.08%） */
+      /* 「つぎへ」矢印ボタン */
       .next-btn {
         position: absolute;
         z-index: 10;
         top: 46.08%;
         left: 92.7%;
-        width: 6.34vw; /* 53px 相当（縦横比を固定） */
-        height: 5.62vw; /* 47px 相当 */
+        width: 6.34vw;
+        height: 5.62vw;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
           center / 100% 100% no-repeat;
         text-decoration: none;
@@ -180,38 +156,11 @@
       .next-btn:active {
         transform: scale(0.9);
       }
-
-      /* ページインジケーター（ドット）（414px / 836px ≒ 49.52%、363px / 394px ≒ 92.13%） */
-      .dots-container {
-        position: absolute;
-        z-index: 10;
-        top: 92.13%;
-        left: 56%;
-        transform: translateX(-50%); /* 中央寄せ */
-        display: flex;
-        flex-direction: row;
-        gap: 1.08vw; /* 9px 相当 */
-      }
-
-      .dot {
-        width: 1.44vw; /* 12px 相当 */
-        height: 1.44vw;
-        border: none;
-        border-radius: 50%;
-        background-color: rgb(255 255 255 / 65%);
-      }
-
-      .dot.active {
-        background-color: #fff;
-        box-shadow: 0 0 0.48vw rgb(0 0 0 / 20%);
-      }
     </style>
   </head>
 
   <body>
     <main class="stage">
-      <img src="img/compass.png" alt="" class="compass" aria-hidden="true" />
-
       <section class="scroll-container" aria-labelledby="page-title">
         <h1 id="page-title" class="content-title">
           <span class="highlight-red">きもち</span
@@ -235,18 +184,7 @@
         </div>
       </section>
 
-      <div class="grass-foreground" aria-hidden="true"></div>
-
       <a href="tutorial2.html" class="next-btn" aria-label="つぎへ"></a>
-
-      <div class="dots-container" aria-label="1ページ目、全6ページ">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-      </div>
     </main>
   </body>
 </html>
