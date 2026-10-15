@@ -75,11 +75,11 @@
       /* 表情画像の基本配置設定（四角枠の中心基準） */
       .expression {
         position: absolute;
-        left: 329px;
-        top: 94px;
-        width: 213px;
-        height: 195px;
-        padding: 14px;
+        left: 345.5px;
+        top: 109px;
+        width: 180px;
+        height: 165px;
+        padding: 0;
         object-fit: contain;
         pointer-events: none;
         transition: transform 0.1s ease;
@@ -115,11 +115,11 @@
 
       /* color6（穏やか）：前画面と同じ小さめの表示 */
       .expression[data-emotion="穏やか"] {
-        left: 371.6px;
-        top: 133px;
-        width: 127.8px;
-        height: 117px;
-        padding: 0;
+        transform: none;
+      }
+
+      .expression[data-emotion] {
+        transform: none;
       }
 
       .expression--white-outline {
@@ -179,16 +179,14 @@
         }
 
         .expression {
-          top: 100px;
-          width: 200px;
-          height: 200px;
+          left: 349px;
+          top: 120px;
+          width: 160px;
+          height: 160px;
         }
 
         .expression[data-emotion="穏やか"] {
-          left: 359px;
-          top: 150px;
-          width: 100px;
-          height: 100px;
+          transform: none;
         }
 
         .no-btn {
