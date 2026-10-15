@@ -2,9 +2,15 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <link rel="manifest" href="manifest.webmanifest" />
     <script src="mobile-layout.js" defer></script>
     <title>きもちのいろ - choice1</title>
@@ -125,6 +131,7 @@
 
       .emotion-img--blue {
         filter: url(#blue-black-to-white);
+        top: 25%;
       }
 
       .emotion-img--green {
@@ -178,15 +185,33 @@
         <feComponentTransfer in="luminance" result="dark-parts">
           <feFuncA type="table" tableValues="1 0 0 0 0 0 0 0 0 0 0" />
         </feComponentTransfer>
-        <feComposite in="dark-parts" in2="SourceGraphic" operator="in" result="opaque-dark-parts" />
+        <feComposite
+          in="dark-parts"
+          in2="SourceGraphic"
+          operator="in"
+          result="opaque-dark-parts"
+        />
         <feFlood flood-color="#fff" result="white" />
-        <feComposite in="white" in2="opaque-dark-parts" operator="in" result="white-dark-parts" />
-        <feComposite in="white-dark-parts" in2="SourceGraphic" operator="atop" />
+        <feComposite
+          in="white"
+          in2="opaque-dark-parts"
+          operator="in"
+          result="white-dark-parts"
+        />
+        <feComposite
+          in="white-dark-parts"
+          in2="SourceGraphic"
+          operator="atop"
+        />
       </filter>
     </svg>
     <div class="page">
       <a href="start.html" class="back-arrow" aria-label="戻る">
-        <svg viewBox="0 0 53 47" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg
+          viewBox="0 0 53 47"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
           <path
             d="M35 4 Q39 4 39 8 L39 39 Q39 43 35 41 L10 26 Q5 23.5 10 20 Z"
             fill="#ffffff"
@@ -200,21 +225,40 @@
       </a>
 
       <h1 class="title">
-        きみがかんじる<span class="highlight-red">きもち</span>の<span class="highlight-red">いろ</span>はどれかな？
+        きみがかんじる<span class="highlight-red">きもち</span>の<span
+          class="highlight-red"
+          >いろ</span
+        >はどれかな？
       </h1>
 
       <div class="color-grid" aria-label="気持ちの色を選ぶ">
         <a href="choice2_red.html" class="color-block pink" aria-label="ピンク">
           <img src="img/怒る.svg" alt="怒る" class="emotion-img" />
         </a>
-        <a href="choice2_yellow.html" class="color-block yellow" aria-label="黄色">
-          <img src="img/喜ぶ.svg" alt="喜ぶ" class="emotion-img emotion-img--yellow" />
+        <a
+          href="choice2_yellow.html"
+          class="color-block yellow"
+          aria-label="黄色"
+        >
+          <img
+            src="img/喜ぶ.svg"
+            alt="喜ぶ"
+            class="emotion-img emotion-img--yellow"
+          />
         </a>
         <a href="choice2_blue.html" class="color-block blue" aria-label="青">
-          <img src="img/悲しい.svg" alt="悲しい" class="emotion-img emotion-img--blue" />
+          <img
+            src="img/悲しい.svg"
+            alt="悲しい"
+            class="emotion-img emotion-img--blue"
+          />
         </a>
         <a href="choice2_green.html" class="color-block green" aria-label="緑">
-          <img src="img/気持ちいい.svg" alt="気持ちいい" class="emotion-img emotion-img--green" />
+          <img
+            src="img/気持ちいい.svg"
+            alt="気持ちいい"
+            class="emotion-img emotion-img--green"
+          />
         </a>
       </div>
     </div>
