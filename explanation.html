@@ -44,7 +44,7 @@
         height: 100%;
       }
 
-      /* タイトルエリア */
+      /* タイトルエリア（ご提示のサイズ 3.4vw に統一） */
       .title {
         position: absolute;
         left: 50%;
@@ -81,7 +81,7 @@
         z-index: 1;
       }
 
-      /* 表情画像（.color-box 内の中心に重ねる配置） */
+      /* 表情画像 */
       .expression {
         position: absolute;
         left: 23.94%; /* 208.5px / 871px */
@@ -100,21 +100,15 @@
           drop-shadow(0 -0.11vw 0 #fff);
       }
 
-      /* 右側の文章エリア */
+      /* 右側の文章エリア（例文を自然に改行する BudouX 連携プロパティ） */
       .example-text {
         position: absolute;
-
-        /* 横位置・縦位置の固定 */
         left: 52%;
         top: 38%;
-
-        /* 幅の設定 */
         width: 42%;
         max-width: 42%;
         box-sizing: border-box;
-
         display: block;
-
         color: #3e0000;
         font-size: 2.75vw;
         line-height: 1.5;
@@ -122,31 +116,32 @@
         letter-spacing: 0.02em;
         text-align: left;
 
-        /* 【BudouX連動：自然な文節改行のためのプロパティ】 */
-        word-break: keep-all; /* 単語の途中での改行を禁止 */
-        white-space: pre-wrap; /* \n (手動改行) をそのまま維持 */
-        overflow-wrap: break-word; /* 枠からはみ出る場合のみ安全に折る */
-        line-break: strict; /* 「っ」「ょ」「。」などが文頭に来るのを防ぐ */
+        /* 自然な文節改行指定 */
+        word-break: keep-all; /* 単語途中での改行を防止 */
+        white-space: pre-wrap; /* \n (手動改行) を保持 */
+        overflow-wrap: break-word;
+        line-break: strict;
       }
 
-      /* ボタンの共通スタイル */
+      /* ボタンの共通スタイル（ご提示のコードと完全同一） */
       .btn {
         position: absolute;
         width: 20.67%; /* 180px / 871px */
         height: 12.69%; /* 50px / 394px */
-        border-radius: 999px;
         border: 0.46vw solid #624529;
         background: #ffebd3;
         box-shadow: inset 0 0 0 0.46vw #f5b134;
+        border-radius: 999px;
         color: #3e0000;
         font-size: 2.75vw;
+        font-family: inherit;
         font-weight: 700;
         line-height: 1;
         text-align: center;
-        text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
+        text-decoration: none;
         cursor: pointer;
         transition:
           transform 0.08s ease,
@@ -158,7 +153,7 @@
         filter: brightness(0.98);
       }
 
-      /* ボタンの位置指定 */
+      /* ボタンの位置指定（ご提示のコードと完全同一） */
       .no-btn {
         left: 25.26%; /* 220px / 871px */
         top: 80.2%; /* 316px / 394px */
@@ -192,6 +187,7 @@
         alt="表情"
       />
 
+      <!-- 例文用要素 -->
       <p class="example-text" id="exampleText"></p>
 
       <a href="choice1.html" class="btn no-btn">はじめから</a>
@@ -202,7 +198,7 @@
     <script type="module">
       import { loadDefaultJapaneseParser } from "https://unpkg.com/budoux/budoux-ja.min.js";
       window.budouxParser = loadDefaultJapaneseParser();
-      // スクリプト読み込み完了時に表示を自動更新
+      // 読み込み完了時に自動的に例文をBudouX適用後のHTMLに更新
       if (window.currentExampleText) {
         document.getElementById("exampleText").innerHTML =
           window.budouxParser.translateHTMLString(window.currentExampleText);
@@ -264,7 +260,7 @@
         "#ff0000": "とっておいた ぷりんを たべられた",
         "#000000": "ひとりで まっくらな みちを あるいているよ",
         "#0068b7":
-          "えほんを よんでいたら、うしろで 「わっ！」って おおきな こえが して とびあ发っちゃった",
+          "えほんを よんでいたら、うしろで 「わっ！」って おおきな こえが して とびあがっちゃった",
         "#ff4e00": "みみもとで おおきな こえで はなしかけられた",
         "#910055": "どうろで あそぶと、くるまが きて ぶつかっちゃうよ",
         "#a9a9a9": "きょうは えんそくなのに あめが ふりそうだよ",
@@ -331,12 +327,12 @@
         ? "えほんを よんでいたら、うしろで「わっ！」って\nおおきな こえが して\nとびあがっちゃった"
         : exampleText || "対応する例文が見つかりません。";
 
-      // 共通変数に保存（BudouXロード時に使われる）
+      // 共通変数に保存（BudouX読み込み完了時に動かせるように）
       window.currentExampleText = rawText;
 
       const exampleTextElement = document.getElementById("exampleText");
 
-      // 即座に一度表示（画面が開いた瞬間に消えるのを防ぐ）
+      // 一度即座にテキストを画面へ出力
       if (window.budouxParser) {
         exampleTextElement.innerHTML =
           window.budouxParser.translateHTMLString(rawText);
