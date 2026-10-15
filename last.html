@@ -2,9 +2,15 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <link rel="manifest" href="manifest.webmanifest" />
     <script src="mobile-layout.js" defer></script>
     <title>こたえをみてみよう！</title>
@@ -39,23 +45,25 @@
         background: url("img/background_grass.png") center / cover no-repeat;
       }
 
+      /* マップパネル（800.03px / 836px ≒ 95.7%、394px / 394px = 100%） */
       .map-panel {
         position: absolute;
-        left: 18px;
-        top: 2px;
-        width: 800.03px;
-        height: 394px;
+        left: 2.15%; /* 18px / 836px */
+        top: 0.51%; /* 2px / 394px */
+        width: 95.7%; /* 800.03px / 836px */
+        height: 100%; /* 394px / 394px */
         background: url("img/map.png") center / 100% 100% no-repeat;
         z-index: 2;
       }
 
+      /* 中央コンテンツエリア（巻き軸を考慮して紙面中央 58.5% 付近に配置） */
       .content {
         position: absolute;
-        left: 58%;
+        left: 58.5%;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: 68px;
-        height: 390px;
+        width: 72%; /* 文字がゆったり入る幅 */
+        height: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -63,14 +71,16 @@
         z-index: 3;
       }
 
+      /* タイトルテキスト */
       .title {
-        margin-bottom: 24px;
+        margin-bottom: 2.2vw; /* 要素間の余白 */
         color: #3e0000;
-        font-size: 30px;
-        line-height: 38px;
+        font-size: 3.5vw; /* 30px 相当をレスポンシブ化 */
+        line-height: 1.35;
         letter-spacing: 0.04em;
         text-align: center;
         font-weight: 500;
+        white-space: nowrap; /* 勝手な途中改行を防止 */
       }
 
       .title .red {
@@ -83,19 +93,20 @@
         font-weight: 500;
       }
 
+      /* スタートボタン（192px x 47.2px 相当） */
       .start-btn {
-        width: 192px;
-        height: 47.2px;
+        width: 23vw; /* 192px / 836px 相当 */
+        height: 5.6vw; /* ボタンの縦横比を固定するため vw で統一 */
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 999px;
-        border: 4px solid #624529;
+        border: 0.46vw solid #624529;
         background: #ffebd3;
-        box-shadow: inset 0 0 0 4px #f5b134;
+        box-shadow: inset 0 0 0 0.46vw #f5b134;
         color: #3e0000;
         text-decoration: none;
-        font-size: 24px;
+        font-size: 2.8vw; /* 24px 相当 */
         font-weight: 700;
         line-height: 1;
         text-align: center;
@@ -106,7 +117,7 @@
       }
 
       .start-btn:active {
-        transform: translateY(2px);
+        transform: translateY(0.2vw);
         filter: brightness(0.98);
       }
 
@@ -116,30 +127,6 @@
         background: url("img/grass.png") center / 100% 100% no-repeat;
         pointer-events: none;
         z-index: 4;
-      }
-
-      @media (max-width: 900px) {
-        .map-panel {
-          left: 18px;
-          top: 2px;
-          width: 800.03px;
-          height: 394px;
-        }
-
-        .content {
-          width: 63vw;
-          height: 42vw;
-        }
-
-        .title {
-          font-size: 30px;
-        }
-
-        .start-btn {
-          width: 192px;
-          height: 47.2px;
-          font-size: 24px;
-        }
       }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />

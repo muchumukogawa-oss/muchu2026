@@ -37,34 +37,39 @@
         font-family: "Zen Maru Gothic", sans-serif;
       }
 
+      /* ステージ全体 */
       .stage {
         position: relative;
         display: flex;
         width: 100%;
-        height: 100%;
+        height: 100vh;
         justify-content: center;
         align-items: center;
         background: url("img/background_grass.png") center / cover no-repeat;
       }
 
+      /* コンパスアイコン（350px / 836px ≒ 41.87%、161px / 394px ≒ 40.86%） */
       .compass {
         position: absolute;
         z-index: 8;
         top: 0;
-        left: calc(100% - 350px);
-        width: 350px;
-        height: 161px;
+        right: -0.5%;
+        width: 41.4%;
+        height: 40.98%;
         pointer-events: none;
+        object-fit: contain;
       }
 
+      /* 巻物背景・メインコンテナ（800.03px / 836px ≒ 95.7%、394px / 394px = 100%） */
       .scroll-container {
         position: absolute;
-        top: 2px;
-        left: 18px;
+        top: 0.5%;
+        left: 48.3%;
+        transform: translateX(-50%);
         z-index: 2;
         display: flex;
-        width: 800.03px;
-        height: 394px;
+        width: 94%; /* 800px / 836px */
+        height: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -72,43 +77,47 @@
         background: url("img/map.png") center / 100% 100% no-repeat;
       }
 
+      /* コンテンツタイトル */
       .content-title {
         display: inline-block;
-        transform: translateY(5.51px);
-        margin-bottom: 22px;
-        padding-bottom: 4px;
-        border-bottom: 3px solid #b87b5c;
+        transform: translateY(1.4%);
+        margin-bottom: 2.63vw; /* 22px 相当 */
+        padding-bottom: 0.48vw;
+        border-bottom: 0.36vw solid #b87b5c;
         color: #3e0000;
-        font-size: clamp(30px, 3.6vw, 36px);
+        font-size: 3.83vw; /* 32px 相当 */
         font-weight: 500;
         letter-spacing: 0.05em;
         text-align: center;
+        white-space: nowrap;
       }
 
       .title-subtext {
         font-weight: 500;
       }
 
+      /* 本文テキスト */
       .content-text {
         color: #3e0000;
-        font-size: 22px;
+        font-size: 2.63vw; /* 22px 相当 */
         font-weight: 500;
-        line-height: 38px;
+        line-height: 1.7;
         text-align: center;
       }
 
       .content-text p {
-        margin-bottom: 16px;
+        margin-bottom: 2%;
       }
 
       .content-text p:first-child {
-        margin-bottom: 15px;
+        margin-bottom: 1.79vw;
       }
 
       .content-text p:last-child {
-        transform: translateY(-10px);
+        transform: translateY(-1.2vw);
       }
 
+      /* ルビ（ルビ振り） */
       ruby rt {
         color: #3e0000;
         font-size: 0.55em;
@@ -116,6 +125,7 @@
         line-height: 0.5em;
       }
 
+      /* テキストハイライト */
       .highlight-red {
         color: #d93838;
         font-weight: 400;
@@ -141,6 +151,7 @@
         font-weight: 400;
       }
 
+      /* 手前の草レイヤー */
       .grass-foreground {
         position: absolute;
         z-index: 9;
@@ -151,38 +162,40 @@
         pointer-events: none;
       }
 
+      /* 「つぎへ」矢印ボタン（774.99px / 836px ≒ 92.7%、181.57px / 394px ≒ 46.08%） */
       .next-btn {
         position: absolute;
         z-index: 10;
-        top: 181.57px;
-        left: 774.99px;
-        width: 53px;
-        height: 47px;
+        top: 46.08%;
+        left: 92.7%;
+        width: 6.34vw; /* 53px 相当（縦横比を固定） */
+        height: 5.62vw; /* 47px 相当 */
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
           center / 100% 100% no-repeat;
         text-decoration: none;
         cursor: pointer;
+        transition: transform 0.08s ease;
       }
 
       .next-btn:active {
         transform: scale(0.9);
       }
 
+      /* ページインジケーター（ドット）（414px / 836px ≒ 49.52%、363px / 394px ≒ 92.13%） */
       .dots-container {
         position: absolute;
         z-index: 10;
-        top: 363px;
-        left: 414px;
+        top: 92.13%;
+        left: 56%;
+        transform: translateX(-50%); /* 中央寄せ */
         display: flex;
-        width: 141px;
-        height: 18px;
         flex-direction: row;
-        gap: 9px;
+        gap: 1.08vw; /* 9px 相当 */
       }
 
       .dot {
-        width: 12px;
-        height: 12px;
+        width: 1.44vw; /* 12px 相当 */
+        height: 1.44vw;
         border: none;
         border-radius: 50%;
         background-color: rgb(255 255 255 / 65%);
@@ -190,67 +203,7 @@
 
       .dot.active {
         background-color: #fff;
-        box-shadow: 0 0 4px rgb(0 0 0 / 20%);
-      }
-
-      @media (max-width: 900px), (pointer: coarse) {
-        /*
-         * The artwork is composed on an 800px-wide canvas. Scale that canvas
-         * as one unit on narrow screens so its original proportions and
-         * absolute positions remain unchanged.
-         */
-        .stage {
-          --mobile-scale: var(
-            --mobile-scale-800,
-            calc((100vw - 24px) * 0.00125)
-          );
-          width: 100%;
-          height: 100vh;
-          height: 100dvh;
-          overflow: hidden;
-        }
-
-        .compass {
-          left: auto;
-          right: 0;
-          width: calc(350px * var(--mobile-scale));
-          height: calc(161px * var(--mobile-scale));
-          transform-origin: top right;
-        }
-
-        .scroll-container {
-          top: 2px;
-          left: 12px;
-          width: 800.03px;
-          height: 394px;
-          padding: 4% 6% 5% 18%;
-          transform: scale(var(--mobile-scale));
-          transform-origin: top left;
-        }
-
-        .next-btn {
-          top: calc(181.57px * var(--mobile-scale));
-          left: calc(774.99px * var(--mobile-scale) + 12px);
-          width: calc(53px * var(--mobile-scale));
-          height: calc(47px * var(--mobile-scale));
-          transform-origin: center;
-        }
-
-        .dots-container {
-          top: calc(363px * var(--mobile-scale));
-          left: calc(414px * var(--mobile-scale) + 12px);
-          transform: scale(var(--mobile-scale));
-          transform-origin: top left;
-        }
-
-        .content-title {
-          margin-bottom: 14px;
-          transform: translateY(5.51px);
-        }
-
-        .content-text p {
-          margin-bottom: 10px;
-        }
+        box-shadow: 0 0 0.48vw rgb(0 0 0 / 20%);
       }
     </style>
   </head>
