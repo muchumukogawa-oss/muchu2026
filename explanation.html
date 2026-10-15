@@ -122,15 +122,11 @@
         letter-spacing: 0.02em;
         text-align: left;
 
-        /* 【自然な日本語改行のための設定】 */
-        word-break: auto-phrase; /* 手動改行（\n）やスペースをそのまま保持 */
-        white-space: normal; /* BudouX/ブラウザの文節区切りを最優先（break-allを解除） */
-        overflow-wrap: break-word; /* 枠からはみ出しそうな場合のみ安全に折る */
-        line-break: strict; /* 「っ」「ょ」「。」などが文頭に来るのを防ぐ */
-      }
-
-      /* .example-text--fixed-lines {
-        white-space: pre-line;
+        /* 自然な改行指定 */
+        word-break: keep-all; /* 単語の途中での改行を防止 */
+        white-space: pre-wrap; /* 手動改行(\n)をそのまま保持 */
+        overflow-wrap: break-word;
+        line-break: strict;
       }
 
       /* ボタンの共通スタイル */
@@ -196,16 +192,22 @@
         alt="表情"
       />
 
-      <budoux-ja class="example-text" id="exampleText"></budoux-ja>
+      <p class="example-text" id="exampleText"></p>
 
       <a href="choice1.html" class="btn no-btn">はじめから</a>
       <a href="last.html" class="btn yes-btn">つぎへ</a>
     </div>
 
-    <script
-      type="module"
-      src="https://unpkg.com/budoux/budoux-ja-component.min.js"
-    ></script>
+    <!-- BudouX スクリプト -->
+    <script type="module">
+      import { loadDefaultJapaneseParser } from "https://unpkg.com/budoux/budoux-ja.min.js";
+      window.budouxParser = loadDefaultJapaneseParser();
+      // 読み込み完了後にすでに表示されているテキストをBudouX形式に更新
+      if (window.currentExampleText) {
+        document.getElementById("exampleText").innerHTML =
+          window.budouxParser.translateHTMLString(window.currentExampleText);
+      }
+    </script>
 
     <script>
       const params = new URLSearchParams(window.location.search);
@@ -322,16 +324,25 @@
         example === "moved"
           ? "えほんの しゅじんこうが たすかって、よかったなぁと おもったよ"
           : examples[selectedColor.toLowerCase()];
-      const exampleTextElement = document.getElementById("exampleText");
       const isSurpriseExample =
         selectedColor.toLowerCase() === "#0068b7" && example !== "moved";
-      exampleTextElement.textContent = isSurpriseExample
+
+      const rawText = isSurpriseExample
         ? "えほんを よんでいたら、うしろで「わっ！」って\nおおきな こえが して\nとびあがっちゃった"
         : exampleText || "対応する例文が見つかりません。";
-      exampleTextElement.classList.toggle(
-        "example-text--fixed-lines",
-        isSurpriseExample,
-      );
+
+      // 共通変数にテキストを保存（BudouXロード時に使用するため）
+      window.currentExampleText = rawText;
+
+      const exampleTextElement = document.getElementById("exampleText");
+
+      // ① まず即座にテキストを画面に表示（絶対に消えないようにする）
+      if (window.budouxParser) {
+        exampleTextElement.innerHTML =
+          window.budouxParser.translateHTMLString(rawText);
+      } else {
+        exampleTextElement.textContent = rawText;
+      }
     </script>
   </body>
 </html>
