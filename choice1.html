@@ -50,10 +50,12 @@
 
       .back-arrow {
         position: absolute;
-        left: 70.21px;
-        top: 17.57px;
-        width: 53px;
-        height: 47px;
+        /* 変更前: left: 70.21px; top: 17.57px; width: 53px; height: 47px; */
+        left: 7.3%;
+        top: 2.3%;
+        width: 5.5%;
+        height: auto;
+        aspect-ratio: 53 / 47;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -65,22 +67,24 @@
       }
 
       .back-arrow svg {
-        width: 53px;
-        height: 47px;
+        /* 変更前: width: 53px; height: 47px; */
+        width: 100%;
+        height: 100%;
         display: block;
       }
 
       .title {
         position: absolute;
         left: 53%;
-        top: 24px;
-        width: 590px;
-        height: 43px;
+        top: 3.1%;
+        /* 変更前: width: 590px; height: 43px; font-size: 30px; line-height: 43px; */
+        width: 61.5%;
+        height: 5.6%;
         transform: translateX(-50%);
         color: #3e0000;
-        font-size: 30px;
+        font-size: 3.1vw; /* 画面幅に応じた相対サイズ */
         font-weight: 500;
-        line-height: 43px;
+        line-height: 1.4;
         letter-spacing: 0.02em;
         text-align: center;
         margin: 0;
@@ -93,10 +97,11 @@
 
       .color-grid {
         position: absolute;
-        left: 217px;
-        top: 101px;
-        width: 477px;
-        height: 249.69px;
+        /* 変更前: left: 217px; top: 101px; width: 477px; height: 249.69px; */
+        left: 22.6%;
+        top: 13.1%;
+        width: 49.7%;
+        height: 32.5%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
