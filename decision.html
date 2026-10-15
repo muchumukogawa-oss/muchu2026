@@ -2,9 +2,15 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <link rel="manifest" href="manifest.webmanifest" />
     <script src="mobile-layout.js" defer></script>
     <title>このいろできまり？</title>
@@ -35,17 +41,18 @@
       .page {
         position: relative;
         width: 100%;
-        height: 100vh;
+        height: 100%;
       }
 
+      /* タイトルエリア */
       .title {
         position: absolute;
-        left: calc(50% + 15px);
-        top: 24px;
+        left: 50%;
+        top: 6.09%; /* 24px / 394px */
         transform: translateX(-50%);
-        width: 500px;
+        width: 57.4%; /* 500px / 871px */
         color: #3e0000;
-        font-size: 30px;
+        font-size: 3.4vw;
         line-height: 1.2;
         letter-spacing: 0.04em;
         text-align: center;
@@ -62,81 +69,74 @@
         font-weight: 500;
       }
 
+      /* 中央のグレーの枠 */
       .color-box {
         position: absolute;
-        left: 329px;
-        top: 94px;
-        width: 213px;
-        height: 195px;
+        left: 37.77%; /* 329px / 871px */
+        top: 23.86%; /* 94px / 394px */
+        width: 24.45%; /* 213px / 871px */
+        height: 49.49%; /* 195px / 394px */
         background: #d9d9d9;
-        border: 1px solid rgba(0, 0, 0, 0.08);
+        border: 0.1vw solid rgba(0, 0, 0, 0.08);
       }
 
-      /* 表情画像の基本配置設定（四角枠の中心基準） */
+      /* 表情画像の基本配置設定（.color-box 内にピッタリ収まるよう中央配置） */
       .expression {
         position: absolute;
-        left: 345.5px;
-        top: 109px;
-        width: 180px;
-        height: 165px;
+        left: 39.67%; /* 345.5px / 871px */
+        top: 27.66%; /* 109px / 394px */
+        width: 20.67%; /* 180px / 871px */
+        height: 41.88%; /* 165px / 394px */
         padding: 0;
         object-fit: contain;
         pointer-events: none;
         transition: transform 0.1s ease;
       }
 
-      /* --- 前の画面と同じ微調整ルール --- */
-
-      /* ショック：右に少し移動 */
+      /* --- 微調整ルール (相対値化) --- */
       .expression[data-emotion="ショック"] {
-        transform: translate(10px, 0);
+        transform: translate(1.1vw, 0);
       }
 
-      /* 不安・心配：右、上に移動 */
       .expression[data-emotion="不安・心配"] {
-        transform: translate(20px, -15px);
+        transform: translate(2.3vw, -1.7vw);
       }
 
-      /* 悲しい：サイズを大きくし、少し下に移動 */
       .expression[data-emotion="悲しい"] {
         padding: 0;
-        transform: translate(0, 10px);
+        transform: translate(0, 1.1vw);
       }
 
-      /* 疲れた：少し上、少し右に移動 */
       .expression[data-emotion="疲れた"] {
-        transform: translate(4px, -15px);
+        transform: translate(0.46vw, -1.7vw);
       }
 
-      /* 悔しい（color7相当）：少し大きく表示 */
       .expression[data-emotion="悔しい"] {
         padding: 0;
       }
 
-      /* color6（穏やか）：前画面と同じ小さめの表示 */
-      .expression[data-emotion="穏やか"] {
-        transform: none;
-      }
-
+      .expression[data-emotion="穏やか"],
       .expression[data-emotion] {
         transform: none;
       }
 
       .expression--white-outline {
-        filter: brightness(0) invert(1) drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff) drop-shadow(0 1px 0 #fff)
-          drop-shadow(0 -1px 0 #fff);
+        filter: brightness(0) invert(1) drop-shadow(0.11vw 0 0 #fff)
+          drop-shadow(-0.11vw 0 0 #fff) drop-shadow(0 0.11vw 0 #fff)
+          drop-shadow(0 -0.11vw 0 #fff);
       }
 
+      /* ボタンの共通スタイル */
       .btn {
         position: absolute;
-        width: 180px;
-        height: 50px;
-        border: 4px solid #624529;
+        width: 20.67%; /* 180px / 871px */
+        height: 12.69%; /* 50px / 394px */
+        border: 0.46vw solid #624529;
         background: #ffebd3;
-        box-shadow: inset 0 0 0 4px #f5b134;
+        box-shadow: inset 0 0 0 0.46vw #f5b134;
         border-radius: 999px;
         color: #3e0000;
-        font-size: 24px;
+        font-size: 2.75vw;
         font-family: inherit;
         font-weight: 700;
         line-height: 1;
@@ -152,52 +152,20 @@
       }
 
       .btn:active {
-        transform: translateY(2px);
+        transform: translateY(0.5%);
         filter: brightness(0.98);
       }
 
+      /* 「ちがう」ボタン */
       .no-btn {
-        left: 220px;
-        top: 316px;
+        left: 25.26%; /* 220px / 871px */
+        top: 80.2%; /* 316px / 394px */
       }
 
+      /* 「ぴったり」ボタン */
       .yes-btn {
-        left: 489px;
-        top: 316px;
-      }
-
-      @media (max-width: 700px) {
-        .title {
-          width: 90%;
-          font-size: 26px;
-        }
-
-        .color-box {
-          top: 100px;
-          width: 200px;
-          height: 200px;
-        }
-
-        .expression {
-          left: 349px;
-          top: 120px;
-          width: 160px;
-          height: 160px;
-        }
-
-        .expression[data-emotion="穏やか"] {
-          transform: none;
-        }
-
-        .no-btn {
-          left: 40px;
-          top: 340px;
-        }
-
-        .yes-btn {
-          left: 240px;
-          top: 340px;
-        }
+        left: 56.14%; /* 489px / 871px */
+        top: 80.2%; /* 316px / 394px */
       }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />
@@ -207,10 +175,21 @@
     <div class="page">
       <h1 class="title">この<span class="red">いろ</span>できまり？</h1>
 
-      <div id="selectedColorBox" class="color-box" aria-label="選択した色"></div>
-      <img id="selectedExpression" class="expression" alt="選んだ色に合う表情" hidden />
+      <div
+        id="selectedColorBox"
+        class="color-box"
+        aria-label="選択した色"
+      ></div>
+      <img
+        id="selectedExpression"
+        class="expression"
+        alt="選んだ色に合う表情"
+        hidden
+      />
 
-      <button class="btn no-btn" type="button" onclick="history.back()">いいえ</button>
+      <button class="btn no-btn" type="button" onclick="history.back()">
+        いいえ
+      </button>
       <a id="yesBtn" class="btn yes-btn" href="explanation.html">はい</a>
     </div>
 
@@ -258,11 +237,12 @@
         "#ccff99": "優しい",
         "#aed581": "穏やか",
         "#ffffff": "気にしない",
-        "#00fa9a": "気持ちいい"
+        "#00fa9a": "気持ちいい",
       };
 
       if (color) {
-        document.getElementById("selectedColorBox").style.backgroundColor = color;
+        document.getElementById("selectedColorBox").style.backgroundColor =
+          color;
         const explanationParams = new URLSearchParams({ color });
         if (label) {
           explanationParams.set("label", label);
@@ -271,18 +251,25 @@
           explanationParams.set("example", example);
         }
         const normalizedColor = color.toLowerCase();
-        const emotion = label === "かんどう" ? "嬉しくてびっくり" : expressions[normalizedColor];
+        const emotion =
+          label === "かんどう"
+            ? "嬉しくてびっくり"
+            : expressions[normalizedColor];
         if (emotion) {
           const expression = document.getElementById("selectedExpression");
           expression.src = `img/${emotion}.svg`;
           expression.alt = `${label || emotion}の表情`;
           // JavaScriptで感情名をdata属性にセットしてCSSの位置微調整を発動させる
           expression.setAttribute("data-emotion", emotion);
-          expression.classList.toggle("expression--white-outline", normalizedColor === "#000000");
+          expression.classList.toggle(
+            "expression--white-outline",
+            normalizedColor === "#000000",
+          );
           expression.hidden = false;
           explanationParams.set("emotion", emotion);
         }
-        document.getElementById("yesBtn").href = "explanation.html?" + explanationParams.toString();
+        document.getElementById("yesBtn").href =
+          "explanation.html?" + explanationParams.toString();
       }
     </script>
   </body>
