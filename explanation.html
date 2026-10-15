@@ -2,16 +2,25 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <link rel="manifest" href="manifest.webmanifest" />
     <script src="mobile-layout.js" defer></script>
     <title>きもちのつかいかた</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       * {
@@ -32,17 +41,18 @@
       .page {
         position: relative;
         width: 100%;
-        height: 100vh;
+        height: 100%;
       }
 
+      /* タイトルエリア */
       .title {
         position: absolute;
         left: 50%;
-        top: 24px;
+        top: 6.09%; /* 24px / 394px */
         transform: translateX(-50%);
-        width: 760px;
+        width: 87.26%; /* 760px / 871px */
         color: #3e0000;
-        font-size: 30px;
+        font-size: 3.4vw;
         line-height: 1.2;
         letter-spacing: 0.04em;
         text-align: center;
@@ -59,23 +69,25 @@
         font-weight: 500;
       }
 
+      /* 左側のカラーボックス */
       .color-box {
         position: absolute;
-        left: 192px;
-        top: 94px;
-        width: 213px;
-        height: 195px;
+        left: 22.04%; /* 192px / 871px */
+        top: 23.86%; /* 94px / 394px */
+        width: 24.45%; /* 213px / 871px */
+        height: 49.49%; /* 195px / 394px */
         background: #ff0000;
         overflow: hidden;
         z-index: 1;
       }
 
+      /* 表情画像（.color-box 内の中心に重ねる配置） */
       .expression {
         position: absolute;
-        left: 208.5px;
-        top: 109px;
-        width: 180px;
-        height: 165px;
+        left: 23.94%; /* 208.5px / 871px */
+        top: 27.66%; /* 109px / 394px */
+        width: 20.67%; /* 180px / 871px */
+        height: 41.88%; /* 165px / 394px */
         object-fit: contain;
         display: block;
         pointer-events: none;
@@ -83,48 +95,55 @@
       }
 
       .expression--white-outline {
-        filter:
-          brightness(0) invert(1)
-          drop-shadow(1px 0 0 #fff)
-          drop-shadow(-1px 0 0 #fff)
-          drop-shadow(0 1px 0 #fff)
-          drop-shadow(0 -1px 0 #fff);
+        filter: brightness(0) invert(1) drop-shadow(0.11vw 0 0 #fff)
+          drop-shadow(-0.11vw 0 0 #fff) drop-shadow(0 0.11vw 0 #fff)
+          drop-shadow(0 -0.11vw 0 #fff);
       }
 
+      /* 右側の文章エリア */
       .example-text {
         position: absolute;
-        left: 560px;
-        top: 94px;
-        width: 320px;
-        height: 195px;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
+
+        /* 横位置・縦位置の固定 */
+        left: 52%;
+        top: 38%;
+
+        /* 幅の設定 */
+        width: 42%;
+        max-width: 42%;
+        box-sizing: border-box;
+
+        display: block;
+
         color: #3e0000;
-        font-size: 24px;
-        line-height: 1.45;
+        font-size: 2.75vw;
+        line-height: 1.5;
         font-weight: 500;
         letter-spacing: 0.02em;
         text-align: left;
-        text-wrap: pretty;
-        word-break: keep-all;
-        overflow-wrap: anywhere;
+
+        /* 【自然な日本語改行のための設定】 */
+        white-space: pre-wrap; /* 手動改行（\n）やスペースをそのまま保持 */
+        word-break: auto-phrase; /* BudouX/ブラウザの文節区切りを最優先（break-allを解除） */
+        overflow-wrap: break-word; /* 枠からはみ出しそうな場合のみ安全に折る */
+        line-break: strict; /* 「っ」「ょ」「。」などが文頭に来るのを防ぐ */
       }
 
-      .example-text--fixed-lines {
+      /* .example-text--fixed-lines {
         white-space: pre-line;
       }
 
+      /* ボタンの共通スタイル */
       .btn {
         position: absolute;
-        width: 180px;
-        height: 50px;
+        width: 20.67%; /* 180px / 871px */
+        height: 12.69%; /* 50px / 394px */
         border-radius: 999px;
-        border: 4px solid #624529;
+        border: 0.46vw solid #624529;
         background: #ffebd3;
-        box-shadow: inset 0 0 0 4px #f5b134;
+        box-shadow: inset 0 0 0 0.46vw #f5b134;
         color: #3e0000;
-        font-size: 24px;
+        font-size: 2.75vw;
         font-weight: 700;
         line-height: 1;
         text-align: center;
@@ -139,56 +158,19 @@
       }
 
       .btn:active {
-        transform: translateY(2px);
+        transform: translateY(0.5%);
         filter: brightness(0.98);
       }
 
-      /* ボタンの位置を統一 */
+      /* ボタンの位置指定 */
       .no-btn {
-        left: 220px;
-        top: 316px;
+        left: 25.26%; /* 220px / 871px */
+        top: 80.2%; /* 316px / 394px */
       }
 
       .yes-btn {
-        left: 489px;
-        top: 316px;
-      }
-
-      @media (max-width: 900px) {
-        .title {
-          width: 760px;
-          font-size: 30px;
-        }
-
-        .example-text {
-          left: 442px;
-          width: 254px;
-        }
-
-        .color-box {
-          left: 192px;
-          top: 94px;
-          width: 213px;
-          height: 195px;
-        }
-
-        .expression {
-          left: 218.5px;
-          top: 111.5px;
-          width: 160px;
-          height: 160px;
-        }
-
-        /* 小さい画面でもボタン位置を統一 */
-        .no-btn {
-          left: 220px;
-          top: 316px;
-        }
-
-        .yes-btn {
-          left: 489px;
-          top: 316px;
-        }
+        left: 56.14%; /* 489px / 871px */
+        top: 80.2%; /* 316px / 394px */
       }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />
@@ -196,17 +178,34 @@
 
   <body>
     <div class="page">
-      <h1 class="title"><span id="emotionLabel" class="red">このいろ</span>は こんなときに つかうよ！</h1>
+      <h1 class="title">
+        <span id="emotionLabel" class="red">このいろ</span>は こんなときに
+        つかうよ！
+      </h1>
 
-      <div id="selectedColorBox" class="color-box" aria-label="選択した色"></div>
+      <div
+        id="selectedColorBox"
+        class="color-box"
+        aria-label="選択した色"
+      ></div>
 
-      <img id="expression" src="img/expression_example.png" class="expression" alt="表情" />
+      <img
+        id="expression"
+        src="img/expression_example.png"
+        class="expression"
+        alt="表情"
+      />
 
-      <div id="exampleText" class="example-text"></div>
+      <budoux-ja class="example-text" id="exampleText"></budoux-ja>
 
       <a href="choice1.html" class="btn no-btn">はじめから</a>
       <a href="last.html" class="btn yes-btn">つぎへ</a>
     </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/budoux/budoux-ja-component.min.js"
+    ></script>
 
     <script>
       const params = new URLSearchParams(window.location.search);
@@ -253,7 +252,8 @@
         "#ffffff": "きにしない",
         "#00fa9a": "きもちいい",
       };
-      const emotionLabel = params.get("label") || emotionLabels[selectedColor.toLowerCase()];
+      const emotionLabel =
+        params.get("label") || emotionLabels[selectedColor.toLowerCase()];
       if (emotionLabel) {
         document.getElementById("emotionLabel").textContent = emotionLabel;
         document.title = `${emotionLabel}は こんなときに つかうよ！`;
@@ -261,7 +261,8 @@
       const examples = {
         "#ff0000": "とっておいた ぷりんを たべられた",
         "#000000": "ひとりで まっくらな みちを あるいているよ",
-        "#0068b7": "えほんを よんでいたら、うしろで 「わっ！」って おおきな こえが して とびあがっちゃった",
+        "#0068b7":
+          "えほんを よんでいたら、うしろで 「わっ！」って おおきな こえが して とびあがっちゃった",
         "#ff4e00": "みみもとで おおきな こえで はなしかけられた",
         "#910055": "どうろで あそぶと、くるまが きて ぶつかっちゃうよ",
         "#a9a9a9": "きょうは えんそくなのに あめが ふりそうだよ",
@@ -269,7 +270,8 @@
         "#d8bfd8": "あめが ふってるのに、かさが ないよ",
         "#db7093": "みんなの まえで ころんで、かおが まっかに なっちゃった",
         "#ff7043": "じゅんばんを まっているのに、ぬかされた",
-        "#800080": "「やめて」と いってるのに、なんども おもちゃを とろうとしてくるよ",
+        "#800080":
+          "「やめて」と いってるのに、なんども おもちゃを とろうとしてくるよ",
         "#333333": "つみきを がんばって たかく つんだのに くずれちゃった",
         "#c49a6a": "おなじ あそびばかりで、あきちゃったよ",
         "#1e90ff": "おともだちと けんかしちゃったよ",
@@ -279,14 +281,16 @@
         "#0000ff": "たからものの おもちゃが こわれちゃった",
         "#4a148c": "ともだちに げーむで まけちゃった",
         "#778899": "たくさん あそんで へとへとだ",
-        "#ffcc00": "こうえんで あそんでいたら、だいすきな おともだちに あえた！",
+        "#ffcc00":
+          "こうえんで あそんでいたら、だいすきな おともだちに あえた！",
         "#ff8c00": "ともだちが へんな だんすを していたよ",
         "#ff5a5a": "じぶんで くつしたを はこうと がんばるとき",
         "#ffeb3b": "かいた えを ほめてもらったよ",
         "#ff9f63": "だいすきな あにめの きゃらくたーに あえたよ",
         "#ffff00": "ゆうえんちに いくことに なったよ！",
         "#ffa500": "おともだちと えんそくに いったよ",
-        "#ffc0cb": "かぞく みんなで ごはんを たべながら いつも わらいあっているよ",
+        "#ffc0cb":
+          "かぞく みんなで ごはんを たべながら いつも わらいあっているよ",
         "#e91e63": "おうちの ひとが やさしく あたまを なでてくれる",
         "#f48fb1": "この ぬいぐるみは おきにいりなんだ",
         "#90ee90": "ごろごろしながら てれびを みる",
@@ -297,7 +301,7 @@
         "#ccff99": "おともだちがおもちゃをかしてくれた",
         "#aed581": "おひさまが やさしく てらしているよ",
         "#ffffff": "あめで こうえんに いけなくなったけど おうちで あそぼうっと",
-        "#00fa9a": "あつい ひに ぷーるに はいるよ"
+        "#00fa9a": "あつい ひに ぷーるに はいるよ",
       };
 
       const box = document.getElementById("selectedColorBox");
@@ -319,11 +323,15 @@
           ? "えほんの しゅじんこうが たすかって、よかったなぁと おもったよ"
           : examples[selectedColor.toLowerCase()];
       const exampleTextElement = document.getElementById("exampleText");
-      const isSurpriseExample = selectedColor.toLowerCase() === "#0068b7" && example !== "moved";
+      const isSurpriseExample =
+        selectedColor.toLowerCase() === "#0068b7" && example !== "moved";
       exampleTextElement.textContent = isSurpriseExample
         ? "えほんを よんでいたら、うしろで「わっ！」って\nおおきな こえが して\nとびあがっちゃった"
         : exampleText || "対応する例文が見つかりません。";
-      exampleTextElement.classList.toggle("example-text--fixed-lines", isSurpriseExample);
+      exampleTextElement.classList.toggle(
+        "example-text--fixed-lines",
+        isSurpriseExample,
+      );
     </script>
   </body>
 </html>
