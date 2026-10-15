@@ -12,7 +12,7 @@
       content="black-translucent"
     />
     <link rel="manifest" href="manifest.webmanifest" />
-    <script src="mobile-layout.js" defer></script>
+    <!-- <script src="mobile-layout.js" defer></script> -->
     <title>きもちってなあに？ - きもちのたんけん</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,20 +31,22 @@
 
       html,
       body {
-        width: 50%;
-        height: 50%;
+        width: 100vw !important;
+        height: 100vh !important;
+        margin: 0;
+        padding: 0;
         overflow: hidden;
         font-family: "Zen Maru Gothic", sans-serif;
       }
 
-      /* ステージ全体（背景を newback1.png に変更） */
+      /* stage（背景全体）も画面いっぱいに広げる */
       .stage {
         position: relative;
         display: flex;
-        width: 100%;
-        height: 100vh;
-        justify-content: center;
+        width: 100vw !important;
+        height: 100vh !important;
         align-items: center;
+        justify-content: center;
         background: url("img/newback1.png") center / cover no-repeat;
       }
 
