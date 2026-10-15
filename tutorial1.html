@@ -142,21 +142,18 @@
 
       /* 「つぎへ」矢印ボタン */
       .next-btn {
-        position: absolute;
-        z-index: 10;
-        top: 46.08%;
-        left: 92.7%;
-        width: 6.34vw;
-        height: 5.62vw;
+        position: absolute !important;
+        z-index: 10 !important;
+        display: block !important;
+        top: 46.08% !important;
+        left: 92.7% !important; /* ★端からはみ出す場合は 85%〜88% 付近に調整してください */
+        width: 6.3% !important;
+        height: auto !important;
+        aspect-ratio: 53 / 47 !important;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
-          center / 100% 100% no-repeat;
-        text-decoration: none;
+          center / 100% 100% no-repeat !important;
         cursor: pointer;
         transition: transform 0.08s ease;
-      }
-
-      .next-btn:active {
-        transform: scale(0.9);
       }
     </style>
   </head>

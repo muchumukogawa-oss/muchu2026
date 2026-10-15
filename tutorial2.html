@@ -51,15 +51,14 @@
         background: url("img/newback2.png") center / cover no-repeat;
       }
 
-      /* ★基準となるデザイン枠（縦横比 836:394 を保持） */
+      /* ★基準となるデザイン枠（836:394 のアスペクト比を完璧に固定） */
       .stage-inner {
-        position: relative;
-        width: 100%;
-        max-width: 100vw;
-        height: auto;
+        position: relative !important;
+        width: min(100vw, calc(100vh * (836 / 394))) !important;
+        height: min(100vh, calc(100vw * (394 / 836))) !important;
         aspect-ratio: 836 / 394;
-        max-height: 100vh;
         container-type: inline-size;
+        margin: auto; /* 中央寄せ */
       }
 
       /* メインコンテンツエリア（背景マップ画像指定を解除） */
@@ -126,30 +125,34 @@
 
       /* 戻るボタン（左矢印） */
       .prev-btn {
-        position: absolute;
-        z-index: 10;
-        top: 46.1%;
-        left: 8.7%;
-        width: 6.3%;
-        height: auto;
-        aspect-ratio: 53 / 47;
-        transform: rotate(180deg);
+        position: absolute !important;
+        z-index: 10 !important;
+        display: block !important;
+        top: 46.08% !important;
+        left: 2.2% !important; /* ★巻物の外側の緑背景の定位置に配置 */
+        width: 5.5% !important; /* ★左右でサイズ指定を完全に統一 */
+        height: auto !important;
+        aspect-ratio: 53 / 47 !important;
+        transform: rotate(180deg) !important;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
-          center / 100% 100% no-repeat;
+          center / 100% 100% no-repeat !important;
         text-decoration: none;
         cursor: pointer;
       }
 
       /* 次へボタン（右矢印） */
       .next-btn {
-        position: absolute;
-        z-index: 10;
-        top: 46.08%;
-        left: 92.7%;
-        width: 6.34vw;
-        height: 5.62vw;
-        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
-          center / 100% 100% no-repeat;
+        position: absolute !important;
+        z-index: 10 !important;
+        display: block !important;
+        top: 46.08% !important; /* ★高さ(top)を左矢印と完全一致 */
+        left: 92.3% !important; /* ★tutorial1.htmlの右端定位置(緑領域)に配置 */
+        width: 5.5% !important; /* ★左右でサイズ指定を完全に統一 */
+        height: auto !important;
+        aspect-ratio: 53 / 47 !important;
+        transform: none !important;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+          center / 100% 100% no-repeat !important;
         cursor: pointer;
         transition: transform 0.08s ease;
       }
