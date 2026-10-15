@@ -24,167 +24,131 @@
 
     <style>
       * {
-        box-sizing: border-box;
-
         margin: 0;
-
         padding: 0;
+        box-sizing: border-box;
       }
 
       html,
       body {
-        width: 100%;
-
-        height: 100%;
-
+        width: 100vw !important;
+        height: 100vh !important;
+        margin: 0;
+        padding: 0;
         overflow: hidden;
-
         font-family: "Zen Maru Gothic", sans-serif;
-
-        background: #f3f3f3;
       }
 
+      /* stage（背景全体） */
       .stage {
         position: relative;
-
-        width: 100%;
-
-        height: 100vh;
-
-        background: url("img/background_grass.png") center / cover no-repeat;
+        display: flex;
+        width: 100vw !important;
+        height: 100vh !important;
+        align-items: center;
+        justify-content: center;
+        background: url("img/newback6.png") center / cover no-repeat;
       }
 
-      /* マップパネル（800.03px / 836px ≒ 95.7%、394px / 394px = 100%） */
-
-      .map-panel {
+      /* 中央の巻物エリア */
+      .scroll-container {
         position: absolute;
-
-        left: 2.15%; /* 18px / 836px */
-
-        top: 0.51%; /* 2px / 394px */
-
-        width: 95.7%; /* 800.03px / 836px */
-
-        height: 100%; /* 394px / 394px */
-
-        background: url("img/map.png") center / 100% 100% no-repeat;
-
+        top: 0.51%;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 2;
+        display: flex;
+        width: 95.7%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 8% 5% 4% 22%;
       }
 
-      /* 中央コンテンツエリア（巻き軸を考慮して紙面中央 58.5% 付近に配置） */
-
+      /* 中央コンテンツエリア */
       .content {
         position: absolute;
-
         left: 58.5%;
-
         top: 50%;
-
         transform: translate(-50%, -50%);
-
-        width: 72%; /* 文字がゆったり入る幅 */
-
+        width: 72%;
         height: auto;
-
         display: flex;
-
         flex-direction: column;
-
         align-items: center;
-
         justify-content: center;
-
         z-index: 3;
       }
 
-      /* タイトルテキスト */
-
+      /* タイトルテキスト（vwから%・cqiへ変更） */
       .title {
-        margin-bottom: 2.2vw; /* 要素間の余白 */
-
+        margin-bottom: 4.67%; /* 2.2vw 相当 */
         color: #3e0000;
-
-        font-size: 3.5vw; /* 30px 相当をレスポンシブ化 */
-
+        font-size: 3.5cqi; /* 3.5vw 相当（親枠の3.5%基準） */
         line-height: 1.35;
-
         letter-spacing: 0.04em;
-
         text-align: center;
-
         font-weight: 500;
-
-        white-space: nowrap; /* 勝手な途中改行を防止 */
+        white-space: nowrap;
       }
 
       .title .red {
         color: #c75637;
-
         font-weight: 700;
       }
 
       .title .brown {
         color: #3e0000;
-
         font-weight: 500;
       }
 
-      /* スタートボタン（192px x 47.2px 相当） */
-
+      /* 「はじめから」ボタン（理想の横幅と内側余白に調整） */
       .start-btn {
-        width: 23vw; /* 192px / 836px 相当 */
+        /* ★ ボタン全体の横幅を文字がゆったり収まるサイズ（約192px相当）に設定 */
+        width: 23cqw !important;
+        height: auto !important;
+        aspect-ratio: 192 / 46 !important; /* 目標画像の縦横比 */
 
-        height: 5.6vw; /* ボタンの縦横比を固定するため vw で統一 */
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
 
-        display: flex;
+        /* 文字の折り返しと左右余白の確保 */
+        white-space: nowrap !important;
+        padding: 0 1.5cqi !important;
 
-        align-items: center;
+        /* f576fa.png にあわせた外枠・黄色枠・背景色 */
+        border-radius: 999px !important;
+        border: 0.38cqi solid #5c3c21 !important; /* 濃茶の外枠 */
+        background: #fff3e0 !important; /* クリーム色の内側背景 */
+        box-shadow: inset 0 0 0 0.32cqi #f2aa2c !important; /* 内側の黄色の帯 */
 
-        justify-content: center;
-
-        border-radius: 999px;
-
-        border: 0.46vw solid #624529;
-
-        background: #ffebd3;
-
-        box-shadow: inset 0 0 0 0.46vw #f5b134;
-
-        color: #3e0000;
-
-        text-decoration: none;
-
-        font-size: 2.8vw; /* 24px 相当 */
-
-        font-weight: 700;
-
-        line-height: 1;
-
-        text-align: center;
+        /* タイポグラフィ（Zen Maru Gothic Medium / 24px 相当） */
+        color: #3e0000 !important;
+        font-family: "Zen Maru Gothic", sans-serif !important;
+        font-size: 2.5cqi !important; /* 文字のバランス */
+        font-weight: 500 !important; /* Medium */
+        letter-spacing: 0.02em !important;
+        line-height: 1 !important;
+        text-align: center !important;
+        text-decoration: none !important;
 
         cursor: pointer;
-
         transition:
           transform 0.08s ease,
           filter 0.08s ease;
       }
 
       .start-btn:active {
-        transform: translateY(0.2vw);
-
+        transform: translateY(0.2%);
         filter: brightness(0.98);
       }
-
       .grass-foreground {
         position: absolute;
-
         inset: 0;
-
         background: url("img/grass.png") center / 100% 100% no-repeat;
-
         pointer-events: none;
-
         z-index: 4;
       }
     </style>
@@ -200,11 +164,9 @@
           ほかにもぴったりな<span class="red">いろ</span>があるかも！<br />
           こたえをみてみよう！
         </h1>
-
         <a href="choice1.html" class="start-btn">はじめから</a>
       </div>
-
-      <div class="grass-foreground" aria-hidden="true"></div>
+      <!--<div class="grass-foreground" aria-hidden="true"></div>-->
     </main>
   </body>
 </html>
