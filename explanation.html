@@ -38,25 +38,10 @@
         background: #f3f3f3;
       }
 
-      /* 画面全体 */
       .page {
         position: relative;
-        display: flex;
         width: 100%;
         height: 100%;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* ★基準デザイン枠（縦横比 871:394 を完全保持） */
-      .stage-inner {
-        position: relative;
-        width: 100%;
-        max-width: 100vw;
-        height: auto;
-        aspect-ratio: 871 / 394;
-        max-height: 100vh;
-        container-type: inline-size;
       }
 
       /* タイトルエリア */
@@ -65,9 +50,9 @@
         left: 50%;
         top: 6.09%; /* 24px / 394px */
         transform: translateX(-50%);
-        width: 87.26%;
+        width: 87.26%; /* 760px / 871px */
         color: #3e0000;
-        font-size: 3.4cqi; /* cqiに統一 */
+        font-size: 3.4vw;
         line-height: 1.2;
         letter-spacing: 0.04em;
         text-align: center;
@@ -79,25 +64,30 @@
         font-weight: 700;
       }
 
+      .title .orange {
+        color: #3e0000;
+        font-weight: 500;
+      }
+
       /* 左側のカラーボックス */
       .color-box {
         position: absolute;
-        left: 22.04%;
-        top: 23.86%;
-        width: 24.45%;
-        height: 49.49%;
+        left: 22.04%; /* 192px / 871px */
+        top: 23.86%; /* 94px / 394px */
+        width: 24.45%; /* 213px / 871px */
+        height: 49.49%; /* 195px / 394px */
         background: #ff0000;
         overflow: hidden;
         z-index: 1;
       }
 
-      /* 表情画像 */
+      /* 表情画像（.color-box 内の中心に重ねる配置） */
       .expression {
         position: absolute;
-        left: 23.94%;
-        top: 27.66%;
-        width: 20.67%;
-        height: 41.88%;
+        left: 23.94%; /* 208.5px / 871px */
+        top: 27.66%; /* 109px / 394px */
+        width: 20.67%; /* 180px / 871px */
+        height: 41.88%; /* 165px / 394px */
         object-fit: contain;
         display: block;
         pointer-events: none;
@@ -105,45 +95,51 @@
       }
 
       .expression--white-outline {
-        filter: brightness(0) invert(1) drop-shadow(0.11cqi 0 0 #fff)
-          drop-shadow(-0.11cqi 0 0 #fff) drop-shadow(0 0.11cqi 0 #fff)
-          drop-shadow(0 -0.11cqi 0 #fff);
+        filter: brightness(0) invert(1) drop-shadow(0.11vw 0 0 #fff)
+          drop-shadow(-0.11vw 0 0 #fff) drop-shadow(0 0.11vw 0 #fff)
+          drop-shadow(0 -0.11vw 0 #fff);
       }
 
       /* 右側の文章エリア */
       .example-text {
         position: absolute;
+
+        /* 横位置・縦位置の固定 */
         left: 52%;
         top: 38%;
+
+        /* 幅の設定 */
         width: 42%;
         max-width: 42%;
         box-sizing: border-box;
+
         display: block;
+
         color: #3e0000;
-        font-size: 2.75cqi; /* cqiに統一 */
+        font-size: 2.75vw;
         line-height: 1.5;
         font-weight: 500;
         letter-spacing: 0.02em;
         text-align: left;
 
-        /* 自然な文節改行指定 */
-        word-break: keep-all;
-        white-space: pre-wrap;
-        overflow-wrap: break-word;
-        line-break: strict;
+        /* 【BudouX連動：自然な文節改行のためのプロパティ】 */
+        word-break: keep-all; /* 単語の途中での改行を禁止 */
+        white-space: pre-wrap; /* \n (手動改行) をそのまま維持 */
+        overflow-wrap: break-word; /* 枠からはみ出る場合のみ安全に折る */
+        line-break: strict; /* 「っ」「ょ」「。」などが文頭に来るのを防ぐ */
       }
 
       /* ボタンの共通スタイル */
       .btn {
         position: absolute;
-        width: 20.67%;
-        height: 12.69%;
+        width: 20.67%; /* 180px / 871px */
+        height: 12.69%; /* 50px / 394px */
         border-radius: 999px;
-        border: 0.46cqi solid #624529; /* cqiに統一 */
+        border: 0.46vw solid #624529;
         background: #ffebd3;
-        box-shadow: inset 0 0 0 0.46cqi #f5b134;
+        box-shadow: inset 0 0 0 0.46vw #f5b134;
         color: #3e0000;
-        font-size: 2.75cqi; /* cqiに統一 */
+        font-size: 2.75vw;
         font-weight: 700;
         line-height: 1;
         text-align: center;
@@ -164,13 +160,13 @@
 
       /* ボタンの位置指定 */
       .no-btn {
-        left: 25.26%;
-        top: 80.2%;
+        left: 25.26%; /* 220px / 871px */
+        top: 80.2%; /* 316px / 394px */
       }
 
       .yes-btn {
-        left: 56.14%;
-        top: 80.2%;
+        left: 56.14%; /* 489px / 871px */
+        top: 80.2%; /* 316px / 394px */
       }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />
@@ -178,37 +174,35 @@
 
   <body>
     <div class="page">
-      <!-- ★基準デザイン枠で囲む -->
-      <div class="stage-inner">
-        <h1 class="title">
-          <span id="emotionLabel" class="red">このいろ</span>は こんなときに
-          つかうよ！
-        </h1>
+      <h1 class="title">
+        <span id="emotionLabel" class="red">このいろ</span>は こんなときに
+        つかうよ！
+      </h1>
 
-        <div
-          id="selectedColorBox"
-          class="color-box"
-          aria-label="選択した色"
-        ></div>
+      <div
+        id="selectedColorBox"
+        class="color-box"
+        aria-label="選択した色"
+      ></div>
 
-        <img
-          id="expression"
-          src="img/expression_example.png"
-          class="expression"
-          alt="表情"
-        />
+      <img
+        id="expression"
+        src="img/expression_example.png"
+        class="expression"
+        alt="表情"
+      />
 
-        <p class="example-text" id="exampleText"></p>
+      <p class="example-text" id="exampleText"></p>
 
-        <a href="choice1.html" class="btn no-btn">はじめから</a>
-        <a href="last.html" class="btn yes-btn">つぎへ</a>
-      </div>
+      <a href="choice1.html" class="btn no-btn">はじめから</a>
+      <a href="last.html" class="btn yes-btn">つぎへ</a>
     </div>
 
-    <!-- BudouX モジュール -->
+    <!-- BudouX モジュールの読み込み -->
     <script type="module">
       import { loadDefaultJapaneseParser } from "https://unpkg.com/budoux/budoux-ja.min.js";
       window.budouxParser = loadDefaultJapaneseParser();
+      // スクリプト読み込み完了時に表示を自動更新
       if (window.currentExampleText) {
         document.getElementById("exampleText").innerHTML =
           window.budouxParser.translateHTMLString(window.currentExampleText);
@@ -270,7 +264,7 @@
         "#ff0000": "とっておいた ぷりんを たべられた",
         "#000000": "ひとりで まっくらな みちを あるいているよ",
         "#0068b7":
-          "えほんを よんでいたら、うしろで 「わっ！」って おおきな こえが して とびあがっちゃった",
+          "えほんを よんでいたら、うしろで 「わっ！」って おおきな こえが して とびあ发っちゃった",
         "#ff4e00": "みみもとで おおきな こえで はなしかけられた",
         "#910055": "どうろで あそぶと、くるまが きて ぶつかっちゃうよ",
         "#a9a9a9": "きょうは えんそくなのに あめが ふりそうだよ",
@@ -337,9 +331,12 @@
         ? "えほんを よんでいたら、うしろで「わっ！」って\nおおきな こえが して\nとびあがっちゃった"
         : exampleText || "対応する例文が見つかりません。";
 
+      // 共通変数に保存（BudouXロード時に使われる）
       window.currentExampleText = rawText;
+
       const exampleTextElement = document.getElementById("exampleText");
 
+      // 即座に一度表示（画面が開いた瞬間に消えるのを防ぐ）
       if (window.budouxParser) {
         exampleTextElement.innerHTML =
           window.budouxParser.translateHTMLString(rawText);
