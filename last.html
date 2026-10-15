@@ -28,26 +28,47 @@
         padding: 0;
         box-sizing: border-box;
       }
-
       html,
       body {
-        width: 100vw !important;
-        height: 100vh !important;
         margin: 0;
         padding: 0;
+        width: 100vw;
+        /* ★ポイント1: svh / lvh の崩れを防ぎ、動的なアドレスバーに対応 */
+        height: 100vh;
+        height: 100dvh;
         overflow: hidden;
-        font-family: "Zen Maru Gothic", sans-serif;
       }
 
-      /* stage（背景全体） */
       .stage {
+        position: fixed;
+        top: 0;
+        left: 0;
+        /* ★ポイント2: 横幅・高さをビューポート全体に完全追従 */
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+
+        /* ★ポイント3: 背景画像を画面いっぱいにカバー（縦横比維持） */
+        background-image: url("img/newback6.png");
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        /* ★ポイント4: iPhoneのノッチ・パンチホール領域まで背景を広げる */
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .stage-inner {
         position: relative;
-        display: flex;
-        width: 100vw !important;
-        height: 100vh !important;
-        align-items: center;
-        justify-content: center;
-        background: url("img/newback6.png") center / cover no-repeat;
+        /* アスペクト比を維持しながら画面内に収まる最大サイズに自動計算 */
+        width: min(100vw, calc(100dvh * (836 / 394)));
+        height: min(100dvh, calc(100vw * (394 / 836)));
+        aspect-ratio: 836 / 394;
+        margin: auto;
+        container-type: inline-size; /* cqi / cqw 単位を有効化 */
       }
 
       /* 中央の巻物エリア */
@@ -157,16 +178,18 @@
 
   <body>
     <main class="stage">
-      <div class="map-panel" aria-hidden="true"></div>
-
-      <div class="content">
-        <h1 class="title">
-          ほかにもぴったりな<span class="red">いろ</span>があるかも！<br />
-          こたえをみてみよう！
-        </h1>
-        <a href="choice1.html" class="start-btn">はじめから</a>
+      <!-- ★ stage-inner で中のコンテンツ全体を包む -->
+      <div class="stage-inner">
+        <div class="map-panel" aria-hidden="true"></div>
+        <div class="content">
+          <h1 class="title">
+            ほかにもぴったりな<span class="red">いろ</span>があるかも！<br />
+            こたえをみてみよう！
+          </h1>
+          <a href="choice1.html" class="start-btn">はじめから</a>
+        </div>
+        <!--<div class="grass-foreground" aria-hidden="true"></div>-->
       </div>
-      <!--<div class="grass-foreground" aria-hidden="true"></div>-->
     </main>
   </body>
 </html>
