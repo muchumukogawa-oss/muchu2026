@@ -2,9 +2,15 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <link rel="manifest" href="manifest.webmanifest" />
     <script src="mobile-layout.js" defer></script>
     <title>いちばんぴったりないろ - 青グループ</title>
@@ -35,15 +41,16 @@
       .page {
         position: relative;
         width: 100%;
-        height: 100vh;
+        height: 100%;
       }
 
       .back-arrow {
         position: absolute;
-        left: 70.21px;
-        top: 17.57px;
-        width: 53px;
-        height: 47px;
+        left: 8.4%; /* 70.21px / 836px */
+        top: 4.46%; /* 17.57px / 394px */
+        width: 6.34%; /* 53px / 836px */
+        height: auto;
+        aspect-ratio: 53 / 47;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -54,20 +61,21 @@
       }
 
       .back-arrow svg {
-        width: 53px;
-        height: 47px;
+        width: 100%;
+        height: 100%;
         display: block;
         pointer-events: none;
       }
 
       .back-arrow:active {
-        transform: translateY(2px) scale(0.96);
+        transform: translateY(0.5%) scale(0.96);
         filter: brightness(0.98);
       }
 
+      /* 右側のはみ出し防止：left: 0 に変更 */
       .content-wrap {
         position: absolute;
-        left: 91px;
+        left: 0;
         top: 0;
         width: 100%;
         height: 100%;
@@ -75,12 +83,12 @@
 
       .title-area {
         position: absolute;
-        left: 91px;
-        top: 149px;
-        width: 300px;
-        height: 86px;
+        left: 10.89%; /* 91px / 836px */
+        top: 37.82%; /* 149px / 394px */
+        width: 35.88%; /* 300px / 836px */
+        height: 21.83%; /* 86px / 394px */
         color: #3e0000;
-        font-size: 30px;
+        font-size: 3.1vw;
         font-weight: 500;
         line-height: 1.45;
         letter-spacing: 0.02em;
@@ -99,8 +107,8 @@
       .color-card {
         position: absolute;
         display: block;
-        width: 115px;
-        height: 115px;
+        width: 13.76%; /* 115px / 836px */
+        height: 29.19%; /* 115px / 394px */
         text-decoration: none;
         cursor: pointer;
         transition:
@@ -109,7 +117,7 @@
           box-shadow 0.08s ease;
       }
 
-      /* 表情画像のベース配置 */
+      /* --- 表情画像の配置（中央基準） --- */
       .emotion-img {
         position: absolute;
         top: 50%;
@@ -157,134 +165,73 @@
         transform: translate(-50%, -52%);
       }
 
-      .color-card .emotion-img {
-        top: 50%;
-        left: 50%;
-        width: 60%;
-        height: 60%;
-        transform: translate(-50%, -50%);
-      }
-
       .color-card:active {
-        transform: translateY(2px) scale(0.98);
+        transform: translateY(0.5%) scale(0.98);
         filter: brightness(0.97);
-        box-shadow: inset 0 6px 10px rgb(0 0 0 / 12%);
+        box-shadow: inset 0 0.5vw 0.8vw rgb(0 0 0 / 12%);
       }
 
       .color-card.short {
-        height: 56.5px;
+        height: 14.34%; /* 56.5px / 394px */
       }
 
+      /* --- 各カードの位置指定 --- */
+      /* 1列目 (左): 50.96% */
       .color1 {
-        left: 426px;
-        top: 20px;
+        left: 50.96%; /* 426px / 836px */
+        top: 5.08%; /* 20px / 394px */
         background: #800080;
       }
-      .color2 {
-        left: 546px;
-        top: 20px;
-        background: #333333;
-      }
-      .color3 {
-        left: 666px;
-        top: 20px;
-        background: #c49a6a;
-      }
-
-      .color5 {
-        left: 666px;
-        top: 139px;
-        background: #000080;
+      .color9 {
+        left: 50.96%; /* 426px / 836px */
+        top: 35.28%; /* 139px / 394px */
+        background: #1e90ff;
       }
       .color6 {
-        left: 426px;
-        top: 258px;
+        left: 50.96%; /* 426px / 836px */
+        top: 65.48%; /* 258px / 394px */
         background: #0000ff;
       }
 
-      .color7 {
-        left: 546px;
-        top: 258px;
-        background: #4a148c;
+      /* 2列目 (中央): 65.31% */
+      .color2 {
+        left: 65.31%; /* 546px / 836px */
+        top: 5.08%; /* 20px / 394px */
+        background: #333333;
       }
-      .color8 {
-        left: 666px;
-        top: 258px;
-        background: #778899;
-      }
-      .color9 {
-        left: 426px;
-        top: 139px;
-        background: #1e90ff;
-      }
-
       .color10 {
-        left: 546px;
-        top: 139px;
-        height: 56.5px;
+        left: 65.31%; /* 546px / 836px */
+        top: 35.28%; /* 139px / 394px */
+        height: 14.34%; /* 56.5px / 394px */
         background: #90caf9;
       }
-
       .color11 {
-        left: 546px;
-        top: 197.5px;
-        height: 56.5px;
+        left: 65.31%; /* 546px / 836px */
+        top: 50.13%; /* 197.5px / 394px */
+        height: 14.34%; /* 56.5px / 394px */
         background: #4682b4;
       }
+      .color7 {
+        left: 65.31%; /* 546px / 836px */
+        top: 65.48%; /* 258px / 394px */
+        background: #4a148c;
+      }
 
-      @media (max-width: 900px) {
-        .content-wrap {
-          left: 0;
-        }
-
-        .title-area {
-          left: 75px;
-          top: 149px;
-          width: 350px;
-          font-size: 30px;
-        }
-
-        .color1 {
-          left: 426px;
-          top: 20px;
-        }
-        .color2 {
-          left: 546px;
-          top: 20px;
-        }
-        .color3 {
-          left: 666px;
-          top: 20px;
-        }
-
-        .color5 {
-          left: 666px;
-          top: 139px;
-        }
-        .color6 {
-          left: 426px;
-          top: 258px;
-        }
-        .color7 {
-          left: 546px;
-          top: 258px;
-        }
-        .color8 {
-          left: 666px;
-          top: 258px;
-        }
-        .color9 {
-          left: 426px;
-          top: 139px;
-        }
-        .color10 {
-          left: 546px;
-          top: 139px;
-        }
-        .color11 {
-          left: 546px;
-          top: 197.5px;
-        }
+      /* 3列目 (右): 79.67% */
+      .color3 {
+        left: 79.67%; /* 666px / 836px */
+        top: 5.08%; /* 20px / 394px */
+        background: #c49a6a;
+      }
+      .color5 {
+        left: 79.67%; /* 666px / 836px */
+        top: 35.28%; /* 139px / 394px */
+        background: #000080;
+      }
+      .color8 {
+        left: 79.67%; /* 666px / 836px */
+        top: 65.48%; /* 258px / 394px */
+        background: #778899;
       }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />
@@ -293,7 +240,11 @@
   <body>
     <div class="page">
       <a href="./choice1.html" class="back-arrow" aria-label="戻る">
-        <svg viewBox="0 0 53 47" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg
+          viewBox="0 0 53 47"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
           <path
             d="M35 4 Q39 4 39 8 L39 39 Q39 43 35 41 L10 26 Q5 23.5 10 20 Z"
             fill="#ffffff"
@@ -311,36 +262,66 @@
           <p>な<span class="highlight-brown">いろ</span>はどれかな？</p>
         </div>
 
-        <a href="./decision.html?color=%23800080" class="color-card color1" aria-label="紫1：しつこい"
+        <a
+          href="./decision.html?color=%23800080"
+          class="color-card color1"
+          aria-label="紫1：しつこい"
           ><img src="img/しつこい.svg" alt="" class="emotion-img"
         /></a>
-        <a href="./decision.html?color=%23333333" class="color-card color2" aria-label="黒：ショック"
+        <a
+          href="./decision.html?color=%23333333"
+          class="color-card color2"
+          aria-label="黒：ショック"
           ><img src="img/ショック.svg" alt="" class="emotion-img"
         /></a>
-        <a href="./decision.html?color=%23c49a6a" class="color-card color3" aria-label="ベージュ：面白くない"
+        <a
+          href="./decision.html?color=%23c49a6a"
+          class="color-card color3"
+          aria-label="ベージュ：面白くない"
           ><img src="img/面白くない.svg" alt="" class="emotion-img"
         /></a>
-        <a href="./decision.html?color=%23000080" class="color-card color5" aria-label="紺：がっかりする"
+        <a
+          href="./decision.html?color=%23000080"
+          class="color-card color5"
+          aria-label="紺：がっかりする"
           ><img src="img/がっかり.svg" alt="" class="emotion-img"
         /></a>
-        <a href="./decision.html?color=%230000ff" class="color-card color6" aria-label="青：悲しい"
+        <a
+          href="./decision.html?color=%230000ff"
+          class="color-card color6"
+          aria-label="青：悲しい"
           ><img src="img/悲しい.svg" alt="" class="emotion-img"
         /></a>
 
-        <a href="./decision.html?color=%234a148c" class="color-card color7" aria-label="紫2：悔しい"
+        <a
+          href="./decision.html?color=%234a148c"
+          class="color-card color7"
+          aria-label="紫2：悔しい"
           ><img src="img/悔しい.svg" alt="" class="emotion-img"
         /></a>
-        <a href="./decision.html?color=%23778899" class="color-card color8" aria-label="グレー青：疲れた"
+        <a
+          href="./decision.html?color=%23778899"
+          class="color-card color8"
+          aria-label="グレー青：疲れた"
           ><img src="img/疲れた.svg" alt="" class="emotion-img"
         /></a>
-        <a href="./decision.html?color=%231e90ff" class="color-card color9" aria-label="青：泣きたい"
+        <a
+          href="./decision.html?color=%231e90ff"
+          class="color-card color9"
+          aria-label="青：泣きたい"
           ><img src="img/泣きたい.svg" alt="" class="emotion-img"
         /></a>
 
-        <a href="./decision.html?color=%2390caf9" class="color-card color10 short" aria-label="薄青：かわいそう"
+        <a
+          href="./decision.html?color=%2390caf9"
+          class="color-card color10 short"
+          aria-label="薄青：かわいそう"
           ><img src="img/可愛想.svg" alt="" class="emotion-img"
         /></a>
-        <a href="./decision.html?color=%234682b4" class="color-card color11 short" aria-label="青灰：寂しい"
+        <a
+          href="./decision.html?color=%234682b4"
+          class="color-card color11 short"
+          aria-label="青灰：寂しい"
           ><img src="img/寂しい.svg" alt="" class="emotion-img"
         /></a>
       </div>
