@@ -133,7 +133,13 @@
       window.MuchuLayout.refresh();
       window.scrollTo(0, 0);
       const focus = document.querySelector('main, .page, .stage');
-      if (focus) { focus.setAttribute('tabindex', '-1'); focus.focus({ preventScroll: true }); }
+      if (focus) {
+        focus.setAttribute('tabindex', '-1');
+        // This non-interactive page landmark receives focus for navigation only.
+        // Suppress its persistent Safari ring without changing control focus styles.
+        focus.style.outline = 'none';
+        focus.focus({ preventScroll: true });
+      }
       document.dispatchEvent(new CustomEvent('muchu:pagechange'));
     } catch (error) {
       // Preserve normal navigation when fetching or page preparation is unavailable.
