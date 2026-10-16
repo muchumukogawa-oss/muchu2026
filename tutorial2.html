@@ -12,9 +12,23 @@
       content="black-translucent"
     />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="./img/favicon-32.png" type="image/png" sizes="32x32" />
-    <link rel="icon" href="./img/favicon-16.png" type="image/png" sizes="16x16" />
-    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" sizes="180x180" />
+    <link
+      rel="icon"
+      href="./img/favicon-32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      href="./img/favicon-16.png"
+      type="image/png"
+      sizes="16x16"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="./img/apple-touch-icon.png"
+      sizes="180x180"
+    />
     <link rel="manifest" href="manifest.webmanifest" />
     <script src="mobile-layout.js" defer></script>
     <title>きもちってなあに？ - きもちのたんけん</title>
@@ -210,7 +224,15 @@
         box-shadow: 0 0 4px rgb(0 0 0 / 20%);
       }
 
-
+      /* mobile-layout による枠線・アウトラインを強制的に削除 */
+      .page,
+      .stage,
+      .stage-inner,
+      div[class*="container"] {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+      }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />
     <script src="page-initializers.js" defer></script>
