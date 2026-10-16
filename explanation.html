@@ -2,21 +2,44 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-    <link rel="icon" href="./img/favicon-32.png" type="image/png" sizes="32x32" />
-    <link rel="icon" href="./img/favicon-16.png" type="image/png" sizes="16x16" />
-    <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" sizes="180x180" />
+    <link
+      rel="icon"
+      href="./img/favicon-32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      href="./img/favicon-16.png"
+      type="image/png"
+      sizes="16x16"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="./img/apple-touch-icon.png"
+      sizes="180x180"
+    />
     <link rel="manifest" href="manifest.webmanifest" />
     <script src="mobile-layout.js" defer></script>
     <title>きもちのつかいかた</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="mobile-layout.css" />
     <style>
       * {
         box-sizing: border-box;
@@ -87,11 +110,8 @@
       }
 
       .expression--white-outline {
-        filter:
-          drop-shadow(1px 0 0 #fff)
-          drop-shadow(-1px 0 0 #fff)
-          drop-shadow(0 1px 0 #fff)
-          drop-shadow(0 -1px 0 #fff);
+        filter: drop-shadow(1px 0 0 #fff) drop-shadow(-1px 0 0 #fff)
+          drop-shadow(0 1px 0 #fff) drop-shadow(0 -1px 0 #fff);
       }
 
       .example-text {
@@ -156,28 +176,35 @@
         left: 489px;
         top: 316px;
       }
-
-
     </style>
-    <link rel="stylesheet" href="mobile-layout.css" />
     <script src="page-initializers.js" defer></script>
     <script src="page-navigation.js" defer></script>
   </head>
 
   <body>
     <div class="page">
-      <h1 class="title"><span id="emotionLabel" class="red">このいろ</span>は こんなときに つかうよ！</h1>
+      <h1 class="title">
+        <span id="emotionLabel" class="red">このいろ</span>は こんなときに
+        つかうよ！
+      </h1>
 
-      <div id="selectedColorBox" class="color-box" aria-label="選択した色"></div>
+      <div
+        id="selectedColorBox"
+        class="color-box"
+        aria-label="選択した色"
+      ></div>
 
-      <img id="expression" src="img/expression_example.png" class="expression" alt="表情" />
+      <img
+        id="expression"
+        src="img/expression_example.png"
+        class="expression"
+        alt="表情"
+      />
 
       <div id="exampleText" class="example-text"></div>
 
       <a href="choice1.html" class="btn no-btn">はじめから</a>
       <a href="last.html" class="btn yes-btn">つぎへ</a>
     </div>
-
-
   </body>
 </html>
