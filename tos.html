@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -32,15 +32,27 @@
 
       .page {
         width: min(740px, calc(100% - 32px));
-        margin: 26px auto 0;
+        height: 100vh;
+        height: 100dvh;
+        margin: 0 auto;
+        padding-top: max(26px, env(safe-area-inset-top));
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
       }
 
       .terms {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
         border: 1px solid #593a2b;
         background: #ffecd6;
       }
 
       .terms h1 {
+        flex: none;
         padding: 5px 12px;
         border-bottom: 2px solid #593a2b;
         background: #ffdc9b;
@@ -52,7 +64,8 @@
 
       /* スクロールするのはこの本文部分だけ */
       .terms-content {
-        height: 234px;
+        flex: 1;
+        min-height: 0;
         overflow-y: auto;
         overscroll-behavior: contain;
         padding: 10px 34px;
@@ -74,10 +87,11 @@
       }
 
       .buttons {
+        flex: none;
         display: flex;
         justify-content: center;
         gap: 34px;
-        margin-top: 16px;
+        margin-top: 0;
       }
 
       .button {
@@ -105,7 +119,7 @@
         }
 
         .page {
-          margin-top: 16px;
+          padding-top: max(16px, env(safe-area-inset-top));
         }
 
         .terms h1 {
@@ -113,7 +127,7 @@
         }
 
         .terms-content {
-          height: min(55vh, 300px);
+
           padding: 12px 16px;
           font-size: 13px;
         }
@@ -129,6 +143,8 @@
         }
       }
     </style>
+    <script src="page-initializers.js" defer></script>
+    <script src="page-navigation.js" defer></script>
   </head>
 
   <body>

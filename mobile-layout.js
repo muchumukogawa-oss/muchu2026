@@ -1,32 +1,29 @@
 (function () {
-  // Figmaで作成した画面の基準サイズ
-  const BASE_WIDTH = 852;
-  const BASE_HEIGHT = 393;
-
-  function updateMobileScale() {
-    // ブラウザで実際に使える表示領域を取得
+  // A page can include this script twice; only install one set of listeners.
+  if (window.__muchuLayoutReady) return;
+  window.__muchuLayoutReady = true;
+  function updateLayout() {
+    if (!document.querySelector('body > .stage, body > .page') ||
+        !Array.from(document.querySelectorAll('link[rel="stylesheet"]')).some(link =>
+          link.href === new URL('mobile-layout.css', location.href).href && link.media !== 'not all')) return;
     const width = document.documentElement.clientWidth;
     const height = window.innerHeight;
-
-    // 画面全体が収まる均等な縮小率を計算
-    const scale = Math.min(width / BASE_WIDTH, height / BASE_HEIGHT);
-
-    // CSSから使えるように値を設定
-    document.documentElement.style.setProperty("--mobile-scale", String(scale));
-
-    document.documentElement.style.setProperty("--mobile-scale-800", String(scale));
-
-    document.documentElement.style.setProperty("--mobile-scale-900", String(scale));
-
-    // 現在の表示領域もCSSから参照できるようにする
-    document.documentElement.style.setProperty("--viewport-width", width + "px");
-
-    document.documentElement.style.setProperty("--viewport-height", height + "px");
+    const hasPaper = !!document.querySelector('body > .stage > .scroll-container, body > .stage > .map-panel');
+    const scale = Math.min(hasPaper ? Infinity : 1, width / 900, height / 420);
+    const style = document.documentElement.style;
+    style.setProperty('--mobile-scale', String(scale));
+    style.setProperty('--compass-scale', String(Math.min(1, scale)));
+    style.setProperty('--canvas-left', ((width - 900 * scale) / 2) + 'px');
+    style.setProperty('--canvas-top', ((height - 420 * scale) / 2) + 'px');
   }
-
-  // 初回表示時
-  updateMobileScale();
-
-  // 画面サイズや向きが変わったとき
-  window.addEventListener("orientationchange", updateMobileScale);
+  function refresh() {
+    const compass = document.querySelector('body > .stage > .compass');
+    if (compass) document.body.appendChild(compass);
+    updateLayout();
+  }
+  window.MuchuLayout = { refresh };
+  refresh();
+  window.addEventListener('resize', updateLayout);
+  window.addEventListener('orientationchange', () => requestAnimationFrame(updateLayout));
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', updateLayout);
 })();

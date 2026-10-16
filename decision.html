@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -157,36 +157,11 @@
         top: 316px;
       }
 
-      @media (max-width: 700px) {
-        .title {
-          width: 90%;
-          font-size: 26px;
-        }
 
-        .color-box {
-          top: 100px;
-          width: 200px;
-          height: 200px;
-        }
-
-        .expression {
-          top: 100px;
-          width: 200px;
-          height: 200px;
-        }
-
-        .no-btn {
-          left: 40px;
-          top: 340px;
-        }
-
-        .yes-btn {
-          left: 240px;
-          top: 340px;
-        }
-      }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />
+    <script src="page-initializers.js" defer></script>
+    <script src="page-navigation.js" defer></script>
   </head>
 
   <body>
@@ -200,76 +175,6 @@
       <a id="yesBtn" class="btn yes-btn" href="explanation.html">はい</a>
     </div>
 
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      const color = params.get("color");
-      const example = params.get("example");
-      const label = params.get("label");
-      const expressions = {
-        "#ff0000": "怒る",
-        "#000000": "怖い",
-        "#0068b7": "びびりびっくり",
-        "#ff4e00": "うるさい",
-        "#910055": "危ない",
-        "#a9a9a9": "不安・心配",
-        "#a757a8": "嫌",
-        "#d8bfd8": "困る",
-        "#db7093": "恥ずかしい",
-        "#ff7043": "イライラ",
-        "#800080": "しつこい",
-        "#333333": "ショック",
-        "#c49a6a": "面白くない",
-        "#1e90ff": "泣きたい",
-        "#90caf9": "可愛想",
-        "#4682b4": "寂しい",
-        "#000080": "がっかり",
-        "#0000ff": "悲しい",
-        "#4a148c": "悔しい",
-        "#778899": "疲れた",
-        "#ffcc00": "嬉しくてびっくり(1)",
-        "#ff8c00": "面白い",
-        "#ff5a5a": "やる気がある",
-        "#ffeb3b": "嬉しい",
-        "#ff9f63": "興奮した",
-        "#ffff00": "喜ぶ",
-        "#ffa500": "楽しい",
-        "#ffc0cb": "幸せ",
-        "#e91e63": "愛",
-        "#f48fb1": "好き",
-        "#90ee90": "気楽・のんびり",
-        "#ffd700": "素敵",
-        "#a5d4ad": "リラックス",
-        "#008000": "安心する",
-        "#ffdab9": "感謝する",
-        "#ccff99": "優しい",
-        "#aed581": "穏やか",
-        "#ffffff": "気にしない",
-        "#00fa9a": "気持ちいい"
-      };
 
-      if (color) {
-        document.getElementById("selectedColorBox").style.backgroundColor = color;
-        const explanationParams = new URLSearchParams({ color });
-        if (label) {
-          explanationParams.set("label", label);
-        }
-        if (example) {
-          explanationParams.set("example", example);
-        }
-        const normalizedColor = color.toLowerCase();
-        const emotion = label === "かんどう" ? "嬉しくてびっくり" : expressions[normalizedColor];
-        if (emotion) {
-          const expression = document.getElementById("selectedExpression");
-          expression.src = `img/${emotion}.svg`;
-          expression.alt = `${label || emotion}の表情`;
-          // JavaScriptで感情名をdata属性にセットしてCSSの位置微調整を発動させる
-          expression.setAttribute("data-emotion", emotion);
-          expression.classList.toggle("expression--white-outline", normalizedColor === "#000000");
-          expression.hidden = false;
-          explanationParams.set("emotion", emotion);
-        }
-        document.getElementById("yesBtn").href = "explanation.html?" + explanationParams.toString();
-      }
-    </script>
   </body>
 </html>

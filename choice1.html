@@ -12,10 +12,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="mobile-layout.css" />
 
     <style>
       * {
@@ -138,8 +137,8 @@
         overflow: hidden;
       }
 
-      .back-arrow.clicked,
-      .color-block.clicked {
+      .back-arrow:active,
+      .color-block:active {
         transform: translateY(2px);
         filter: brightness(0.98);
       }
@@ -160,6 +159,9 @@
         background: #00fa9a;
       }
     </style>
+    <link rel="stylesheet" href="mobile-layout.css" />
+    <script src="page-initializers.js" defer></script>
+    <script src="page-navigation.js" defer></script>
   </head>
 
   <body>
@@ -196,7 +198,6 @@
             stroke-linecap="round"
           />
         </svg>
-        <script src="mobile-layout.js" defer></script>
       </a>
 
       <h1 class="title">
@@ -219,21 +220,6 @@
       </div>
     </div>
 
-    <script>
-      const buttons = document.querySelectorAll(".back-arrow, .color-block");
 
-      buttons.forEach((button) => {
-        button.addEventListener("click", (event) => {
-          // リンク先へ移動する前にアニメーションを表示する
-          event.preventDefault();
-
-          button.classList.add("clicked");
-
-          setTimeout(() => {
-            window.location.href = button.href;
-          }, 120);
-        });
-      });
-    </script>
   </body>
 </html>

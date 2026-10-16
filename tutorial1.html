@@ -192,65 +192,11 @@
         box-shadow: 0 0 4px rgb(0 0 0 / 20%);
       }
 
-      @media (max-width: 900px), (pointer: coarse) {
-        /*
-         * The artwork is composed on an 800px-wide canvas. Scale that canvas
-         * as one unit on narrow screens so its original proportions and
-         * absolute positions remain unchanged.
-         */
-        .stage {
-          --mobile-scale: var(
-            --mobile-scale-800,
-            calc((100vw - 24px) * 0.00125)
-          );
-          width: 100%;
-          height: 100vh;
-          height: 100dvh;
-          overflow: hidden;
-        }
 
-        .compass {
-          left: auto;
-          right: 0;
-          width: calc(350px * var(--mobile-scale));
-          height: calc(161px * var(--mobile-scale));
-          transform-origin: top right;
-        }
-
-        .scroll-container {
-          top: 2px;
-          left: 12px;
-          width: 800.03px;
-          height: 394px;
-          padding: 4% 6% 5% 18%;
-          transform: scale(var(--mobile-scale));
-          transform-origin: top left;
-        }
-
-        .next-btn {
-          top: calc(181.57px * var(--mobile-scale));
-          left: calc(774.99px * var(--mobile-scale) + 12px);
-          width: calc(53px * var(--mobile-scale));
-          height: calc(47px * var(--mobile-scale));
-          transform-origin: center;
-        }
-
-        .dots-container {
-          top: calc(363px * var(--mobile-scale));
-          left: calc(414px * var(--mobile-scale) + 12px);
-          transform: scale(var(--mobile-scale));
-          transform-origin: top left;
-        }
-
-        .content-title {
-          margin-bottom: 14px;
-        }
-
-        .content-text p {
-          margin-bottom: 10px;
-        }
-      }
     </style>
+    <link rel="stylesheet" href="mobile-layout.css" />
+    <script src="page-initializers.js" defer></script>
+    <script src="page-navigation.js" defer></script>
   </head>
 
   <body>

@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
 
@@ -64,9 +64,13 @@
       }
 
       .title {
+        max-width: 100%;
+        padding: 0 12px;
+        overflow-wrap: anywhere;
+        line-break: strict;
         margin-bottom: 24px;
         color: #3e0000;
-        font-size: 30px;
+        font-size: 22px;
         line-height: 38px;
         letter-spacing: 0.04em;
         text-align: center;
@@ -118,31 +122,11 @@
         z-index: 4;
       }
 
-      @media (max-width: 900px) {
-        .map-panel {
-          left: 18px;
-          top: 2px;
-          width: 800.03px;
-          height: 394px;
-        }
 
-        .content {
-          width: 63vw;
-          height: 42vw;
-        }
-
-        .title {
-          font-size: 30px;
-        }
-
-        .start-btn {
-          width: 192px;
-          height: 47.2px;
-          font-size: 24px;
-        }
-      }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />
+    <script src="page-initializers.js" defer></script>
+    <script src="page-navigation.js" defer></script>
   </head>
 
   <body>

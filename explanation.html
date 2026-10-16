@@ -11,7 +11,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
 
     <style>
       * {
@@ -153,44 +153,11 @@
         top: 316px;
       }
 
-      @media (max-width: 900px) {
-        .title {
-          width: 760px;
-          font-size: 30px;
-        }
 
-        .example-text {
-          left: 442px;
-          width: 254px;
-        }
-
-        .color-box {
-          left: 192px;
-          top: 94px;
-          width: 213px;
-          height: 195px;
-        }
-
-        .expression {
-          left: 222px;
-          top: 107px;
-          width: 153px;
-          height: 169px;
-        }
-
-        /* 小さい画面でもボタン位置を統一 */
-        .no-btn {
-          left: 220px;
-          top: 316px;
-        }
-
-        .yes-btn {
-          left: 489px;
-          top: 316px;
-        }
-      }
     </style>
     <link rel="stylesheet" href="mobile-layout.css" />
+    <script src="page-initializers.js" defer></script>
+    <script src="page-navigation.js" defer></script>
   </head>
 
   <body>
@@ -207,122 +174,6 @@
       <a href="last.html" class="btn yes-btn">つぎへ</a>
     </div>
 
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      const selectedColor = params.get("color") || "#ff0000";
-      const emotion = params.get("emotion");
-      const emotionLabels = {
-        "#ff0000": "おこる",
-        "#000000": "こわい",
-        "#0068b7": "びびりびっくり",
-        "#ff4e00": "うるさい",
-        "#910055": "あぶない",
-        "#a9a9a9": "ふあん・しんぱい",
-        "#a757a8": "いや",
-        "#d8bfd8": "こまる",
-        "#db7093": "はずかしい",
-        "#ff7043": "いらいら",
-        "#800080": "しつこい",
-        "#333333": "しょっく",
-        "#c49a6a": "おもしろくない",
-        "#1e90ff": "なきたい",
-        "#90caf9": "かわいそう",
-        "#4682b4": "さびしい",
-        "#000080": "がっかりする",
-        "#0000ff": "かなしい",
-        "#4a148c": "くやしい",
-        "#778899": "つかれた",
-        "#ffcc00": "うれしくてびっくり",
-        "#ff8c00": "おもしろい",
-        "#ff5a5a": "やるきがある",
-        "#ffeb3b": "うれしい",
-        "#ff9f63": "こうふんした",
-        "#ffff00": "よろこぶ",
-        "#ffa500": "たのしい",
-        "#ffc0cb": "しあわせ",
-        "#e91e63": "あい",
-        "#f48fb1": "すき",
-        "#90ee90": "きらく・のんびり",
-        "#ffd700": "すてき",
-        "#a5d4ad": "りらっくす",
-        "#008000": "あんしん・ほっとする",
-        "#ffdab9": "かんしゃ",
-        "#ccff99": "やさしい・しんせつ",
-        "#aed581": "おだやか",
-        "#ffffff": "きにしない",
-        "#00fa9a": "きもちいい",
-      };
-      const emotionLabel = params.get("label") || emotionLabels[selectedColor.toLowerCase()];
-      if (emotionLabel) {
-        document.getElementById("emotionLabel").textContent = emotionLabel;
-        document.title = `${emotionLabel}は こんなときに つかうよ！`;
-      }
-      const examples = {
-        "#ff0000": "とっておいた ぷりんを たべられた",
-        "#000000": "ひとりで まっくらな みちを あるいているよ",
-        "#0068b7": "えほんを よんでいたら、うしろで 「わっ！」って おおきな こえが して とびあがっちゃった",
-        "#ff4e00": "みみもとで おおきな こえで はなしかけられた",
-        "#910055": "どうろで あそぶと、くるまが きて ぶつかっちゃうよ",
-        "#a9a9a9": "きょうは えんそくなのに あめが ふりそうだよ",
-        "#a757a8": "まいにち ずっと あめで、おそとで あそべないよ",
-        "#d8bfd8": "あめが ふってるのに、かさが ないよ",
-        "#db7093": "みんなの まえで ころんで、かおが まっかに なっちゃった",
-        "#ff7043": "じゅんばんを まっているのに、ぬかされた",
-        "#800080": "「やめて」と いってるのに、なんども おもちゃを とろうとしてくるよ",
-        "#333333": "つみきを がんばって たかく つんだのに くずれちゃった",
-        "#c49a6a": "おなじ あそびばかりで、あきちゃったよ",
-        "#1e90ff": "おともだちと けんかしちゃったよ",
-        "#90caf9": "おともだちが ころんで ないているよ",
-        "#4682b4": "いっしょに あそぶ おともだちが いない",
-        "#000080": "たのしみにしていた おでかけが なくなったよ",
-        "#0000ff": "たからものの おもちゃが こわれちゃった",
-        "#4a148c": "ともだちに げーむで まけちゃった",
-        "#778899": "たくさん あそんで へとへとだ",
-        "#ffcc00": "こうえんで あそんでいたら、だいすきな おともだちに あえた！",
-        "#ff8c00": "ともだちが へんな だんすを していたよ",
-        "#ff5a5a": "じぶんで くつしたを はこうと がんばるとき",
-        "#ffeb3b": "かいた えを ほめてもらったよ",
-        "#ff9f63": "だいすきな あにめの きゃらくたーに あえたよ",
-        "#ffff00": "ゆうえんちに いくことに なったよ！",
-        "#ffa500": "おともだちと えんそくに いったよ",
-        "#ffc0cb": "かぞく みんなで ごはんを たべながら いつも わらいあっているよ",
-        "#e91e63": "おうちの ひとが やさしく あたまを なでてくれる",
-        "#f48fb1": "この ぬいぐるみは おきにいりなんだ",
-        "#90ee90": "ごろごろしながら てれびを みる",
-        "#ffd700": "おともだちの ふくが とても おしゃれだった",
-        "#a5d4ad": "そふぁで ごろごろするよ",
-        "#008000": "ままと ぱぱに ぎゅっと してもらったよ",
-        "#ffdab9": "ともだちが おとしたものを ひろってくれたよ。",
-        "#ccff99": "おともだちがおもちゃをかしてくれた",
-        "#aed581": "おひさまが やさしく てらしているよ",
-        "#ffffff": "あめで こうえんに いけなくなったけど おうちで あそぼうっと",
-        "#00fa9a": "あつい ひに ぷーるに はいるよ"
-      };
 
-      const box = document.getElementById("selectedColorBox");
-      box.style.backgroundColor = selectedColor;
-
-      if (emotion && /^[^./\\?#]+$/u.test(emotion)) {
-        const expression = document.getElementById("expression");
-        expression.src = `img/${emotion}.svg`;
-        expression.alt = `${emotionLabel || emotion}の表情`;
-        expression.classList.toggle(
-          "expression--white-outline",
-          selectedColor.toLowerCase() === "#000000",
-        );
-      }
-
-      const example = params.get("example");
-      const exampleText =
-        example === "moved"
-          ? "えほんの しゅじんこうが たすかって、よかったなぁと おもったよ"
-          : examples[selectedColor.toLowerCase()];
-      const exampleTextElement = document.getElementById("exampleText");
-      const isSurpriseExample = selectedColor.toLowerCase() === "#0068b7" && example !== "moved";
-      exampleTextElement.textContent = isSurpriseExample
-        ? "えほんを よんでいたら、うしろで「わっ！」って\nおおきな こえが して\nとびあがっちゃった"
-        : exampleText || "対応する例文が見つかりません。";
-      exampleTextElement.classList.toggle("example-text--fixed-lines", isSurpriseExample);
-    </script>
   </body>
 </html>
