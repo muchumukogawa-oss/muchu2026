@@ -31,3 +31,6 @@ body > .compass {
   z-index: 8;
   pointer-events: none;
 }
+
+/* Keep this short prompt together without changing the rest of the paragraph. */
+.title-area .no-break { white-space: nowrap; letter-spacing: normal; }
