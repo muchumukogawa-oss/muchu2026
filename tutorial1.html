@@ -50,89 +50,6 @@
         background: url("img/newback1.png") center / cover no-repeat;
       }
 
-      /* メインコンテンツコンテナ：右側に寄せる構造 */
-      .scroll-container {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        /* 横幅を少し絞り、自動余白（margin-left: auto）で右寄りに配置 */
-        width: 60%; /* 幅を60%程度に絞ることで、右側に配置しやすくなります */
-        max-width: 650px;
-        height: 100%;
-
-        /* 左側の余白を自動（auto）にすることで右に押し寄せる */
-        margin-left: auto;
-        margin-right: 15%; /* 右端（つぎへボタンなど）との距離調整 */
-
-        padding: 2% 4%;
-        box-sizing: border-box;
-      }
-
-      /* コンテンツタイトル：clamp()で極端な巨大化・縮小を防止 */
-      .content-title {
-        display: inline-block;
-        margin-bottom: clamp(12px, 3vh, 24px);
-        padding-bottom: 4px;
-        border-bottom: 0.35rem solid #b87b5c;
-        color: #3e0000;
-        font-size: clamp(20px, 4.2vw, 36px);
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        text-align: center;
-        white-space: nowrap;
-      }
-
-      .title-subtext {
-        font-weight: 500;
-      }
-
-      /* 本文テキスト */
-      .content-text {
-        color: #3e0000;
-        font-size: clamp(14px, 2.8vw, 22px);
-        font-weight: 500;
-        line-height: 1.8;
-        text-align: center;
-      }
-
-      /* 本文テキストの段落 */
-      .content-text p {
-        margin-bottom: 0.5em; /* ← ここを 1.2em や 2% から小さく変更（例: 0.5em や 8px など） */
-      }
-
-      /* 2番目の p 要素だけを上に引っ張り上げる */
-      .content-text p:nth-child(2) {
-        margin-top: -10px; /* ← 上げ具合に応じて -5px 〜 -15px などで調整 */
-      }
-
-      /* ルビ（ルビ振り） */
-      ruby rt {
-        color: #3e0000;
-        font-size: 0.55em;
-        font-weight: 400;
-        line-height: 0.5em;
-      }
-
-      /* テキストハイライト */
-      .highlight-red {
-        color: #d93838;
-        font-weight: 700;
-      }
-
-      .highlight-teal {
-        color: #31758a;
-        font-weight: 700;
-      }
-
-      .highlight-blue {
-        color: #3c318a;
-        font-weight: 700;
-      }
-
       /* 「つぎへ」矢印ボタン：画面右端に安全に固定配置 */
       .next-btn {
         position: absolute;
@@ -156,29 +73,6 @@
 
   <body>
     <main class="stage">
-      <section class="scroll-container" aria-labelledby="page-title">
-        <h1 id="page-title" class="content-title">
-          <span class="highlight-red">きもち</span
-          ><span class="title-subtext">ってなあに？</span>
-        </h1>
-
-        <div class="content-text">
-          <p>
-            <span class="highlight-red">きもち</span
-            >は、よろこんだり、かなしんだりする<br />
-            こころのうごきやようすのことだよ。
-          </p>
-          <p>
-            <span class="highlight-teal">きぶん</span>や
-            <span class="highlight-blue">きげん</span>も、
-            <span class="highlight-red">きもち</span>とにているよ。<br />
-            <ruby>目<rt>め</rt></ruby
-            >には<ruby>見<rt>み</rt></ruby
-            >えないけど、たしかにあるもの。
-          </p>
-        </div>
-      </section>
-
       <a href="tutorial2.html" class="next-btn" aria-label="つぎへ"></a>
     </main>
   </body>
