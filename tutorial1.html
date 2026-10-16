@@ -40,6 +40,7 @@
         background-color: #2e4d26; /* 背景の余白が出ても違和感のない緑色 */
         touch-action: none;
       }
+
       /* 外枠（画面全体） */
       .stage {
         position: fixed;
@@ -51,11 +52,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        /* セーフエリア対応 */
         padding: env(safe-area-inset-top) env(safe-area-inset-right)
           env(safe-area-inset-bottom) env(safe-area-inset-left);
-
-        /* ★ここに1行追加：画面全体（左右の余白部分）にも背景画像を敷き詰める */
-        background: url("img/background_grass.png") center / cover no-repeat !important;
       }
 
       /* ★ 基準デザイン枠（836:394 の縦横比を絶対に維持する枠） */
