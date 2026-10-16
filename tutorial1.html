@@ -12,7 +12,6 @@
       content="black-translucent"
     />
     <link rel="manifest" href="manifest.webmanifest" />
-    <!-- <script src="mobile-layout.js" defer></script> -->
     <title>きもちってなあに？ - きもちのたんけん</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,50 +30,56 @@
 
       html,
       body {
-        width: 100vw !important;
-        height: 100vh !important;
+        width: 100%;
+        height: 100%;
         margin: 0;
         padding: 0;
         overflow: hidden;
         font-family: "Zen Maru Gothic", sans-serif;
+        background: #f3f3f3;
       }
 
-      /* stage（背景全体）も画面いっぱいに広げる */
+      /* stage（背景全体）を画面いっぱいに設定 */
       .stage {
         position: relative;
+        width: 100%;
+        height: 100%;
         display: flex;
-        width: 100vw !important;
-        height: 100vh !important;
         align-items: center;
         justify-content: center;
         background: url("img/newback1.png") center / cover no-repeat;
       }
 
-      /* メインコンテンツコンテナ */
+      /* メインコンテンツコンテナ：右側に寄せる構造 */
       .scroll-container {
-        position: absolute;
-        top: 0.5%;
-        left: 48.3%;
-        transform: translateX(-50%);
+        position: relative;
         z-index: 2;
         display: flex;
-        width: 94%;
-        height: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 4% 5% 4% 22%;
+
+        /* 横幅を少し絞り、自動余白（margin-left: auto）で右寄りに配置 */
+        width: 60%; /* 幅を60%程度に絞ることで、右側に配置しやすくなります */
+        max-width: 650px;
+        height: 100%;
+
+        /* 左側の余白を自動（auto）にすることで右に押し寄せる */
+        margin-left: auto;
+        margin-right: 15%; /* 右端（つぎへボタンなど）との距離調整 */
+
+        padding: 2% 4%;
+        box-sizing: border-box;
       }
 
-      /* コンテンツタイトル */
+      /* コンテンツタイトル：clamp()で極端な巨大化・縮小を防止 */
       .content-title {
         display: inline-block;
-        transform: translateY(1.4%);
-        margin-bottom: 2.63vw;
-        padding-bottom: 0.48vw;
-        border-bottom: 0.36vw solid #b87b5c;
+        margin-bottom: clamp(12px, 3vh, 24px);
+        padding-bottom: 4px;
+        border-bottom: 0.35rem solid #b87b5c;
         color: #3e0000;
-        font-size: 3.9vw;
+        font-size: clamp(20px, 4.2vw, 36px);
         font-weight: 500;
         letter-spacing: 0.05em;
         text-align: center;
@@ -88,22 +93,20 @@
       /* 本文テキスト */
       .content-text {
         color: #3e0000;
-        font-size: 2.63vw;
+        font-size: clamp(14px, 2.8vw, 22px);
         font-weight: 500;
-        line-height: 1.7;
+        line-height: 1.8;
         text-align: center;
       }
 
+      /* 本文テキストの段落 */
       .content-text p {
-        margin-bottom: 2%;
+        margin-bottom: 0.5em; /* ← ここを 1.2em や 2% から小さく変更（例: 0.5em や 8px など） */
       }
 
-      .content-text p:first-child {
-        margin-bottom: 1.79vw;
-      }
-
-      .content-text p:last-child {
-        transform: translateY(-1.2vw);
+      /* 2番目の p 要素だけを上に引っ張り上げる */
+      .content-text p:nth-child(2) {
+        margin-top: -10px; /* ← 上げ具合に応じて -5px 〜 -15px などで調整 */
       }
 
       /* ルビ（ルビ振り） */
@@ -117,43 +120,36 @@
       /* テキストハイライト */
       .highlight-red {
         color: #d93838;
-        font-weight: 400;
-      }
-
-      .content-title .highlight-red {
-        font-weight: 700;
-      }
-
-      .content-text .highlight-red,
-      .content-text .highlight-teal,
-      .content-text .highlight-blue {
         font-weight: 700;
       }
 
       .highlight-teal {
         color: #31758a;
-        font-weight: 400;
+        font-weight: 700;
       }
 
       .highlight-blue {
         color: #3c318a;
-        font-weight: 400;
+        font-weight: 700;
       }
 
-      /* 「つぎへ」矢印ボタン */
+      /* 「つぎへ」矢印ボタン：画面右端に安全に固定配置 */
       .next-btn {
-        position: absolute !important;
-        z-index: 10 !important;
-        display: block !important;
-        top: 46.08% !important;
-        left: 92.7% !important; /* ★端からはみ出す場合は 85%〜88% 付近に調整してください */
-        width: 6.3% !important;
-        height: auto !important;
-        aspect-ratio: 53 / 47 !important;
+        position: absolute;
+        z-index: 10;
+        right: 3%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: clamp(40px, 6vw, 64px);
+        aspect-ratio: 53 / 47;
         background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 36'%3E%3Cpath d='M7 2.5c-2.2-1.4-4.5.2-4.5 2.8v25.4c0 2.6 2.3 4.2 4.5 2.8l19.5-12.7c2-1.3 2-4.3 0-5.6Z' fill='white' fill-opacity='.85' stroke='black' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E")
-          center / 100% 100% no-repeat !important;
+          center / contain no-repeat;
         cursor: pointer;
         transition: transform 0.08s ease;
+      }
+
+      .next-btn:active {
+        transform: translateY(-50%) scale(0.95);
       }
     </style>
   </head>

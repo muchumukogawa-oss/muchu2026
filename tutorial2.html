@@ -22,7 +22,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="mobile-layout.css" />
-
     <style>
       * {
         margin: 0;
@@ -32,79 +31,94 @@
 
       html,
       body {
-        width: 100vw !important;
-        height: 100vh !important;
+        width: 100% !important;
+        height: 100% !important;
         margin: 0;
         padding: 0;
         overflow: hidden;
         font-family: "Zen Maru Gothic", sans-serif;
       }
 
-      /* stage（背景全体）も画面いっぱいに広げる */
+      /* stage（背景全体） */
       .stage {
         position: relative;
         display: flex;
-        width: 100vw !important;
-        height: 100vh !important;
+        width: 100% !important;
+        height: 100% !important;
         align-items: center;
         justify-content: center;
         background: url("img/newback2.png") center / cover no-repeat;
       }
 
-      /* ★基準となるデザイン枠（836:394 のアスペクト比を完璧に固定） */
+      /* ★基準となるデザイン枠（836:394 のアスペクト比を固定） */
       .stage-inner {
         position: relative !important;
-        width: min(100vw, calc(100vh * (836 / 394))) !important;
-        height: min(100vh, calc(100vw * (394 / 836))) !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100vw;
+        max-height: 100vh;
         aspect-ratio: 836 / 394;
         container-type: inline-size;
         margin: auto; /* 中央寄せ */
       }
 
-      /* メインコンテンツエリア（背景マップ画像指定を解除） */
+      /* メインコンテンツコンテナ：右側に寄せる構造 */
       .scroll-container {
-        position: absolute;
-        top: 0.5%;
-        left: 48.3%;
-        transform: translateX(-50%);
+        position: relative;
         z-index: 2;
         display: flex;
-        width: 95.7%;
-        height: 100%;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
-        padding: 8% 5% 4% 22%;
+
+        /* 横幅を絞り、margin-left: auto で右寄りに配置 */
+        width: 60%;
+        max-width: 650px;
+        height: 100%;
+
+        margin-left: auto;
+        margin-right: 8%; /* ★右寄りの調整：数字を小さくするとさらに右に移動します */
+
+        padding: 2% 4%;
+        box-sizing: border-box;
       }
 
-      /* タイトル「きもちってなあに？」 */
+      /* コンテンツタイトル */
       .content-title {
         display: inline-block;
-        margin-top: 1%;
-        margin-bottom: 3.5%;
-        padding-bottom: 0.8%;
-        border-bottom: 0.35cqi solid #b87b5c;
+        margin-bottom: clamp(12px, 3vh, 24px);
+        padding-bottom: 4px;
+        border-bottom: 0.35rem solid #b87b5c;
         color: #3e0000;
-        font-size: 3.8cqi;
+        font-size: clamp(20px, 4.2vw, 36px);
         font-weight: 500;
         letter-spacing: 0.05em;
         text-align: center;
         white-space: nowrap;
       }
 
+      .title-subtext {
+        font-weight: 500;
+      }
+
       /* 本文テキスト */
       .content-text {
-        width: 100%;
         color: #3e0000;
-        font-size: 2.6cqi;
+        font-size: clamp(14px, 2.8vw, 22px);
         font-weight: 500;
-        line-height: 1.7;
+        line-height: 1.8;
         text-align: center;
       }
 
+      /* 本文テキストの段落 */
       .content-text p {
-        margin-bottom: 3%;
+        margin-bottom: 0.5em;
       }
+
+      /* 2番目の p 要素だけを上に引っ張り上げる */
+      .content-text p:nth-child(2) {
+        margin-top: -10px;
+      } /* ← 抜け落ちていた閉じカッコを追加 */
 
       /* ルビ（振り仮名） */
       ruby rt {
@@ -119,18 +133,14 @@
         font-weight: 700;
       }
 
-      .title-subtext {
-        font-weight: 500;
-      }
-
       /* 戻るボタン（左矢印） */
       .prev-btn {
         position: absolute !important;
         z-index: 10 !important;
         display: block !important;
         top: 46.08% !important;
-        left: 2.2% !important; /* ★巻物の外側の緑背景の定位置に配置 */
-        width: 5.5% !important; /* ★左右でサイズ指定を完全に統一 */
+        left: 2.2% !important;
+        width: 5.5% !important;
         height: auto !important;
         aspect-ratio: 53 / 47 !important;
         transform: rotate(180deg) !important;
@@ -145,9 +155,9 @@
         position: absolute !important;
         z-index: 10 !important;
         display: block !important;
-        top: 46.08% !important; /* ★高さ(top)を左矢印と完全一致 */
-        left: 92.3% !important; /* ★tutorial1.htmlの右端定位置(緑領域)に配置 */
-        width: 5.5% !important; /* ★左右でサイズ指定を完全に統一 */
+        top: 46.08% !important;
+        left: 92.3% !important;
+        width: 5.5% !important;
         height: auto !important;
         aspect-ratio: 53 / 47 !important;
         transform: none !important;
